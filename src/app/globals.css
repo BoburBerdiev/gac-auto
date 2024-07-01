@@ -1,0 +1,37 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer base {
+  .container-fluid {
+    @apply container  px-[5%];
+  }
+}
+.header-slider .swiper-pagination-bullet {
+  width: 20px;
+  height: 4px;
+  background-color: #d7d6d6;
+  border-radius: 0;
+}
+
+
+.header-slider .swiper-pagination-bullet-active {
+  background-color: #e23535;
+}
+
+
+.section-slider .swiper-pagination-bullet {
+  width: 10px;
+  height:10px;
+  background-color: #d7d6d6;
+  border-radius: 100%;
+}
+
+
+.section-slider .swiper-pagination-bullet-active {
+  background-color: #e23535;
+}
+
+
+
