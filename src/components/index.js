@@ -1,8 +1,5 @@
-
 export { default as ImgUI } from './ui/ImgUI'
 export { default as ButtonUI } from './ui/ButtonUI'
-
-
 
 export { default as PerformanceCard } from './performance-card'
 export { default as FeaturesCard } from './features-car'
@@ -16,7 +13,4 @@ export { default as CardCar } from './card-car'
 export { default as Navbar } from './navbar'
 export { default as Footer } from './footer'
 export { default as  AboutUsSection} from './about-us-section'
-export { default as SocialResponsibility} from './social-responsibility'
-export { default as SocialResponsibilityCard} from './social-responsibility-card'
-export { default as AwardsSection} from './awards-section'
 export { default as ToTop} from './to-top'
