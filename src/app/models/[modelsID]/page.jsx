@@ -18,7 +18,7 @@ export default function ModelsDetails() {
             <section className={'bg-gradient-to-b md:bg-gradient-to-r to-white from-50%  from-[#41454b] to-50% md:py-[70px] py-5'}>
                 <div className="container grid grid-cols-1 md:grid-cols-2 relative">
                     <div>
-                        <SectionTitleCar isTextLeft={true} isTextWhite={true}/>
+                        <SectionTitleCar title={'Specification'} isTextLeft={true} isTextWhite={true}/>
                         <ul className={'text-white  space-y-3 md:space-y-8 py-5 md:py-10'}>
                             <li>
                                 <p className={'text-sm md:text-base space-x-2'}>
@@ -121,7 +121,7 @@ export default function ModelsDetails() {
             <section
                 className={'bg-[#efefef]  md:bg-[url(/bg-car-inner.jpg)] bg-no-repeat bg-cover bg-top bg-scroll lg:pt-[90px] md:pt-[72px] pt-20 pb-[15px] lg:pb-[20px]'}>
                 <div className="container">
-                    <SectionTitleCar/>
+                    <SectionTitleCar title={'Dimensions'}/>
                     <div className={'w-full h-[350px] md:h-[450px] flex items-end'}>
                         <div className={'relative h-[350px] w-full'}>
                             <ImgUI src={'/dimensions-pic.png'} imageStyle={'hidden md:block'} objectFitContain={true}
@@ -135,7 +135,7 @@ export default function ModelsDetails() {
             <section
                 className={'bg-[#fff]  lg:pt-[90px] md:pt-[72px] pt-20 pb-[15px] lg:pb-[20px]'}>
                 <div className="container space-y-8 md:space-y-12 ">
-                    <SectionTitleCar/>
+                    <SectionTitleCar title={'The best style for fashion enthusiasts'}/>
                     <div className={'grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-8'}>
                         <PerformanceCard src={'/performance-pic1.jpg'} isPng={true}
                                          text={'All-new megawave 3rd generation 1.5T GDI engine'}/>
@@ -152,7 +152,7 @@ export default function ModelsDetails() {
             <section
                 className={'bg-[#fff]  lg:pt-[90px] md:py-[72px] py-20 '}>
                 <div className="container space-y-8 md:space-y-12 ">
-                    <SectionTitleCar/>
+                    <SectionTitleCar title={'Features'}/>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-0">
                         <FeaturesCard/>

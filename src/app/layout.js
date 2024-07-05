@@ -1,6 +1,6 @@
 import {Inter, Montserrat} from "next/font/google";
 import "./globals.css";
-import {Footer, Navbar} from "@/components";
+import {Footer, Navbar, ToTop} from "@/components";
 import 'swiper/css';
 const inter = Inter({ subsets: ["latin"] });
 const montserrat = Montserrat({subsets:["cyrillic" ,"latin"] ,  weight: '400'})
@@ -13,11 +13,12 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={ montserrat.className}>
+      <body className={`${montserrat.className} overflow-x-hidden`}>
       <Navbar />
       <main className={'bg-white '}>
         {children}
       </main>
+      <ToTop/>
       <Footer />
       </body>
     </html>
