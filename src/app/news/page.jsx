@@ -1,11 +1,4 @@
 import {BannerSmall, NewsCard} from "@/components";
-const bannerSlider = [
-    {
-        imgMob: '/news/news-baner.jpg',
-        imgDes: '/news/news-baner.jpg',
-        id: 0
-    },
-]
 
 export default function Page(props) {
     const newsCards = [
@@ -13,7 +6,7 @@ export default function Page(props) {
             image: '/news/news-inner1.jpg',
             date: "Jul 04,2022",
             title: "GAC MOTOR｜COLO COLO",
-            href: '/news',
+            href: '/news/1',
             id: 0
         },
         {
@@ -62,7 +55,7 @@ export default function Page(props) {
     return (
         <>
             <section>
-                <BannerSmall list={bannerSlider}/>
+                <BannerSmall imgDes={'/news/news-baner.jpg'} imgMob={'/news/news-baner.jpg'}/>
             </section>
             <section className={'py-10 xl:py-[65px]'}>
                 <div className="container-fluid">

@@ -1,14 +1,6 @@
 import {AboutUsSection, BannerSmall, ButtonUI, ImgUI, SectionTitleCar} from "@/components";
 
 export default function Page  (props)   {
-
-    const bannerSlider = [
-        {
-            imgMob: '/about/group-banner-mobile.jpg',
-            imgDes: '/about/group-banner.jpg',
-            id: 0
-        },
-    ]
     const awards = [
         {
             image: '/about/awards-1.jpg',
@@ -107,7 +99,7 @@ export default function Page  (props)   {
     return (
         <>
             <section>
-                <BannerSmall list={bannerSlider}/>
+                <BannerSmall imgMob={'/about/group-banner-mobile.jpg'} imgDes={'/about/group-banner.jpg'}/>
             </section>
             <section className={'relative py-10  lg:pt-[55px] lg:pb-[70px]'}>
                 <div className="container-fluid flex flex-col items-center gap-[30px] lg:gap-[50px]  3xl:gap-[70px]">
