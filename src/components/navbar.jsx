@@ -88,7 +88,7 @@ const Navbar = () => {
                 {
                     title: 'OVERVIEW',
                     id: 0,
-                    href: '/overview'
+                    href: '/about'
                 },
                 {
                     title: 'OVERVIEW',
