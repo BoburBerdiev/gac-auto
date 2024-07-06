@@ -8,19 +8,19 @@ const Navbar = () => {
     const [nav, setNav] = useState(false)
     const navList = [
         {
-            title: 'home',
+            title: 'Home',
             id: 0,
             href: '/'
         },
         {
-            title: 'models',
+            title: 'MODELS',
             id: 1,
             href: '/models',
             subTitle: [
                 {
                     title: 'all models',
                     id: 0,
-                    href: '/allmodels'
+                    href: '/models'
                 },
                 {
                     title: 'vr pavillion',
@@ -30,7 +30,7 @@ const Navbar = () => {
             ]
         },
         {
-            title: 'innovation',
+            title: 'INOVATION',
             id: 2,
             href: '/inovations',
             subTitle: [
@@ -47,7 +47,7 @@ const Navbar = () => {
             ]
         },
         {
-            title: 'media center',
+            title: 'MEDIA CENTER',
             id: 3,
             href: '/news',
             subTitle: [
@@ -64,7 +64,7 @@ const Navbar = () => {
             ]
         },
         {
-            title: 'service',
+            title: 'SERVICE',
             id: 4,
             href: "/servise",
             subTitle: [
@@ -81,7 +81,7 @@ const Navbar = () => {
             ]
         },
         {
-            title: 'about us',
+            title: 'ABOUT US',
             id: 5,
             href: '/about',
             subTitle: [
@@ -101,7 +101,7 @@ const Navbar = () => {
 
     return (
         <>
-            <nav className="bg-black w-full relative h-12">
+            <nav className="bg-black w-full relative h-12 ">
                 <div className="container w-full">
                     <div className="bg-black flex items-center w-full h-full justify-between py-2">
                         <div className="flex items-center gap-3 w-full">

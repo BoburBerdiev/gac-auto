@@ -1,52 +1,85 @@
 import {ImgUI} from "@/components/index";
 import {FaMapLocationDot} from "react-icons/fa6";
 import {IoIosDocument} from "react-icons/io";
+import Link from "next/link";
 
 
 const NavbarCarInner = () => {
+    const listLink = [
+        {
+            title: "Overview",
+            link:  "/models/1",
+            id: 0
+        },
+        {
+            title: "Performance",
+            link:  "/models/1/perfonmance",
+            id: 1
+        },
+        {
+            title: "Specification",
+            link:  "/models/1",
+            id: 2
+        },
+    ]
     return (
-        <section className={'relative md:absolute top-0 left-0 w-full  z-20 bg-white py-0'}>
-            <div className={'container flex flex-col md:flex-row items-center justify-between '}>
-                <div className={'w-full flex md:flex-row flex-col justify-center items-center'}>
-                    <div className={'relative w-full md:w-[270px]  h-[35px] md:h-auto  flex items-center'}>
-                        <div
-                            className={`bg-[url(/car-inner-logo-bg.png)] absolute bg-cover  left-0 w-full md:w-[270px] h-[32px] md:h-[89px] flex justify-center items-center p-2`}>
-                            <div className={'w-[180px] md:w-[250px] h-[30px] md:h-[80px] relative'}>
-                                <ImgUI src={'/car-inner-logo.png'} objectFitContain={true} alt={'logo'}
-                                       card={true} imageStyle={'z-20'}/>
-
+        <section className={'w-full bg-transparent absolute top-0 left-0 z-10'}>
+            <div className={'container'}>
+                <div className={'flex flex-col lg:flex-row items-start  justify-between'}>
+                    <div
+                        className={'relative w-full flex flex-col items-center justify-center h-[35px] lg:w-[190px] lg:h-[50px] shadow-xl xl:w-[250px] xl:h-[70px] 2xl:h-[75px] 2xl:w-[280px] '}>
+                        <div className={'absolute z-[1] left-0 top-0 !w-full !h-full '}>
+                            <ImgUI src={'/car-inner-logo-bg.png'} alt={'Bg'}/>
+                        </div>
+                        <div className={' absolute z-10 w-[190px] h-7 lg:w-[150px] lg:h-[22px] xl:w-[195px] xl:h-[30px]'}>
+                            <ImgUI src={'/car-inner-logo.png'} objectFitContain={true} alt={'logo'} card={true}
+                                   imageStyle={'z-20'}/>
+                        </div>
+                    </div>
+                    <div className={'w-full !bg-white flex flex-col xl:pl-4 xl:py-1 2xl:py-2 items-center divide-y justify-between lg:flex-row'}>
+                        <ul className={'font-bold bg-white text-sm py-3 lg:py-2 xl:py-3 md:text-base max-lg:justify-center flex items-center flex-wrap text-currentTextBlack  divide-x divide-[#747474]'}>
+                            {
+                                listLink.map((link) => (
+                                    <li key={link?.id} className={'hover:text-currentRed duration-200 cursor-pointer leading-3 px-2 md:px-4 '}>
+                                        <Link href={link?.link}>
+                                            {
+                                                link?.title
+                                            }
+                                        </Link>
+                                    </li>
+                                ))
+                            }
+                        </ul>
+                        <div className={'flex items-center flex-wrap max-lg:justify-center py-3 lg:py-2 xl:py-3 px-2 gap-x-2 lg:gap-x-6'}>
+                            <div className={'flex items-center gap-x-2 '}>
+                                <FaMapLocationDot className={'text-xl shrink-1'}/>
+                                <p className={'text-sm md:text-base font-bold text-nowrap text-currentTextBlack'}>
+                                    Set Your Location
+                                </p>
+                            </div>
+                            <div className={'flex items-center gap-x-2 '}>
+                                <IoIosDocument className={'text-xl shrink-1'}/>
+                                <p className={'text-sm md:text-base font-bold text-nowrap text-currentTextBlack'}>
+                                    Set Your Location
+                                </p>
                             </div>
                         </div>
                     </div>
-
-                    <ul className={'font-bold bg-white pb-4 text-sm md:text-base flex items-center  text-currentTextBlack  '}>
-                        <li className={'hover:text-currentRed duration-200 cursor-pointer px-4'}>
-                            Overview
-                        </li>
-                        <li className={'hover:text-currentRed duration-200 cursor-pointer px-4  relative before:content-[\'\']  before:absolute before:w-[.5px] before:top-[20%] before:h-[50%] before:bg-[#747474] before:left-0  after:content-[\'\']  after:absolute after:w-[.5px] after:top-[20%] after:h-[50%] after:bg-[#747474] after:right-0'}>
-                            Performance
-                        </li>
-                        <li className={'hover:text-currentRed duration-200 cursor-pointer px-4'}>
-                            Specification
-                        </li>
-                    </ul>
                 </div>
-                <div className={'flex items-center gap-x-6'}>
-                    <div className={'flex items-center gap-x-2 pb-4'}>
-                        <FaMapLocationDot className={'text-xl shrink-1'}/>
-                        <p className={'text-sm md:text-base font-bold text-nowrap text-currentTextBlack'}>
-                            Set Your Location
-                        </p>
-                    </div>
-                    <div className={'flex items-center gap-x-2 pb-4'}>
-                        <IoIosDocument  className={'text-xl shrink-1'}/>
-                        <p className={'text-sm md:text-base font-bold text-nowrap text-currentTextBlack'}>
-                            Set Your Location
-                        </p>
-                    </div>
-                </div>
-
             </div>
+
+
+            {/*
+
+
+
+
+
+
+
+
+              */}
+
 
         </section>
     );

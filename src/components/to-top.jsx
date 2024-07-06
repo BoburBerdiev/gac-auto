@@ -1,16 +1,27 @@
 "use client"
 import { IoIosArrowUp } from "react-icons/io";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 
 const ToTop = () => {
     const [isHidden, setIsHidden] = useState(false);
-    window.addEventListener('scroll', () => {
-        if (window.pageYOffset > 600) {
-            setIsHidden(true)
-        }else {
-            setIsHidden(false)
-        }
-    })
+
+    useEffect(() => {
+        const handleScroll = () => {
+            if (window.pageYOffset > 600) {
+                setIsHidden(true);
+            } else {
+                setIsHidden(false);
+            }
+        };
+
+        window.addEventListener('scroll', handleScroll);
+
+        // Clean up the event listener on component unmount
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
+
     const toTop = () => {
         window.scrollTo({
             top: 0,
