@@ -32,7 +32,7 @@ const Navbar = () => {
         {
             title: 'innovation',
             id: 2,
-            href: 'inovations',
+            href: '/inovations',
             subTitle: [
                 {
                     title: 'R_&_D_CENTER',
@@ -49,7 +49,7 @@ const Navbar = () => {
         {
             title: 'media center',
             id: 3,
-            href: '/media_center',
+            href: '/news',
             subTitle: [
                 {
                     title: 'NEWS',
@@ -71,12 +71,12 @@ const Navbar = () => {
                 {
                     title: 'OVERVIEW',
                     id: 0,
-                    href: '/overview'
+                    href: '/servise'
                 },
                 {
                     title: 'OVERVIEW',
                     id: 1,
-                    href: '/overview'
+                    href: '/servise'
                 }
             ]
         },
@@ -93,7 +93,7 @@ const Navbar = () => {
                 {
                     title: 'OVERVIEW',
                     id: 1,
-                    href: '/overview'
+                    href: '/about'
                 }
             ]
         },
@@ -173,7 +173,7 @@ export const NavbarList = ({ menu }) => {
     const { title, href, subTitle } = menu
     return (
         <>
-            <li className={`peer relative border-b-[1px] lg:border-0 w-full  lg:w-auto py-[10px] lg:p-[0px_6px_0px_6px] flex flex-row lg:flex-col justify-between lg:justify-center items-center group hover-line`}>
+            <li className={`${subTitle ? "peer": null} relative border-b-[1px] lg:border-0 w-full  lg:w-auto py-[10px] lg:p-[0px_6px_0px_6px] flex flex-row lg:flex-col justify-between lg:justify-center items-center group hover-line`}>
                 { !subTitle ?
                     <Link href={href} className='relative border-0 w-full lg:w-auto lg:py-[10px] lg:p-[0px_6px_0px_6px] flex flex-row lg:flex-col justify-between lg:justify-center items-center group hover-line' >{title}</Link>
                     :
