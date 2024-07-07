@@ -2,6 +2,7 @@
 import {ImgUI, NavbarCarInner, SectionTitleCar} from "@/components";
 import {Swiper, SwiperSlide} from "swiper/react";
 import {Navigation} from "swiper/modules";
+import {FaChevronLeft, FaChevronRight} from "react-icons/fa";
 
 export default function Page(props) {
     const interior = [
@@ -121,8 +122,8 @@ const PerfonmanceSwiper = ({swiperList}) => {
                     },
                 }}
                 navigation={{
-                    nextEl: '.swiper-button-next-custom',
-                    prevEl: '.swiper-button-prev-custom',
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
                 }}
                 modules={[Navigation]}
                 loop={true}
@@ -148,8 +149,8 @@ const PerfonmanceSwiper = ({swiperList}) => {
 
                     ))
                 }
-                <div className="swiper-button-next-custom">Next</div>
-                <div className="swiper-button-prev-custom">Prev</div>
+                <div className="swiper-button-next absolute bottom-2 z-[40] max-md:hidden right-[34%] translate-x-[34%] text-lg xl:text-2xl 2xl:text-3xl 3xl:text-4xl"><FaChevronRight /></div>
+                <div className="swiper-button-prev absolute bottom-2 z-[40] max-md:hidden left-[34%] translate-x-[34%] text-lg xl:text-2xl 2xl:text-3xl 3xl:text-4xl"><FaChevronLeft /></div>
             </Swiper>
         </>
     );
