@@ -10,7 +10,7 @@ import {
 
 export default function ModelsDetails() {
     return (
-        <div className={' relative'}>
+        <div className={'relative'}>
             <NavbarCarInner/>
             <section className={'w-full h-[300px]  md:h-[500px] lg:h-[620px] xl:h-[800px] relative overflow-hidden'}>
                 <ImgUI src={'/car1.jpg'} alt={'banner'} imageStyle={'object-center'}/>
@@ -124,9 +124,9 @@ export default function ModelsDetails() {
                     <SectionTitleCar title={'Dimensions'}/>
                     <div className={'w-full h-[350px] md:h-[450px] flex items-end'}>
                         <div className={'relative h-[350px] w-full'}>
-                            <ImgUI src={'/dimensions-pic.png'} imageStyle={'hidden md:block'} objectFitContain={true}
+                            <ImgUI src={'/dimensions-pic.png'} alt={'Gag Image'} imageStyle={'hidden md:block'} objectFitContain={true}
                                    priority={true}/>
-                            <ImgUI src={'/dimensions-pic-mobile.png'} imageStyle={'block md:hidden'}
+                            <ImgUI src={'/dimensions-pic-mobile.png'} alt={'Gag Image'}  imageStyle={'block md:hidden'}
                                    objectFitContain={true} priority={true}/>
                         </div>
                     </div>
@@ -165,7 +165,6 @@ export default function ModelsDetails() {
                     </div>
                 </div>
             </section>
-
             <section className={'bg-[#f5f5f5]  md:py-10'}>
                 <div
                     className="container-fluid flex flex-col md:flex-row justify-center gap-x-20 divide-y md:divide-y-0 divide-[#e1e1e1] ">

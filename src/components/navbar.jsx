@@ -1,19 +1,24 @@
 "use client";
-import { useState } from 'react';
+import {useEffect, useState} from 'react';
 import { ImgUI } from '@/components/index';
 import { IoClose } from "react-icons/io5";
 import { RiMenuFill } from "react-icons/ri";
 import { BiSearch } from "react-icons/bi";
+import { IoIosArrowDown } from "react-icons/io";
+import Link from "next/link";
+import {useTranslation} from "react-i18next";
+
 const Navbar = () => {
     const [nav, setNav] = useState(false)
+    const {t} = useTranslation();
     const navList = [
         {
-            title: 'Home',
+            title: t('navbar.home'),
             id: 0,
             href: '/'
         },
         {
-            title: 'MODELS',
+            title: t('navbar.models'),
             id: 1,
             href: '/models',
             subTitle: [
@@ -30,7 +35,7 @@ const Navbar = () => {
             ]
         },
         {
-            title: 'INOVATION',
+            title: t('navbar.innovation'),
             id: 2,
             href: '/inovations',
             subTitle: [
@@ -47,7 +52,7 @@ const Navbar = () => {
             ]
         },
         {
-            title: 'MEDIA CENTER',
+            title: t('navbar.mediaCenter'),
             id: 3,
             href: '/news',
             subTitle: [
@@ -64,7 +69,7 @@ const Navbar = () => {
             ]
         },
         {
-            title: 'SERVICE',
+            title: t('navbar.service'),
             id: 4,
             href: "/servise",
             subTitle: [
@@ -81,7 +86,7 @@ const Navbar = () => {
             ]
         },
         {
-            title: 'ABOUT US',
+            title: t('navbar.about'),
             id: 5,
             href: '/about',
             subTitle: [
@@ -113,7 +118,7 @@ const Navbar = () => {
                                 />
                             </a>
                             <div className="flex items-center flex-col">
-                                <ul className={`px-2 flex flex-col z-50 h-screen lg:h-auto ${nav ? "right-0" :"-right-full"}  duration-300 fixed lg:static top-0 w-full bg-black lg:bg-transparent lg:flex-row font-thin text-base text-white items-center uppercase`}>
+                                <ul className={`px-2 flex flex-col z-50 h-screen lg:h-auto ${nav ? "right-0" :"-right-full"}  duration-300 fixed lg:static top-0 w-full bg-black lg:bg-transparent lg:flex-row font-thin text-base text-white items-center `}>
                                 <IoClose className='block lg:hidden font-medium text-[25px] !text-white self-end mt-5' onClick={()=>{setNav(false)}} />
                                     {
                                         navList?.map(
@@ -123,12 +128,9 @@ const Navbar = () => {
                                         )
                                     }
                                     <div className={`peer-hover:block  !-z-[999999] hidden w-full bg-black/50 size-[50%] top-0  fixed left-0`}></div>
-                                    <ul className="grid grid-cols-4 py-[15px] uppercase text-white lg:hidden  justify-items-start divide-x divide-white">
-                                        <li className="px-[20px]"><a href="/">en</a></li>
-                                        <li className="px-[20px]"><a href="/">ru</a></li>
-                                        <li className="px-[20px]"><a href="/">uz</a></li>
-                                        <li className="px-[20px]"><a href="/">es</a></li>
-                                    </ul>
+                                    <div className={'lg:hidden max-lg:w-full'}>
+                                        <NavbarDropdown/>
+                                    </div>
                                 </ul>
                                     
                             </div>
@@ -137,23 +139,8 @@ const Navbar = () => {
                         <div className="flex items-center gap-3">
                             <BiSearch className=' text-white text-[18px] cursor-pointer' />
                             <RiMenuFill className=' block lg:hidden font-medium text-[20px] text-white' onClick={()=>{setNav(true)}} />
-                            <div className="lg:flex items-start group hidden">
-                                <p className="uppercase text-[16px] text-white font-thin cursor-pointer">en</p>
-                                <ul className="p-2 bg-black/30 absolute top-8 hidden group-hover:block duration-300">
-                                    <li className="cursor-pointer py-[10px] border-b-[1px] uppercase text-[16px] text-white font-thin">
-                                        <a href="/">en</a>
-                                    </li>
-                                    <li className="cursor-pointer py-[10px] border-b-[1px] uppercase text-[16px] text-white font-thin">
-                                        <a href="/">ru</a>
-                                    </li>
-                                    <li className="cursor-pointer py-[10px] border-b-[1px] uppercase text-[16px] text-white font-thin">
-                                        <a href="/">uz</a>
-                                    </li>
-                                    <li className="cursor-pointer py-[10px] uppercase text-[16px] text-white font-thin">
-                                        <a href="/">es</a>
-                                    </li>
-                                </ul>
-                                <i className="ri-arrow-down-s-line text-white text-[16px] font-thin group-hover:rotate-180 duration-300"></i>
+                            <div className={'lg:flex items-start group hidden'}>
+                                <NavbarDropdown/>
                             </div>
                         </div>
                     </div>
@@ -163,10 +150,6 @@ const Navbar = () => {
     )
 };
 
-
-
-import { IoIosArrowDown } from "react-icons/io";
-import Link from "next/link";
 
 export const NavbarList = ({ menu }) => {
     const [dropdown, setDropdown] = useState(false)
@@ -197,6 +180,54 @@ export const NavbarList = ({ menu }) => {
         </>
     )
 }
+
+
+const NavbarDropdown = () => {
+    const {t, i18n} = useTranslation()
+    const [dropdown, setDropdown] = useState(false)
+
+    const langList = [
+        {
+            title: t('lang.ru'),
+            value: 'ru',
+            id: 0
+        },
+        {
+            title: t('lang.uz'),
+            value: 'uz',
+            id: 1
+        }
+    ]
+    const openDropdown = () => {
+        setDropdown(prevState => !prevState)
+    }
+    const handleLang = (lang) => {
+        i18n.changeLanguage(lang.value)
+        setDropdown(false)
+    }
+    useEffect(() => {
+        if (window.innerWidth < 1024) {
+            setDropdown(true)
+        }
+    }, []);
+
+    return (
+        <div className={'relative max-lg:mt-10 max-lg:w-full'}>
+            <p onClick={ () => openDropdown()} className={'text-white cursor-pointer max-lg:hidden'}>{t('lang.langDefault')}</p>
+            <div className={`grid lg:w-10 ${dropdown ? "grid-rows-[1fr]" : 'grid-rows-[0fr]'} lg:absolute z-50 top-full -left-2 duration-300`}>
+                <div className={'overflow-hidden '}>
+                    <ul className={'rounded-b-lg lg:text-sm flex lg:flex-col gap-y-1 max-lg:divide-x bg-black  text-white  py-2 '}>
+                        {
+                            langList.map(lang => (
+                                <li onClick={() => handleLang(lang)} className={'cursor-pointer hover:bg-gray-50/50 px-4 lg:px-2 !leading-[1]'} key={lang?.id}>{lang?.title}</li>
+                            ))
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+    );
+};
 
 
 export default Navbar;

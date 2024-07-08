@@ -1,5 +1,5 @@
 "use client"
-import {ImgUI, NavbarCarInner, SectionTitleCar} from "@/components";
+import {CardServiceCar, ImgUI, NavbarCarInner} from "@/components";
 import {Swiper, SwiperSlide} from "swiper/react";
 import {Navigation} from "swiper/modules";
 import {FaChevronLeft, FaChevronRight} from "react-icons/fa";
@@ -53,7 +53,7 @@ export default function Page(props) {
         <div className={'relative'}>
             <NavbarCarInner/>
             <section className={'w-full h-[300px]  md:h-[500px] lg:h-[620px] xl:h-[800px] relative overflow-hidden'}>
-                <ImgUI src={'/perfonmance/perfonmance-banner.jpg'} alt={'Banner'} />
+                <ImgUI src={'/perfonmance/perfonmance-banner.jpg'} alt={'Banner'}/>
             </section>
             <section>
                 <h2 className={'text-currentTextBlack text-center text-2xl lg:text-[42px] 2xl:text-[48px] 3xl:text-[60px] font-bold !leading-[1.2] py-10 px-[15px] lg:pt-[52px] 2xl:pt-[60px] 2xl:pb-12 3xl:pt-[75px] 3xl:pb-[60px]'}>
@@ -64,9 +64,17 @@ export default function Page(props) {
             <section
                 className={'w-full py-10 lg:pt-[60px] lg:pb-[50px] xl:pt-[70px] xl:pb-[55px] 3xl::pt-[90px] 3xl::pb-[70px]'}>
                 <h2 className={'text-currentTextBlack text-center text-2xl lg:text-[42px] 2xl:text-[48px] 3xl:text-[60px] font-bold !leading-[1.2] px-[15px] pb-[30px] lg:pb-[45px] 3xl:pb-[65px]'}>
-                   Intelligent technology, leading the trend and providing a smart experience
+                    Intelligent technology, leading the trend and providing a smart experience
                 </h2>
                 <PerfonmanceSwiper swiperList={swiperList}/>
+            </section>
+            <section className={'bg-[#f5f5f5]  md:py-10'}>
+                <div
+                    className="container-fluid flex flex-col md:flex-row justify-center gap-x-20 divide-y md:divide-y-0 divide-[#e1e1e1] ">
+                    <CardServiceCar/>
+                    <CardServiceCar/>
+                    <CardServiceCar/>
+                </div>
             </section>
         </div>
     );
@@ -136,7 +144,7 @@ const PerfonmanceSwiper = ({swiperList}) => {
                             <div className={'flex flex-col items-center gap-5 2xl:gap-[25px] 3xl:gap-[30px]'}>
                                 <div className={'aspect-[7/4] w-full swiper-image'}>
                                     <div className={'h-full relative w-full'}>
-                                        <ImgUI src={slider?.image}/>
+                                        <ImgUI src={slider?.image} alt={slider?.title}/>
                                     </div>
                                 </div>
                                 <h3 className={'text-center !leading-[1.5] text-sm px-3.5 lg:text-lg '}>
@@ -155,5 +163,6 @@ const PerfonmanceSwiper = ({swiperList}) => {
         </>
     );
 };
+
 
 
