@@ -182,11 +182,11 @@ export const NavbarList = ({ menu }) => {
                             <button className='peer   relative  border-0 w-full  lg:w-auto lg:py-[10px] lg:p-[0px_6px_0px_6px] flex flex-row lg:flex-col justify-between lg:justify-center items-center group' >{title}</button>
                             <ul className={`lg:absolute lg:pb-[50px] lg:pt-[30px] left-0 duration-300 gap-10 z-[999] ${dropdown ? "block" : "hidden"} lg:group-hover:block whitespace-nowrap w-full`}>
                                 {subTitle?.map((item) => (
-                                    <li key={item?.id} onMouseOutCapture={() => { setDropdown(true) }} onMouseLeave={() => { setDropdown(false) }} className="flex flex-col justify-center items-start  ">
+                                    <li key={item?.id} className="flex flex-col justify-center items-start  group">
                                         <Link href={item?.href} className="mt-2 lg:mt-5 pb-1 flex flex-col gap-2 ">
                                             {item?.title}
                                             <div className={`w-64 h-[2px] relative rounded-lg overflow-hidden bg-white/50 hidden lg:block`}>
-                                                <span className={`${dropdown ? "w-full" : "w-0"} duration-300   h-full absolute top-0 left-0 z-50 bg-[#d40021]`} ></span>
+                                                <span className={`group-hover:w-full w-0 duration-[20000]  h-full absolute top-0 left-0 z-50 bg-[#d40021]`} ></span>
                                             </div>
                                         </Link>
                                     </li>
