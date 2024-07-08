@@ -33,4 +33,7 @@
   background-color: #e23535;
 }
 
+.perfonmanceSwiper .swiper-slide-active .swiper-image{
+  aspect-ratio: 27/18;
+}
 
