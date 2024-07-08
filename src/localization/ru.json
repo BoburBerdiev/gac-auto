@@ -1,0 +1,24 @@
+{
+  "translation": {
+    "navbar": {
+      "home" : "Главная",
+      "about": "О нас",
+      "models": "Модели",
+      "innovation":"Инновации",
+      "mediaCenter": "Медиа центр",
+      "service": "Услуга"
+    },
+    "lang": {
+      "langDefault": "РУ",
+      "ru": "РУ",
+      "uz": "УЗ"
+    },
+    "carInnerNav": {
+      "overview": "Обзор",
+      "performance": "Производительность",
+      "specification": "Спецификация",
+      "setYourLoc": "Установите свое местоположение",
+      "contactDealer": "Свяжитесь с дилером"
+    }
+  }
+}

@@ -2,22 +2,24 @@ import {ImgUI} from "@/components/index";
 import {FaMapLocationDot} from "react-icons/fa6";
 import {IoIosDocument} from "react-icons/io";
 import Link from "next/link";
+import {useTranslation} from "react-i18next";
 
 
 const NavbarCarInner = () => {
+    const {t} = useTranslation();
     const listLink = [
         {
-            title: "Overview",
+            title: t('carInnerNav.overview'),
             link:  "/models/1",
             id: 0
         },
         {
-            title: "Performance",
+            title: t('carInnerNav.performance') ,
             link:  "/models/1/perfonmance",
             id: 1
         },
         {
-            title: "Specification",
+            title: t('carInnerNav.specification'),
             link:  "/models/1",
             id: 2
         },
@@ -36,8 +38,8 @@ const NavbarCarInner = () => {
                                    imageStyle={'z-20'}/>
                         </div>
                     </div>
-                    <div className={'w-full !bg-white flex flex-col xl:pl-4 xl:py-1 2xl:py-2 items-center divide-y justify-between lg:flex-row'}>
-                        <ul className={'font-bold bg-white text-sm py-3 lg:py-2 xl:py-3 md:text-base max-lg:justify-center flex items-center flex-wrap text-currentTextBlack  divide-x divide-[#747474]'}>
+                    <div className={'w-full !bg-white flex flex-col xl:pl-4 xl:py-1 2xl:py-2 lg:items-center max-lg:divide-y justify-between lg:flex-row'}>
+                        <ul className={' bg-white text-sm py-3 lg:py-2 xl:py-3 md:text-base max-lg:justify-center flex items-center flex-wrap text-currentTextBlack  divide-x divide-[#747474]'}>
                             {
                                 listLink.map((link) => (
                                     <li key={link?.id} className={'hover:text-currentRed duration-200 cursor-pointer leading-3 px-2 md:px-4 '}>
@@ -54,13 +56,13 @@ const NavbarCarInner = () => {
                             <div className={'flex items-center gap-x-2 '}>
                                 <FaMapLocationDot className={'text-xl shrink-1'}/>
                                 <p className={'text-sm md:text-base font-bold text-nowrap text-currentTextBlack'}>
-                                    Set Your Location
+                                    {t('carInnerNav.setYourLoc')}
                                 </p>
                             </div>
                             <div className={'flex items-center gap-x-2 '}>
                                 <IoIosDocument className={'text-xl shrink-1'}/>
                                 <p className={'text-sm md:text-base font-bold text-nowrap text-currentTextBlack'}>
-                                    Set Your Location
+                                    {t('carInnerNav.contactDealer')}
                                 </p>
                             </div>
                         </div>

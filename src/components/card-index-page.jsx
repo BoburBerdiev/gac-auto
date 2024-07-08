@@ -5,7 +5,7 @@ import Link from "next/link";
 const CardIndexPage = ({card , height , container , title , subTitle ,text ,button , header_title ,image , darkPercentage}) => {
     return (
         <div className={`w-full relative before:content-[''] before:w-full before:absolute before:z-5 before:h-full before:top-0 before:left-0 before:bg-black/${darkPercentage} overflow-hidden text-white ${height ? height :'h-full'}  pt-[10%] z-10`}>
-            <ImgUI src={image} card={card} imageStyle={'z-[-1]'} />
+            <ImgUI src={image} card={card} imageStyle={'z-[-1]'} alt={title} />
             <div className={`relative z-5 ${container ? container : 'w-full h-full'} flex items-start flex-col gap-y-5 md:gap-y-10 `}>
                 {
                     header_title &&

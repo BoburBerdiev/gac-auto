@@ -1,0 +1,24 @@
+{
+  "translation": {
+    "navbar": {
+      "home" : "Asosiy ",
+      "about": "Biz haqimizda",
+      "models": "Modellar",
+      "innovation":"Innovatsiya",
+      "mediaCenter": "Media markazi",
+      "service": "Xizmat"
+    },
+    "lang": {
+      "langDefault": "RU",
+      "ru": "RU",
+      "uz": "UZ"
+    },
+    "carInnerNav": {
+      "overview": "Umumiy ko'rinish",
+      "performance": "Ishlash",
+      "specification": "Texnik tavsif",
+      "setYourLoc": "Joylashuvingizni belgilang",
+      "contactDealer": "Diler bilan bog'laning"
+    }
+  }
+}
