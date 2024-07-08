@@ -103,7 +103,7 @@ const Navbar = () => {
         <>
             <nav className="bg-black w-full relative h-12">
                 <div className="container w-full">
-                    <div className="bg-black flex items-center w-full h-full justify-between py-2">
+                    <div className="bg-black flex items-center w-full h-full justify-between py-2 lg:p-0">
                         <div className="flex items-center gap-3 w-full">
                             <a href="/" className='relative block w-32 h-4 lg:w-40 lg:h-5'>
                                 <ImgUI
@@ -113,8 +113,8 @@ const Navbar = () => {
                                 />
                             </a>
                             <div className="flex items-center flex-col">
-                                <ul className={`px-2 flex flex-col z-50 h-screen lg:h-auto ${nav ? "right-0" :"-right-full"}  duration-300 fixed lg:static top-0 w-full bg-black lg:bg-transparent lg:flex-row font-thin text-base text-white items-center uppercase`}>
-                                <IoClose className='block lg:hidden font-medium text-[25px] !text-white self-end mt-5' onClick={()=>{setNav(false)}} />
+                                <ul className={`px-2 gap-3 flex flex-col z-50 h-screen lg:h-auto ${nav ? "right-0" : "-right-full"}  duration-300 fixed lg:static top-0 w-full bg-black lg:bg-transparent lg:flex-row font-thin text-base text-white items-center uppercase`}>
+                                    <IoClose className='block lg:hidden font-medium text-[25px] !text-white self-end mt-5' onClick={() => { setNav(false) }} />
                                     {
                                         navList?.map(
                                             (item) => (
@@ -130,13 +130,13 @@ const Navbar = () => {
                                         <li className="px-[20px]"><a href="/">es</a></li>
                                     </ul>
                                 </ul>
-                                    
+
                             </div>
                         </div>
                         <div className="left-0 line hidden lg:block !w-full before:h-full before:-translate-x-1/2 before:duration-300 z-1 h-1 absolute bottom-0 before:absolute before:w-[30px] before:bg-sd"></div>
                         <div className="flex items-center gap-3">
                             <BiSearch className=' text-white text-[18px] cursor-pointer' />
-                            <RiMenuFill className=' block lg:hidden font-medium text-[20px] text-white' onClick={()=>{setNav(true)}} />
+                            <RiMenuFill className=' block lg:hidden font-medium text-[20px] text-white' onClick={() => { setNav(true) }} />
                             <div className="lg:flex items-start group hidden">
                                 <p className="uppercase text-[16px] text-white font-thin cursor-pointer">en</p>
                                 <ul className="p-2 bg-black/30 absolute top-8 hidden group-hover:block duration-300">
@@ -173,24 +173,27 @@ export const NavbarList = ({ menu }) => {
     const { title, href, subTitle } = menu
     return (
         <>
-            <li className={`${subTitle ? "peer": null} relative border-b-[1px] lg:border-0 w-full  lg:w-auto py-[10px] lg:p-[0px_6px_0px_6px] flex flex-row lg:flex-col justify-between lg:justify-center items-center group hover-line`}>
-                { !subTitle ?
-                    <Link href={href} className='relative border-0 w-full lg:w-auto lg:py-[10px] lg:p-[0px_6px_0px_6px] flex flex-row lg:flex-col justify-between lg:justify-center items-center group hover-line' >{title}</Link>
+            <li className={`${subTitle ? "peer" : null} relative border-b-[1px] lg:border-0 w-full  lg:w-auto py-[10px] lg:p-[0px_6px_0px_6px] flex flex-row lg:flex-col justify-between lg:justify-center items-center group`}>
+                {!subTitle ?
+                    <Link href={href} className='relative border-0 w-full lg:w-auto lg:py-[10px] lg:p-[0px_6px_0px_6px] flex flex-row lg:flex-col justify-between lg:justify-center items-center group' >{title}</Link>
                     :
                     <>
                         <div className={`flex flex-col gap-4 lg:gap-0`}>
-                            <button className='peer   relative  border-0 w-full  lg:w-auto lg:py-[10px] lg:p-[0px_6px_0px_6px] flex flex-row lg:flex-col justify-between lg:justify-center items-center group hover-line' >{title}</button>
-                            <ul className={`lg:absolute lg:pb-[50px] lg:pt-[30px] left-0 duration-300 z-[999] ${dropdown ? "block" : "hidden"} lg:group-hover:block whitespace-nowrap w-full`}>
+                            <button className='peer   relative  border-0 w-full  lg:w-auto lg:py-[10px] lg:p-[0px_6px_0px_6px] flex flex-row lg:flex-col justify-between lg:justify-center items-center group' >{title}</button>
+                            <ul className={`lg:absolute lg:pb-[50px] lg:pt-[30px] left-0 duration-300 gap-10 z-[999] ${dropdown ? "block" : "hidden"} lg:group-hover:block whitespace-nowrap w-full`}>
                                 {subTitle?.map((item) => (
-                                    <li key={item?.id} className="flex flex-col justify-center items-start border-b border-white ">
-                                        <Link href={item?.href} className="mt-2 lg:mt-5 pb-1">
+                                    <li key={item?.id} onMouseOutCapture={() => { setDropdown(true) }} onMouseLeave={() => { setDropdown(false) }} className="flex flex-col justify-center items-start  ">
+                                        <Link href={item?.href} className="mt-2 lg:mt-5 pb-1 flex flex-col gap-2 ">
                                             {item?.title}
+                                            <div className={`w-64 h-[2px] relative rounded-lg overflow-hidden bg-white/50 hidden lg:block`}>
+                                                <span className={`${dropdown ? "w-full" : "w-0"} duration-300   h-full absolute top-0 left-0 z-50 bg-[#d40021]`} ></span>
+                                            </div>
                                         </Link>
                                     </li>
                                 ))}
                             </ul>
                         </div>
-                        <IoIosArrowDown className={`text-white text-[30px] font-thin block self-start lg:hidden ${dropdown ? 'rotate-180' : null } `} onClick={()=>{setDropdown(!dropdown)}} />
+                        <IoIosArrowDown className={`text-white text-[30px] font-thin block self-start lg:hidden ${dropdown ? 'rotate-180' : null} `} onClick={() => { setDropdown(!dropdown) }} />
                     </>
                 }
             </li>
