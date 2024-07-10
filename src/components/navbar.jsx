@@ -7,7 +7,8 @@ import { BiSearch } from "react-icons/bi";
 import { IoIosArrowDown } from "react-icons/io";
 import Link from "next/link";
 import {useTranslation} from "react-i18next";
-
+import { FaChevronDown } from "react-icons/fa6";
+import {AnimatePresence, motion} from "framer-motion"
 const Navbar = () => {
     const [nav, setNav] = useState(false)
     const {t} = useTranslation()
@@ -205,30 +206,61 @@ const NavbarDropdown = () => {
             setDropdown(true)
         }
     }, []);
-
+    window.addEventListener('scroll',  () => {
+        if (window.scrollY > 0) {
+            if (window.innerWidth < 1024) {
+                setDropdown(true)
+            }else{
+                setDropdown(false)
+            }
+        }
+    })
     const openDropdown = () => {
-        setDropdown(prevState => !prevState)
+        if (window.innerWidth < 1024) {
+            setDropdown(true)
+        }else{
+            setDropdown(prevState => !prevState)
+        }
     }
     const handleLang = (lang) => {
         i18n.changeLanguage(lang.value)
-        setDropdown(false)
+        if (window.innerWidth < 1024) {
+            setDropdown(true)
+        }else{
+            setDropdown(false)
+        }
+
     }
 
 
     return (
         <div className={'relative max-lg:mt-10 max-lg:w-full'}>
-            <p onClick={ () => openDropdown()} className={'text-white cursor-pointer max-lg:hidden'}>{i18n.language === "ru" ? t('lang.ru') : t('lang.uz') }</p>
-            <div className={`grid lg:w-10 ${dropdown ? "grid-rows-[1fr]" : 'grid-rows-[0fr]'} lg:absolute z-50 top-full -left-2 duration-300`}>
-                <div className={'overflow-hidden '}>
-                    <ul className={'rounded-b-lg lg:text-sm flex lg:flex-col gap-y-1 max-lg:divide-x bg-black  text-white  py-2 '}>
-                        {
-                            langList.map(lang => (
-                                <li onClick={() => handleLang(lang)} className={'cursor-pointer hover:bg-gray-50/50 px-4 lg:px-2 !leading-[1]'} key={lang?.id}>{lang?.title}</li>
-                            ))
-                        }
-                    </ul>
-                </div>
-            </div>
+            <p onClick={ () => openDropdown()} className={'text-white cursor-pointer max-lg:hidden flex items-center gap-2'}>
+                <span>{i18n.language === "ru" ? t('lang.ru') : t('lang.uz')}</span>
+                <FaChevronDown className={`text-sm ${dropdown ? 'rotate-180' : ''} duration-300`}  />
+            </p>
+            <AnimatePresence>
+                {
+                    dropdown &&
+                    <motion.div initial={{   opacity: 0 }}
+                                animate={{ opacity: 1}}
+                                exit={{ opacity: 0}}
+                                className={`grid lg:w-12 grid-rows-[1fr] lg:absolute z-50 top-full -left-2 duration-300`}>
+                        <div className={'overflow-hidden '}>
+                            <ul className={'rounded-b-lg lg:text-sm flex lg:flex-col  gap-y-1 max-lg:divide-x bg-black  text-white  py-2 '}>
+                                {
+                                    langList.map(lang => (
+                                        <li onClick={() => handleLang(lang)}
+                                            className={'cursor-pointer hover:bg-gray-50/50 px-4 lg:w-full text-center lg:px-2 py-2 !leading-[1]'}
+                                            key={lang?.id}>{lang?.title}</li>
+                                    ))
+                                }
+                            </ul>
+                        </div>
+                    </motion.div>
+                }
+            </AnimatePresence>
+
         </div>
     );
 };
