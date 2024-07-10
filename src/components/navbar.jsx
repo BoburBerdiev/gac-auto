@@ -10,7 +10,9 @@ import {useTranslation} from "react-i18next";
 
 const Navbar = () => {
     const [nav, setNav] = useState(false)
+    // const [ulLine, setUlLine] = useState("-left-[110%]")
     const {t} = useTranslation();
+
     const navList = [
         {
             title: t('navbar.home'),
@@ -103,7 +105,7 @@ const Navbar = () => {
             ]
         },
     ]
-
+    
     return (
         <>
             <nav className="bg-black w-full relative h-12 ">
@@ -135,7 +137,7 @@ const Navbar = () => {
                                     
                             </div>
                         </div>
-                        <div className="left-0 line hidden lg:block !w-full before:h-full before:-translate-x-1/2 before:duration-300 z-1 h-1 absolute bottom-0 before:absolute before:w-[30px] before:bg-sd"></div>
+                        <div className={` hidden lg:block !w-full before:h-full before:-translate-x-1/2 before:duration-400 z-1 h-1 absolute bottom-0 before:absolute before:w-[30px] before:bg-[#d40021]`}></div>
                         <div className="flex items-center gap-3">
                             <BiSearch className=' text-white text-[18px] cursor-pointer' />
                             <RiMenuFill className=' block lg:hidden font-medium text-[20px] text-white' onClick={() => { setNav(true) }} />
@@ -156,7 +158,7 @@ export const NavbarList = ({ menu }) => {
     const { title, href, subTitle } = menu
     return (
         <>
-            <li className={`${subTitle ? "peer" : null} relative border-b-[1px] lg:border-0 w-full  lg:w-auto py-[10px] lg:p-[0px_6px_0px_6px] flex flex-row lg:flex-col justify-between lg:justify-center items-center group`}>
+            <li className={`${subTitle ? "peer" : null} relative border-b-[1px] lg:border-0 w-full  lg:w-auto py-[10px] lg:p-[0px_6px_0px_6px] flex flex-row lg:flex-col justify-between lg:justify-center items-center group line`}>
                 {!subTitle ?
                     <Link href={href} className='relative border-0 w-full lg:w-auto lg:py-[10px] lg:p-[0px_6px_0px_6px] flex flex-row lg:flex-col justify-between lg:justify-center items-center group' >{title}</Link>
                     :
@@ -165,12 +167,10 @@ export const NavbarList = ({ menu }) => {
                             <button className='peer   relative  border-0 w-full  lg:w-auto lg:py-[10px] lg:p-[0px_6px_0px_6px] flex flex-row lg:flex-col justify-between lg:justify-center items-center group' >{title}</button>
                             <ul className={`lg:absolute lg:pb-[50px] lg:pt-[30px] left-0 duration-300 gap-10 z-[999] ${dropdown ? "block" : "hidden"} lg:group-hover:block whitespace-nowrap w-full`}>
                                 {subTitle?.map((item) => (
-                                    <li key={item?.id} className="flex flex-col justify-center items-start  group">
+                                    <li key={item?.id} className="flex flex-col justify-center items-start group/edit ">
                                         <Link href={item?.href} className="mt-2 lg:mt-5 pb-1 flex flex-col gap-2 ">
                                             {item?.title}
-                                            <div className={`w-64 h-[2px] relative rounded-lg overflow-hidden bg-white/50 hidden lg:block`}>
-                                                <span className={`group-hover:w-full w-0 duration-[20000]  h-full absolute top-0 left-0 z-50 bg-[#d40021]`} ></span>
-                                            </div>
+                                            <div className={`w-64 h-[2px] relative rounded-lg overflow-hidden bg-white/50 hidden lg:block before:w-0 before:group-hover/edit:w-full before:absolute before:duration-300 before:bg-[#d40021]  before:h-full  before:top-0 before:left-0 before:z-50`}></div>
                                         </Link>
                                     </li>
                                 ))}
