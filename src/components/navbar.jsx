@@ -1,4 +1,4 @@
-"use client";
+"use client"
 import {useEffect, useState} from 'react';
 import { ImgUI } from '@/components/index';
 import { IoClose } from "react-icons/io5";

@@ -2,6 +2,7 @@ import {Inter, Montserrat} from "next/font/google";
 import "./globals.css";
 import 'swiper/css';
 import Layout from "@/layout/layout";
+import Head from "next/head";
 const inter = Inter({ subsets: ["latin"] });
 const montserrat = Montserrat({
     subsets:["cyrillic" ,"latin"] ,
@@ -18,6 +19,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+        <Head>
+            <title>Hello world</title>
+        </Head>
       <body className={`overflow-x-hidden !font-montserrat ${montserrat.variable}`} >
         <Layout children={children}/>
       </body>
