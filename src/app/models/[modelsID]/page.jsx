@@ -145,7 +145,7 @@ export default function ModelsDetails() {
                                          text={'All-new megawave 3rd generation 1.5T GDI engine'}/>
                     </div>
                     <div className={'flex justify-center items-center '}>
-                        <ButtonUI text={'Read More'} href={'#'}/>
+                        <ButtonUI text={'Read More'} href={'/models/1/perfonmance'}/>
                     </div>
                 </div>
             </section>
@@ -161,7 +161,7 @@ export default function ModelsDetails() {
                         <FeaturesCard/>
                     </div>
                     <div className={'flex justify-center items-center'}>
-                        <ButtonUI text={'Read More'} href={'#'}/>
+                        <ButtonUI text={'Read More'} href={'/models/1/perfonmance'}/>
                     </div>
                 </div>
             </section>

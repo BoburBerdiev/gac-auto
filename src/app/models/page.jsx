@@ -25,7 +25,7 @@ export default function Models() {
                                 tabsList?.map(tab => (
                                     <li key={tab?.id} className="me-2">
                                         <button
-                                            className="inline-block text-nowrap uppercase relative md:text-lg leading-[30px] lg:leading-[66px] lg:text-2xl p-1 md:p-4 before:content-[''] before:absolute before:bottom-0 before:duration-300 before:bg-currentRed before:left-0 before:w-0 before:h-1 hover:before:w-full">
+                                            className="inline-block text-nowrap hover:text-currentRed uppercase relative md:text-lg leading-[30px] lg:leading-[66px] lg:text-2xl p-1 md:p-4 before:content-[''] before:absolute before:bottom-0 before:duration-300 before:bg-currentRed before:left-0 before:w-0 before:h-1 hover:before:w-full">
                                             {tab?.name}
                                         </button>
                                     </li>

@@ -5,7 +5,7 @@ export default function Page(props) {
     return (
         <>
             <section>
-                <BannerSmall imgDes={'/news/news-baner.jpg'} imgMob={'/news/news-baner.jpg'}/>
+                <BannerSmall imgDes={'/news/news-baner.jpg'}  imgMob={'/news/news-baner.jpg'}/>
             </section>
             <section className={'py-12 xl:py-[65px]'}>
                 <div className="container-fluid space-y-7 lg:space-y-14 ">
