@@ -10,7 +10,7 @@ import {useTranslation} from "react-i18next";
 
 const Navbar = () => {
     const [nav, setNav] = useState(false)
-    const {t} = useTranslation();
+    const {t} = useTranslation()
     const navList = [
         {
             title: t('navbar.home'),
@@ -188,7 +188,6 @@ export const NavbarList = ({ menu }) => {
 const NavbarDropdown = () => {
     const {t, i18n} = useTranslation()
     const [dropdown, setDropdown] = useState(false)
-
     const langList = [
         {
             title: t('lang.ru'),
@@ -201,6 +200,12 @@ const NavbarDropdown = () => {
             id: 1
         }
     ]
+    useEffect(() => {
+        if (window.innerWidth < 1024) {
+            setDropdown(true)
+        }
+    }, []);
+
     const openDropdown = () => {
         setDropdown(prevState => !prevState)
     }
@@ -208,15 +213,11 @@ const NavbarDropdown = () => {
         i18n.changeLanguage(lang.value)
         setDropdown(false)
     }
-    useEffect(() => {
-        if (window.innerWidth < 1024) {
-            setDropdown(true)
-        }
-    }, []);
+
 
     return (
         <div className={'relative max-lg:mt-10 max-lg:w-full'}>
-            <p onClick={ () => openDropdown()} className={'text-white cursor-pointer max-lg:hidden'}>{t('lang.langDefault')}</p>
+            <p onClick={ () => openDropdown()} className={'text-white cursor-pointer max-lg:hidden'}>{i18n.language === "ru" ? t('lang.ru') : t('lang.uz') }</p>
             <div className={`grid lg:w-10 ${dropdown ? "grid-rows-[1fr]" : 'grid-rows-[0fr]'} lg:absolute z-50 top-full -left-2 duration-300`}>
                 <div className={'overflow-hidden '}>
                     <ul className={'rounded-b-lg lg:text-sm flex lg:flex-col gap-y-1 max-lg:divide-x bg-black  text-white  py-2 '}>

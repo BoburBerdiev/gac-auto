@@ -7,12 +7,14 @@ const Layout = ({children}) => {
     return (
         <>
             <HydrationProvider>
-                <Navbar />
-                <main className={'bg-white '}>
-                    {children}
-                </main>
-                <ToTop/>
-                <Footer/>
+                <Client>
+                    <Navbar />
+                    <main className={'bg-white '}>
+                        {children}
+                    </main>
+                    <ToTop/>
+                    <Footer/>
+                </Client>
             </HydrationProvider>
         </>
     );
