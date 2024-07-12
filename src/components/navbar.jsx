@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState, useRef} from "react";
+import { useEffect, useState,useRef } from "react";
 import { ImgUI } from "@/components/index";
 import { IoClose } from "react-icons/io5";
 import { RiMenuFill } from "react-icons/ri";
@@ -8,20 +8,17 @@ import { IoIosArrowDown } from "react-icons/io";
 import Link from "next/link";
 import { useTranslation } from "react-i18next";
 import { NavList } from "@/config/config";
-import { useRouter } from 'next/navigation';
 
-import {useTranslation} from "react-i18next";
-import { FaChevronDown } from "react-icons/fa6";
-import {AnimatePresence, motion} from "framer-motion"
 const Navbar = () => {
-   
-  
   const [nav, setNav] = useState(false);
-
-
-
-
-
+  const [line, setLine]=useState()
+  const ref = useRef()   
+  const lineMove =(e)=>{
+      const target = e.target
+      const left = ref.current.offsetLeft   
+      console.log(left);    
+      setLine(left)
+    }  
   return (
     <>
       <nav className="bg-black w-full fixed h-12 z-[50] ">
@@ -36,7 +33,7 @@ const Navbar = () => {
                 />
               </a>
               <div className="flex items-center flex-col">
-                <ul
+                <ul onMouseOver={lineMove}  ref={ref}
                   className={`px-2 gap-3 flex flex-col z-50 h-screen lg:h-auto ${
                     nav ? "right-0" : "-right-full"
                   }  duration-300 fixed lg:static top-0 w-full bg-black lg:bg-transparent lg:flex-row font-thin text-base text-white items-center `}
@@ -59,6 +56,9 @@ const Navbar = () => {
                 </ul>
               </div>
             </div>
+            <div
+              className={` before:left-[${toString(line)}px] hidden lg:block !w-full before:h-full before:translate-x-1/2 before:duration-400 z-1 h-1 absolute bottom-0 before:absolute before:w-[30px] before:bg-[#d40021]`}
+            ></div>
             <div className="flex items-center gap-3">
               <BiSearch className=" text-white text-[18px] cursor-pointer" />
               <RiMenuFill
@@ -80,32 +80,11 @@ const Navbar = () => {
 
 export const NavbarList = ({ menu }) => {
   const [dropdown, setDropdown] = useState(false);
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [indicatorStyle, setIndicatorStyle] = useState({});
-  const navRefs = useRef([]);
-  const router = useRouter();
   const { t } = useTranslation();
   const { title, href, subTitle } = menu;
-  useEffect(() => {
-    const currentIndex = NavList.findIndex(item => item.path === router.pathname);
-    setActiveIndex(currentIndex);
-    updateIndicator(currentIndex);
-  }, [router.pathname]);
-  const updateIndicator = (index) => {
-    const currentItem = navRefs.current[index];
-    if (currentItem) {
-      setIndicatorStyle({
-        left: currentItem.offsetLeft,
-      });
-    }
-  };
   return (
     <>
       <li
-       key={NavList.forEach(item=>(item.id))}
-       ref={el => navRefs.current[1] = el}
-       onMouseEnter={() => updateIndicator(NavList[idx])}
-       onMouseLeave={() => updateIndicator(activeIndex)}
         className={`${
           subTitle ? "peer" : null
         } relative border-b-[1px] lg:border-0 w-full  lg:w-auto py-[10px] lg:p-[0px_6px_0px_6px] flex flex-row lg:flex-col justify-between lg:justify-center items-center group line`}
@@ -157,9 +136,6 @@ export const NavbarList = ({ menu }) => {
           </>
         )}
       </li>
-      <div
-              className={` before:left-[${indicatorStyle}px] hidden lg:block !w-full before:h-full before:translate-x-1/2 before:duration-400 z-1 h-1 absolute bottom-0 before:absolute before:w-[30px] before:bg-[#d40021]`}
-            ></div>
     </>
   );
 };
@@ -193,36 +169,41 @@ const NavbarDropdown = () => {
     setDropdown(false);
   };
 
-    return (
-        <div className={'relative max-lg:mt-10 max-lg:w-full'}>
-            <p onClick={ () => openDropdown()} className={'text-white cursor-pointer max-lg:hidden flex items-center gap-2'}>
-                <span>{i18n.language === "ru" ? t('lang.ru') : t('lang.uz')}</span>
-                <FaChevronDown className={`text-sm ${dropdown ? 'rotate-180' : ''} duration-300`}  />
-            </p>
-            <AnimatePresence>
-                {
-                    dropdown &&
-                    <motion.div initial={{   opacity: 0 }}
-                                animate={{ opacity: 1}}
-                                exit={{ opacity: 0}}
-                                className={`grid lg:w-12 grid-rows-[1fr] lg:absolute z-50 top-full -left-2 duration-300`}>
-                        <div className={'overflow-hidden '}>
-                            <ul className={'rounded-b-lg lg:text-sm flex lg:flex-col  gap-y-1 max-lg:divide-x bg-black  text-white  py-2 '}>
-                                {
-                                    langList.map(lang => (
-                                        <li onClick={() => handleLang(lang)}
-                                            className={'cursor-pointer hover:bg-gray-50/50 px-4 lg:w-full text-center lg:px-2 py-2 !leading-[1]'}
-                                            key={lang?.id}>{lang?.title}</li>
-                                    ))
-                                }
-                            </ul>
-                        </div>
-                    </motion.div>
+  return (
+    <div className={"relative max-lg:mt-10 max-lg:w-full"}>
+      <p
+        onClick={() => openDropdown()}
+        className={"text-white cursor-pointer max-lg:hidden"}
+      >
+        {i18n.language === "ru" ? t("lang.ru") : t("lang.uz")}
+      </p>
+      <div
+        className={`grid lg:w-10 ${
+          dropdown ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+        } lg:absolute z-50 top-full -left-2 duration-300`}
+      >
+        <div className={"overflow-hidden "}>
+          <ul
+            className={
+              "rounded-b-lg lg:text-sm flex lg:flex-col gap-y-1 max-lg:divide-x bg-black  text-white  py-2 "
+            }
+          >
+            {langList.map((lang) => (
+              <li
+                onClick={() => handleLang(lang)}
+                className={
+                  "cursor-pointer hover:bg-gray-50/50 px-4 lg:px-2 !leading-[1]"
                 }
-            </AnimatePresence>
-
+                key={lang?.id}
+              >
+                {t(lang?.title)}
+              </li>
+            ))}
+          </ul>
         </div>
-    );
+      </div>
+    </div>
+  );
 };
 
 export default Navbar;
