@@ -10,14 +10,21 @@ import { useTranslation } from "react-i18next";
 import { NavList } from "@/config/config";
 
 const Navbar = () => {
-  const [nav, setNav] = useState(false);
-  const [line, setLine]=useState()
-  const ref = useRef()   
-  const lineMove =(e)=>{
-      const target = e.target
-      const left = ref.current.offsetLeft   
-      console.log(left);    
-      setLine(left)
+    const [nav, setNav] = useState(false);
+    const [line, setLine]=useState()
+    const ref = useRef()   
+    useEffect(()=>{
+       setLine(ref.current.children[1].offsetLeft + ref.current.children[1].clientWidth /2)
+    },[])
+    const lineMove =(e)=>{
+        const target = e.target
+        const child = ref.current.childNodes
+    child.forEach((elem) => {
+        if(elem.tagName === "LI" && target === elem){
+            const left = elem.offsetLeft + (elem.clientWidth / 2)
+            setLine(left)
+            }
+    });
     }  
   return (
     <>
@@ -33,32 +40,29 @@ const Navbar = () => {
                 />
               </a>
               <div className="flex items-center flex-col">
-                <ul onMouseOver={lineMove}  ref={ref}
+                <ul onMouseOver={lineMove} onMouseLeave={()=>{setLine(ref.current.children[1].offsetLeft + ref.current.children[1].clientWidth /2)}}  ref={ref}
                   className={`px-2 gap-3 flex flex-col z-50 h-screen lg:h-auto ${
-                    nav ? "right-0" : "-right-full"
-                  }  duration-300 fixed lg:static top-0 w-full bg-black lg:bg-transparent lg:flex-row font-thin text-base text-white items-center `}
+                      nav ? "right-0" : "-right-full"
+                    }  duration-300 fixed lg:static top-0 w-full bg-black lg:bg-transparent lg:flex-row font-thin text-base text-white items-center `}
                 >
                   <IoClose
                     className="block lg:hidden font-medium text-[25px] !text-white self-end mt-5"
                     onClick={() => {
-                      setNav(false);
+                        setNav(false);
                     }}
                   />
                   {NavList?.map((item) => (
-                    <NavbarList key={item?.id} menu={item} />
-                  ))}
-                  <div
-                    className={`peer-hover:block  !-z-[999999] hidden w-full bg-black/50 size-[50%] top-0  fixed left-0`}
-                  ></div>
+                      <NavbarList key={item?.id} menu={item}  />
+                    ))}
+                    <div
+                        className={`peer-hover:block  !-z-[999999] hidden w-full bg-black/50 size-[50%] top-0  fixed left-0`}
+                    ></div>
                   <div className={"lg:hidden max-lg:w-full"}>
                     <NavbarDropdown />
                   </div>
                 </ul>
               </div>
             </div>
-            <div
-              className={` before:left-[${toString(line)}px] hidden lg:block !w-full before:h-full before:translate-x-1/2 before:duration-400 z-1 h-1 absolute bottom-0 before:absolute before:w-[30px] before:bg-[#d40021]`}
-            ></div>
             <div className="flex items-center gap-3">
               <BiSearch className=" text-white text-[18px] cursor-pointer" />
               <RiMenuFill
@@ -73,6 +77,9 @@ const Navbar = () => {
             </div>
           </div>
         </div>
+        <div style={{ '--before-left': `${line}px` }}
+            className={` beforeLine hidden lg:block w-full before:h-full before:-translate-x-1/2  before:duration-1000 z-1 h-1 absolute bottom-0 before:absolute before:w-[30px] before:bg-[#d40021]`}
+        ></div>
       </nav>
     </>
   );
@@ -84,33 +91,35 @@ export const NavbarList = ({ menu }) => {
   const { title, href, subTitle } = menu;
   return (
     <>
-      <li
+      <li 
         className={`${
           subTitle ? "peer" : null
         } relative border-b-[1px] lg:border-0 w-full  lg:w-auto py-[10px] lg:p-[0px_6px_0px_6px] flex flex-row lg:flex-col justify-between lg:justify-center items-center group line`}
       >
         {!subTitle ? (
           <Link
-            href={href}
-            className="relative border-0 w-full lg:w-auto lg:py-[10px] lg:p-[0px_6px_0px_6px] flex flex-row lg:flex-col justify-between lg:justify-center items-center group"
+          href={href}
+          className="relative border-0 w-full lg:w-auto lg:py-[10px] lg:p-[0px_6px_0px_6px] flex flex-row lg:flex-col justify-between lg:justify-center items-center group"
           >
+            <li>
             {t(title)}
+            </li>
           </Link>
         ) : (
           <>
             <div className={`flex flex-col gap-4 lg:gap-0`}>
-              <button className="peer   relative  border-0 w-full  lg:w-auto lg:py-[10px] lg:p-[0px_6px_0px_6px] flex flex-row lg:flex-col justify-between lg:justify-center items-center group">
+              <li className="peer   relative  border-0 w-full  lg:w-auto lg:py-[10px] lg:p-[0px_6px_0px_6px] flex flex-row lg:flex-col text-start justify-between lg:justify-center items-center group">
                 {t(title)}
-              </button>
+              </li>
               <ul
-                className={`lg:absolute lg:pb-[50px] lg:pt-[30px] left-0 duration-300 gap-10 z-[999] ${
+                className={`lg:absolute lg:pb-[50px] lg:top-[43px] left-0 duration-300 gap-10 -z-[999] ${
                   dropdown ? "block" : "hidden"
                 } lg:group-hover:block whitespace-nowrap w-full`}
               >
                 {subTitle?.map((item) => (
-                  <li
+                  <button
                     key={item?.id}
-                    className="flex flex-col justify-center items-start group/edit "
+                    className="flex flex-col text-start justify-center items-start group/edit "
                   >
                     <Link
                       href={item?.href}
@@ -121,7 +130,7 @@ export const NavbarList = ({ menu }) => {
                         className={`w-64 h-[2px] relative rounded-lg overflow-hidden bg-white/50 hidden lg:block before:w-0 before:group-hover/edit:w-full before:absolute before:duration-300 before:bg-[#d40021]  before:h-full  before:top-0 before:left-0 before:z-50`}
                       ></div>
                     </Link>
-                  </li>
+                  </button>
                 ))}
               </ul>
             </div>

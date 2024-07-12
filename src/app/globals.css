@@ -37,3 +37,6 @@
   aspect-ratio: 27/18;
 }
 
+.beforeLine::before {
+  left: var(--before-left);
+}
