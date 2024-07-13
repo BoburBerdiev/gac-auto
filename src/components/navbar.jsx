@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState, useRef} from "react";
-import { ImgUI } from "@/components/index";
+import {ButtonUI, CardCar, ImgUI} from "@/components/index";
 import { IoClose } from "react-icons/io5";
 import { RiMenuFill } from "react-icons/ri";
 import { BiSearch } from "react-icons/bi";
@@ -8,13 +8,14 @@ import { IoIosArrowDown } from "react-icons/io";
 import Link from "next/link";
 import { NavList } from "@/config/config";
 import { useRouter, usePathname } from 'next/navigation';
-
+import { IoMdClose } from "react-icons/io";
 import {useTranslation} from "react-i18next";
 import { FaChevronDown } from "react-icons/fa6";
 import {AnimatePresence, motion} from "framer-motion"
 
 const Navbar = () => {
     const [nav, setNav] = useState(false);
+    const [search, setSearch] = useState(false);
     const [line, setLine]=useState()
     const router = useRouter();
     const pathname = usePathname()
@@ -39,6 +40,14 @@ const Navbar = () => {
             setLine(left)
             }
     });
+    }
+
+
+
+
+    const handleSearch = () => {
+        setSearch(true)
+        document.body.classList.add('overflow-hidden')
     }
   return (
     <>
@@ -78,7 +87,7 @@ const Navbar = () => {
               </div>
             </div>
             <div className="flex items-center gap-3">
-              <BiSearch className=" text-white text-[18px] cursor-pointer" />
+              <BiSearch onClick={() => handleSearch() } className=" text-white text-[18px] cursor-pointer" />
               <RiMenuFill
                 className=" block lg:hidden font-medium text-[20px] text-white"
                 onClick={() => {
@@ -95,6 +104,7 @@ const Navbar = () => {
             className={` beforeLine hidden lg:block w-full before:h-full before:-translate-x-1/2  before:duration-700 z-1 h-1 absolute bottom-0 before:absolute before:w-[30px] before:bg-[#d40021]`}
         ></div>
       </nav>
+      <NavSearch search={search} setSearch={setSearch} />
     </>
   );
 };
@@ -161,7 +171,7 @@ export const NavbarList = ({ menu }) => {
           </>
         )}
       </li>
-      <div className={` before:left-[${indicatorStyle}px] hidden lg:block !w-full before:h-full before:translate-x-1/2 before:duration-400 z-1 h-1 absolute bottom-0 before:absolute before:w-[30px] before:bg-[#d40021]`}></div>
+      <div className={` hidden lg:block !w-full before:h-full before:translate-x-1/2 before:duration-400 z-1 h-1 absolute bottom-0 before:absolute before:w-[30px] before:bg-[#d40021]`}></div>
     </>
   );
 };
@@ -231,5 +241,61 @@ const NavbarDropdown = () => {
     </div>
   );
 };
+
+
+
+const NavSearch = ({search , setSearch}) => {
+
+    const closeSearch = () => {
+        setSearch(false)
+        document.body.classList.remove('overflow-hidden')
+    }
+    const parentDiv = () => {
+        closeSearch()
+    }
+    const childPreventDefault = (e) => {
+        e.stopPropagation()
+    }
+     return (
+        <AnimatePresence>
+            {
+                search &&
+            <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{opacity: 0}}
+                className={`w-screen h-screen fixed top-0 py-20 left-0 bg-black/70 z-[999] duration-300 `}  onClick={() => parentDiv() }>
+                <div className={'container-fluid '}>
+                    <div className={'max-w-[860px] mx-auto 3xl:max-w-[1070px] space-y-5'} onClick={(e) => childPreventDefault(e)}>
+                        <div className={'flex justify-between items-center text-white '}>
+                            <h2 className={'text-lg xl:text-2xl'}>Поисковый центр</h2>
+                            <IoMdClose onClick={() => closeSearch()} className={'text-3xl 2xl:text-4xl cursor-pointer'}/>
+                        </div>
+                        <form className={'border-2 w-full border-[#c83837] grid grid-cols-4 md:grid-cols-5'}>
+                            <input type="text"
+                                   className={'w-full pl-4 bg-white font-montserrat col-span-3 text-sm md:text-base md:col-span-4 outline-none py-2 2xl:py-3'}
+                                   placeholder={'Найдите или введите ключевое слово.'}/>
+                            <ButtonUI type={'submit'} isBorderBtn={true} text={'Поиск'}
+                                      extraStyle={'bg-borderBtn text-white max-md:py-2 text-sm md:text-base !px-1'}/>
+                        </form>
+                        <div className={'grid grid-cols-2 lg:grid-cols-3 gap-3 w-full h-[70vh]  overflow-y-scroll'}>
+                            <CardCar/>
+                            <CardCar/>
+                            <CardCar/>
+                            <CardCar/>
+                            <CardCar/>
+                            <CardCar/>
+                            <CardCar/>
+                            <CardCar/>
+                        </div>
+                    </div>
+                </div>
+            </motion.div>
+            }
+        </AnimatePresence>
+
+    );
+};
+
 
 export default Navbar;

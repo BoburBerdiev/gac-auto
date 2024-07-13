@@ -13,7 +13,7 @@ export default function ModelsDetails() {
         <div className={'relative'}>
             <NavbarCarInner/>
             <section className={'w-full h-[300px]  md:h-[500px] lg:h-[620px] xl:h-[800px] relative overflow-hidden'}>
-                <ImgUI src={'/car1.jpg'} alt={'banner'} imageStyle={'object-center'}/>
+                <ImgUI src={'/index-page/banner1.jpg'} alt={'banner'} imageStyle={'object-center'}/>
             </section>
             <section className={'bg-gradient-to-b md:bg-gradient-to-r to-white from-50%  from-[#41454b] to-50% md:py-[70px] py-5'}>
                 <div className="container grid grid-cols-1 md:grid-cols-2 relative">

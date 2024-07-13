@@ -6,7 +6,7 @@ import Link from "next/link";
 
 const CardCar = () => {
     return (
-        <Link href={'#'} className={'block py-6 px-4 font-montserrat border border-currentGray text-[#747474] group hover:border-currentRed duration-200 ease-linear'}>
+        <Link href={'#'} className={'block py-6 px-4 bg-white font-montserrat border border-currentGray text-[#747474] group hover:border-currentRed duration-200 ease-linear'}>
             <div className={'px-2 md:px-4'}>
                 <div className={'h-[31px] md:h-[34px] w-[100px] relative '}>
                     <ImgUI src={'/logo-car-2.png'} card={true} quality={100} alt={'logo'} objectFitContain={true}  />
