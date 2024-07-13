@@ -8,13 +8,24 @@ import { IoIosArrowDown } from "react-icons/io";
 import Link from "next/link";
 import { useTranslation } from "react-i18next";
 import { NavList } from "@/config/config";
+import { useRouter, usePathname } from 'next/navigation';
 
 const Navbar = () => {
     const [nav, setNav] = useState(false);
     const [line, setLine]=useState()
+    const router = useRouter();
+    const pathname = usePathname()
+    console.log(pathname);
     const ref = useRef()   
     useEffect(()=>{
-       setLine(ref.current.children[1].offsetLeft + ref.current.children[1].clientWidth /2)
+      if (pathname === '/') {
+        const initialState = ref.current.children[1].offsetLeft + ref.current.children[1].clientWidth /2
+        setLine(initialState)
+      }else if(NavList.forEach((element)=>{
+        element.href
+      }) === pathname ){
+        setLine()
+      }
     },[])
     const lineMove =(e)=>{
         const target = e.target
@@ -78,7 +89,7 @@ const Navbar = () => {
           </div>
         </div>
         <div style={{ '--before-left': `${line}px` }}
-            className={` beforeLine hidden lg:block w-full before:h-full before:-translate-x-1/2  before:duration-1000 z-1 h-1 absolute bottom-0 before:absolute before:w-[30px] before:bg-[#d40021]`}
+            className={` beforeLine hidden lg:block w-full before:h-full before:-translate-x-1/2  before:duration-700 z-1 h-1 absolute bottom-0 before:absolute before:w-[30px] before:bg-[#d40021]`}
         ></div>
       </nav>
     </>
@@ -94,12 +105,12 @@ export const NavbarList = ({ menu }) => {
       <li 
         className={`${
           subTitle ? "peer" : null
-        } relative border-b-[1px] lg:border-0 w-full  lg:w-auto py-[10px] lg:p-[0px_6px_0px_6px] flex flex-row lg:flex-col justify-between lg:justify-center items-center group line`}
+        } relative border-b-[1px] lg:border-0 w-full  lg:w-auto lg:py-[10px]  lg:p-[0px_12px_0px_12px] flex flex-row lg:flex-col justify-between lg:justify-center items-center group line`}
       >
         {!subTitle ? (
           <Link
           href={href}
-          className="relative border-0 w-full lg:w-auto lg:py-[10px] lg:p-[0px_6px_0px_6px] flex flex-row lg:flex-col justify-between lg:justify-center items-center group"
+          className="relative border-0 w-full lg:w-auto  flex flex-row lg:flex-col justify-between lg:justify-center items-center group whitespace-nowrap"
           >
             <li>
             {t(title)}
@@ -108,8 +119,10 @@ export const NavbarList = ({ menu }) => {
         ) : (
           <>
             <div className={`flex flex-col gap-4 lg:gap-0`}>
-              <li className="peer   relative  border-0 w-full  lg:w-auto lg:py-[10px] lg:p-[0px_6px_0px_6px] flex flex-row lg:flex-col text-start justify-between lg:justify-center items-center group">
+              <li onClick={(e)=>{console.log(e.target.tagName);}} className="peer   relative  border-0 w-full  lg:w-auto lg:py-0 lg:p-[0px_12px_0px_12px] flex flex-row lg:flex-col text-start justify-between lg:justify-center items-center group">
+              <Link href={href} className="relative border-0 w-full lg:w-auto  flex flex-row lg:flex-col justify-between lg:justify-center items-center group whitespace-nowrap">
                 {t(title)}
+              </Link>  
               </li>
               <ul
                 className={`lg:absolute lg:pb-[50px] lg:top-[43px] left-0 duration-300 gap-10 -z-[999] ${
