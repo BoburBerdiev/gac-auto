@@ -6,10 +6,8 @@ import { RiMenuFill } from "react-icons/ri";
 import { BiSearch } from "react-icons/bi";
 import { IoIosArrowDown } from "react-icons/io";
 import Link from "next/link";
-import { useTranslation } from "react-i18next";
 import { NavList } from "@/config/config";
 import { useRouter } from 'next/navigation';
-
 import {useTranslation} from "react-i18next";
 import { FaChevronDown } from "react-icons/fa6";
 import {AnimatePresence, motion} from "framer-motion"
@@ -157,9 +155,7 @@ export const NavbarList = ({ menu }) => {
           </>
         )}
       </li>
-      <div
-              className={` before:left-[${indicatorStyle}px] hidden lg:block !w-full before:h-full before:translate-x-1/2 before:duration-400 z-1 h-1 absolute bottom-0 before:absolute before:w-[30px] before:bg-[#d40021]`}
-            ></div>
+      <div className={` before:left-[${indicatorStyle}px] hidden lg:block !w-full before:h-full before:translate-x-1/2 before:duration-400 z-1 h-1 absolute bottom-0 before:absolute before:w-[30px] before:bg-[#d40021]`}></div>
     </>
   );
 };

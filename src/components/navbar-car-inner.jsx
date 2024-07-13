@@ -26,7 +26,7 @@ const NavbarCarInner = () => {
         },
     ]
     return (
-        <section className={'w-full bg-transparent absolute top-0 left-0 z-10'}>
+        <section className={'w-full bg-transparent absolute top-0 left-0 z-10 mt-12'}>
             <div className={'container'}>
                 <div className={'flex flex-col lg:flex-row items-start  justify-between'}>
                     <div
@@ -43,7 +43,7 @@ const NavbarCarInner = () => {
                         <ul className={' bg-white text-sm py-3 lg:py-2 xl:py-3 md:text-base max-lg:justify-center flex items-center flex-wrap text-currentTextBlack  divide-x divide-[#747474]'}>
                             {
                                 listLink.map((link) => (
-                                    <li key={link?.id} className={'hover:text-currentRed duration-200 cursor-pointer leading-3 px-2 md:px-4 '}>
+                                    <li key={link?.id} className={'hover:text-currentRed text-sm 2xl:text-base duration-200 cursor-pointer leading-3 px-2 2xl:px-4 '}>
                                         <Link href={link?.link}>
                                             {
                                                 link?.title
@@ -53,16 +53,16 @@ const NavbarCarInner = () => {
                                 ))
                             }
                         </ul>
-                        <div className={'flex items-center flex-wrap max-lg:justify-center py-3 lg:py-2 xl:py-3 px-2 gap-x-2 lg:gap-x-6'}>
-                            <div className={'flex items-center gap-x-2 '}>
-                                <FaMapLocationDot className={'text-xl shrink-1'}/>
-                                <p className={'text-sm md:text-base font-bold text-nowrap text-currentTextBlack'}>
+                        <div className={'flex items-center flex-wrap max-lg:justify-center  py-3 lg:py-2 xl:py-3 px-2 gap-x-2 xl:gap-x-6'}>
+                            <div className={'flex items-center gap-x-1 '}>
+                                <FaMapLocationDot className={'2xl:text-xl shrink-1'}/>
+                                <p className={'text-sm 2xl:text-base font-bold  text-nowrap text-currentTextBlack'}>
                                     {t('carInnerNav.setYourLoc')}
                                 </p>
                             </div>
-                            <div className={'flex items-center gap-x-2 '}>
-                                <IoIosDocument className={'text-xl shrink-1'}/>
-                                <p className={'text-sm md:text-base font-bold text-nowrap text-currentTextBlack'}>
+                            <div className={'flex items-center gap-x-1 '}>
+                                <IoIosDocument className={'2xl:text-xl shrink-1'}/>
+                                <p className={'text-sm 2xl:text-base font-bold text-nowrap text-currentTextBlack'}>
                                     {t('carInnerNav.contactDealer')}
                                 </p>
                             </div>
@@ -70,20 +70,6 @@ const NavbarCarInner = () => {
                     </div>
                 </div>
             </div>
-
-
-            {/*
-
-
-
-
-
-
-
-
-              */}
-
-
         </section>
     );
 };
