@@ -28,7 +28,7 @@ const Navbar = () => {
       }else if(NavList.forEach((element)=>{
         element.href
       }) === pathname ){
-        setLine()
+        setLine(element.offsetLeft + element.clientWidth /2)
       }
     },[])
     const lineMove =(e)=>{
