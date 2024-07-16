@@ -16,13 +16,13 @@ const Navbar = () => {
   const [nav, setNav] = useState(false);
   const [search, setSearch] = useState(false);
   const [line, setLine] = useState();
-  const [childRef,setChildRef ] = useState()
+  const [childRef, setChildRef] = useState();
   const pathname = usePathname();
-  useEffect(()=>{
-    if(childRef){
-      setLine(childRef)
+  useEffect(() => {
+    if (childRef) {
+      setLine(childRef);
     }
-  },[childRef])
+  }, [childRef]);
   const lineMove = (e) => {
     const target = e.target;
     if (target.dataset.list) {
@@ -30,15 +30,13 @@ const Navbar = () => {
       setLine(left);
     }
   };
-  
 
-  const onMouseLeaveFunc=()=>{
-    if(childRef){
-     setLine(childRef) 
+  const onMouseLeaveFunc = () => {
+    if (childRef) {
+      setLine(childRef);
     }
     console.log(childRef);
-    
-  }
+  };
 
   const handleSearch = () => {
     setSearch(true);
@@ -59,7 +57,8 @@ const Navbar = () => {
                 />
               </a>
               <div className="flex items-center flex-col">
-                <ul onMouseLeave={onMouseLeaveFunc}
+                <ul
+                  onMouseLeave={onMouseLeaveFunc}
                   className={`px-2 gap-3 flex flex-col z-50 h-screen lg:h-auto ${
                     nav ? "right-0" : "-right-full"
                   }  duration-300 fixed lg:static top-0 w-full bg-black lg:bg-transparent lg:flex-row font-thin text-base text-white items-center `}
@@ -115,22 +114,22 @@ const Navbar = () => {
   );
 };
 
-export const NavbarList = ({ menu, lineMove,pathname,setChildRef }) => {
+export const NavbarList = ({ menu, lineMove, pathname, setChildRef }) => {
   const [dropdown, setDropdown] = useState(false);
-  const ref=useRef()
+  const ref = useRef();
   const { t } = useTranslation();
   const { title, href, subTitle } = menu;
-  
-  useEffect(()=>{
-    if(pathname===href){
-      setChildRef(ref.current.offsetLeft + ref.current.clientWidth / 2)
+
+  useEffect(() => {
+    if (pathname === href) {
+      setChildRef(ref.current.offsetLeft + ref.current.clientWidth / 2);
     }
-  },[menu.href, pathname])
+  }, [menu.href, pathname]);
 
   return (
     <>
       <li
-        data-list 
+        data-list
         ref={ref}
         onMouseOver={lineMove}
         className={`${
@@ -147,12 +146,12 @@ export const NavbarList = ({ menu, lineMove,pathname,setChildRef }) => {
         ) : (
           <>
             <div className={`flex flex-col gap-4 lg:gap-0`}>
-                <Link
-                  href={href}
-                  className="relative border-0 w-full lg:w-auto  flex flex-row lg:flex-col justify-between lg:justify-center items-center group whitespace-nowrap"
-                >
-                  {t(title)}
-                </Link>
+              <Link
+                href={href}
+                className="relative border-0 w-full lg:w-auto  flex flex-row lg:flex-col justify-between lg:justify-center items-center group whitespace-nowrap"
+              >
+                {t(title)}
+              </Link>
               <ul
                 className={`lg:absolute lg:pb-[50px] lg:top-[35px] left-0 duration-300 gap-10 z-[20] ${
                   dropdown ? "block" : "hidden"
@@ -220,6 +219,9 @@ const NavbarDropdown = () => {
     setDropdown(false);
   };
 
+  window.addEventListener("scroll", () => {
+    setDropdown(false)
+  })
   return (
     <div className={"relative max-lg:mt-10 max-lg:w-full"}>
       <p
@@ -228,36 +230,67 @@ const NavbarDropdown = () => {
       >
         {i18n.language === "ru" ? t("lang.ru") : t("lang.uz")}
       </p>
-      <div
-        className={`grid lg:w-10 ${
-          dropdown ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
-        } lg:absolute z-50 top-full -left-2 duration-300`}
-      >
-        <div className={"overflow-hidden "}>
-          <ul
-            className={
-              "rounded-b-lg lg:text-sm flex lg:flex-col gap-y-1 max-lg:divide-x bg-black  text-white  py-2 "
-            }
-          >
-            {langList.map((lang) => (
-              <li
-                onClick={() => handleLang(lang)}
-                className={
-                  "cursor-pointer hover:bg-gray-50/50 px-4 lg:px-2 !leading-[1]"
-                }
-                key={lang?.id}
-              >
-                {t(lang?.title)}
-              </li>
-            ))}
-          </ul>
-        </div>
+     {
+      dropdown &&
+      <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className={`flex flex-col  lg:w-10 lg:absolute z-50 top-full -left-2 duration-300`}
+    >
+      <div className={"overflow-hidden "}>
+        <ul
+          className={
+            "rounded-b-lg lg:text-sm flex lg:flex-col overflow-hidden  max-lg:divide-x bg-black  text-white  pt-2 "
+          }
+        >
+          {langList.map((lang) => (
+            <li
+              onClick={() => handleLang(lang)}
+              className={
+                "cursor-pointer hover:bg-gray-50/50 px-4 py-1.5 lg:px-2 !leading-[1]"
+              }
+              key={lang?.id}
+            >
+              {t(lang?.title)}
+            </li>
+          ))}
+        </ul>
       </div>
+    </motion.div>
+     }
     </div>
   );
 };
 
+const models = [
+  {
+    id: 1,
+    href: "",
+    category: "СВ",
+    logo: "/model-logo1.png",
+    image: "/model-image1.png",
+    gearbox: "AT",
+    seats: "7 Сиденья",
+    fuel: "Бензин",
+  },
+  {
+    id: 2,
+    href: "",
+    category: "МИНИВЭН",
+    logo: "/model-logo2.png",
+    image: "/model-image2.png",
+    gearbox: "AT",
+    seats: "7 Сиденья",
+    fuel: "Бензин",
+  },
+];
+
 const NavSearch = ({ search, setSearch }) => {
+  const [isModels, setIsModels] = useState(true)
+  const {t} = useTranslation()
+
+
   const closeSearch = () => {
     setSearch(false);
     document.body.classList.remove("overflow-hidden");
@@ -280,11 +313,11 @@ const NavSearch = ({ search, setSearch }) => {
         >
           <div className={"container-fluid "}>
             <div
-              className={"max-w-[860px] mx-auto 3xl:max-w-[1070px] space-y-5"}
+              className={"max-w-[960px] mx-auto 3xl:max-w-[1270px] space-y-5"}
               onClick={(e) => childPreventDefault(e)}
             >
               <div className={"flex justify-between items-center text-white "}>
-                <h2 className={"text-lg xl:text-2xl"}>Поисковый центр</h2>
+                <h2 className={"text-lg xl:text-2xl"}>{t('search.sectionTitle')}</h2>
                 <IoMdClose
                   onClick={() => closeSearch()}
                   className={"text-3xl 2xl:text-4xl cursor-pointer"}
@@ -300,31 +333,43 @@ const NavSearch = ({ search, setSearch }) => {
                   className={
                     "w-full pl-4 bg-white font-montserrat col-span-3 text-sm md:text-base md:col-span-4 outline-none py-2 2xl:py-3"
                   }
-                  placeholder={"Найдите или введите ключевое слово."}
+                  placeholder={t('search.input')}
                 />
                 <ButtonUI
                   type={"submit"}
                   isBorderBtn={true}
-                  text={"Поиск"}
+                  text={t('search.buttonText')}
                   extraStyle={
                     "bg-borderBtn text-white max-md:py-2 text-sm md:text-base !px-1"
                   }
                 />
               </form>
-              <div
-                className={
-                  "grid grid-cols-2 lg:grid-cols-3 gap-3 w-full h-[70vh]  overflow-y-scroll"
-                }
-              >
-                <CardCar />
-                <CardCar />
-                <CardCar />
-                <CardCar />
-                <CardCar />
-                <CardCar />
-                <CardCar />
-                <CardCar />
-              </div>
+              {
+                  !isModels ? 
+                  <motion.div initial={{ opacity: 0, scale: 0.2 }}
+                              animate={{ opacity: 1,  scale: 1 }}
+                              exit={{ opacity: 0, scale: 0.2 }}  
+                              className="flex flex-col items-center ">
+                    <div className=" aspect-square relative w-[240px] mt-10">
+                      <ImgUI src={'/no-content.png'}/>
+                    </div>
+                    <h2 className="text-white font-bold md:text-lg text-center lg:text-xl xl:text-2xl  max-w-[700px]">Никакой соответствующий контент не был получен, попробуйте ввести другие ключевые слова</h2>
+                  </motion.div>
+              :
+                <div
+                  className={
+                    "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 w-full h-[70vh]  overflow-y-scroll"
+                  }
+                >
+                  {models.map((model) => (
+                    <div key={model?.id} className="h-fit">
+                      <CardCar model={model}  />
+                    </div>
+                  ))}
+                </div>
+
+              }
+              
             </div>
           </div>
         </motion.div>

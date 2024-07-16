@@ -7,7 +7,13 @@ export const NavList = [
     {
         title: 'navbar.models',
         id: 1,
-        href: '/models',
+        href: '/',
+        subTitle: [
+            {
+                title: "Подробнее",
+                href: "/models"
+            }
+        ]
     },
     {
         title: 'navbar.news',

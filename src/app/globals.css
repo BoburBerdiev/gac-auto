@@ -40,3 +40,34 @@
 .beforeLine::before {
   left: var(--before-left);
 }
+ 
+/* Chrome, Edge and Safari */
+*::-webkit-scrollbar {
+  height: 5px;
+  width: 5px;
+}
+*::-webkit-scrollbar-track {
+  border-radius: 6px;
+  background-color: #000000;
+}
+
+*::-webkit-scrollbar-track:hover {
+  background-color: #000000;
+}
+
+*::-webkit-scrollbar-track:active {
+  background-color: #000000;
+}
+
+*::-webkit-scrollbar-thumb {
+  border-radius: 13px;
+  background-color: #A6A6A6;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background-color: #A9A9A9;
+}
+
+*::-webkit-scrollbar-thumb:active {
+  background-color: #9C9C9C;
+}

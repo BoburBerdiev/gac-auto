@@ -11,12 +11,18 @@
       "ru": "РУ",
       "uz": "УЗ"
     },
+    "search": {
+      "sectionTitle": "Ищите модель",
+      "input": "Найдите или введите имя модели",
+      "buttonText": "Поиск"
+    },
     "carInnerNav": {
       "overview": "Обзор",
       "performance": "Производительность",
       "specification": "Спецификация",
       "setYourLoc": "Установите свое местоположение",
       "contactDealer": "Свяжитесь с дилером"
-    }
+    },
+    "toTop": "Верх"
   }
 }

@@ -1,17 +1,20 @@
 {
   "translation": {
     "navbar": {
-      "home" : "Asosiy ",
+      "home" : "Asosiy",
       "about": "Biz haqimizda",
       "models": "Modellar",
-      "innovation":"Innovatsiya",
-      "mediaCenter": "Media markazi",
-      "service": "Xizmat"
+      "innovation":"Inovatsiyalar",
+      "news": "Yangiliklar"
     },
     "lang": {
-      "langDefault": "RU",
       "ru": "RU",
       "uz": "UZ"
+    },
+    "search": {
+      "sectionTitle": "Modelni qidiring",
+      "input": "Model nomini qidiring yoki kiriting",
+      "buttonText": "Qidirmoq"
     },
     "carInnerNav": {
       "overview": "Umumiy ko'rinish",
@@ -19,6 +22,7 @@
       "specification": "Texnik tavsif",
       "setYourLoc": "Joylashuvingizni belgilang",
       "contactDealer": "Diler bilan bog'laning"
-    }
+    },
+    "toTop": "Tepaga"
   }
 }

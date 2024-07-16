@@ -7,11 +7,12 @@ import Link from "next/link";
 const CardCar = ({model}) => {
   return (
     <Link
-      href={model?.href}
+      href={model ? model?.href : ' '}
       className={
-        "block py-6 px-4 bg-white font-montserrat border overflow-hidden border-currentGray text-[#747474] group hover:border-currentRed duration-200 ease-linear"
+        "block   bg-white font-montserrat  h-fit overflow-hidden  text-[#747474] group duration-200 ease-linear"
       }
     >
+      <div className="px-4 border border-currentGray pb-5 pt-6  group-hover:border-currentRed duration-200">
       <div className={"px-2 md:px-4"}>
         <div className={"h-[31px] md:h-[34px] w-[140px] lg:w-[150px] lg:h-11 2xl:w-[220px] 2xl:h-10  relative "}>
           <ImgUI
@@ -26,7 +27,7 @@ const CardCar = ({model}) => {
       </div>
       <div
         className={
-          "w-full aspect-video relative pt-8 lg:pt-[50px] group-hover:scale-110 duration-300"
+          "w-full aspect-video relative pt-8 lg:pt-[50px] md:group-hover:scale-[1.15] md:group-hover:-translate-x-4 duration-300"
         }
       >
         <ImgUI
@@ -78,6 +79,17 @@ const CardCar = ({model}) => {
           >
            {model?.gearbox}
           </p>
+        </div>
+      </div>
+      </div>
+      <div className="px-2 md:px-4 flex  py-3 justify-between items-center bg-currentRed border border-currentRed">
+        <div className="flex flex-col">
+          <p className="text-sm text-white">Цена:</p>
+          <h4 className="font-bold text-white">50 000 000</h4>
+        </div>
+        <div className="flex flex-col items-end">
+          <p className="text-sm text-white">Цена в рассрочку:</p>
+          <h4 className="font-bold text-white">8 000 000</h4>
         </div>
       </div>
     </Link>

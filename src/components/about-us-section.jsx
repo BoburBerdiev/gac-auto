@@ -11,7 +11,7 @@ const AboutUsSection = ({image , isImageLeft, title , text}) => {
                 <div className={`py-[30px] px-[15px] lg:pb-0  lg:px-[75px] lg:pt-[75px] xl:pt-[120px] 2xl:pt-[140px] 3xl:pt-[175px]  ${isImageLeft ? "xl:pr-[85px] xl:pl-[190px] ] 2xl:pr-[100px] 2xl:pl-[220px] 3xl:pr-[125px] 3xl:pl-[275px] lg:order2 " : " xl:pl-[85px] xl:pr-[190px] ] 2xl:pl-[100px] 2xl:pr-[220px] 3xl:pl-[125px] 3xl:pr-[275px]"}  `}>
                     <SectionTitleCar extraStyle={'!text-start'} aboutPage={true} title={title}/>
                     <p className={'mt-4 text-currentTextBlack text-sm mb-[30px] xl:mt-[35px] xl:pb-[35px] xl:text-base 3xl:text-xl '}>{text}</p>
-                    <ButtonUI text={'GO'} isBorderBtn={true}  />
+                    <ButtonUI text={'ИДТИ'} isBorderBtn={true}  />
                 </div>
             </div>
         </>
