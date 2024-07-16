@@ -5,11 +5,9 @@
       "about": "О нас",
       "models": "Модели",
       "innovation":"Инновации",
-      "mediaCenter": "Медиа центр",
-      "service": "Услуга"
+      "news": "Новости"
     },
     "lang": {
-      "langDefault": "РУ",
       "ru": "РУ",
       "uz": "УЗ"
     },

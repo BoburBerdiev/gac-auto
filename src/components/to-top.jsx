@@ -30,7 +30,7 @@ const ToTop = () => {
     }
     return (
         <div onClick={toTop} className={`flex items-center gap-2 z-50 bg-[#c31e1a] pr-2.5 ${!isHidden ? '-right-28' : 'right-[0%]'} duration-300 bottom-[10%] py-2.5 pl-4 text-white fixed  rounded-l-full 3xl:text-lg cursor-pointer 3xl:pl-[18px] font-bold !leading-[1]`}>
-            <span>TOP</span>
+            <span>Верх</span>
             <IoIosArrowUp className={'mb-1 text-lg 3xl:text-xl'}/>
         </div>
     );

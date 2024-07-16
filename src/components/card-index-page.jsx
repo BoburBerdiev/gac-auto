@@ -2,19 +2,19 @@ import {ImgUI} from "@/components/index";
 import {FaChevronRight, FaPlay} from "react-icons/fa";
 import Link from "next/link";
 
-const CardIndexPage = ({card , height , container , title , subTitle ,text ,button , header_title ,image , darkPercentage}) => {
+const CardIndexPage = ({card , height , container , hrefTo, title , subTitle ,text ,button , header_title ,image , darkPercentage}) => {
     return (
         <div className={`w-full relative before:content-[''] before:w-full before:absolute before:z-5 before:h-full before:top-0 before:left-0 before:bg-black/${darkPercentage} overflow-hidden text-white ${height ? height :'h-full'}  pt-[10%] z-10`}>
             <ImgUI src={image} card={card} imageStyle={'z-[-1]'} alt={title} />
             <div className={`relative z-5 ${container ? container : 'w-full h-full'} flex items-start flex-col gap-y-5 md:gap-y-10 `}>
                 {
                     header_title &&
-                <div className={"text-sm md:text-xl relative inline-flex lg:text-2xl  gap-x-2 md:gap-x-4 items-center  hover:text-currentRed font-bold before:content-['']  before:absolute before:left-0 before:-bottom-2 md:before:-bottom-4 before:bg-white before:w-full before:h-[1px] md:before:h-[2px] before:z-5"} >
+                <Link href={hrefTo && hrefTo} className={"text-sm md:text-xl relative inline-flex lg:text-2xl  gap-x-2 md:gap-x-4 items-center  hover:text-currentRed hover:before:bg-currentRed font-bold before:content-['']  before:absolute before:left-0 before:-bottom-2 md:before:-bottom-4 before:bg-white before:w-full before:h-[1px] md:before:h-[2px] before:z-5"} >
                     <FaPlay  />
                     <p>
                         {header_title}
                     </p>
-                </div>
+                </Link>
                 }
                 {
                     title &&
@@ -39,7 +39,7 @@ const CardIndexPage = ({card , height , container , title , subTitle ,text ,butt
                     <div className={'mt-10'}>
                 <Link href={'#'} className={'flex gap-x-3 items-center '}>
                     <span>
-                        Read More
+                   {button}
                     </span>
                     <FaChevronRight/>
                 </Link>

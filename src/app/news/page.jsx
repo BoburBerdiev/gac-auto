@@ -4,50 +4,50 @@ export default function Page(props) {
     const newsCards = [
         {
             image: '/news/news-inner1.jpg',
-            date: "Jul 04,2022",
-            title: "GAC MOTOR｜COLO COLO",
+            date: "04 июля 2022 г.",
+            title: "GAC MOTOR｜ЦВЕТ ЦВЕТ",
             href: '/news/1',
             id: 0
         },
         {
             image: '/news/news-inner2.jpg',
-            date: "Jun 20,2022",
-            title: "2022 GAC Design Award",
+            date: "20 июня 2022 г.",
+            title: "Премия GAC за дизайн 2022 года",
             href: '/news',
             id: 1
         },
         {
             image: '/news/news-inner3.jpg',
-            date: "Aug 27,2021",
-            title: "GAC Owner's Story",
+            date: "27 авг. 2021 г.",
+            title: "История владельца GAC",
             href: '/news',
             id: 2
         },
         {
             image: '/news/news-inner4.jpg',
-            date: "Aug 27,2021",
-            title: "Birth of a GAC MOTOR",
+            date: "27 авг. 2021 г.",
+            title: "Рождение GAC MOTOR",
             href: '/news',
             id: 3
         },
         {
             image: '/news/news-inner5.jpg',
-            date: "Jan 14,2019",
-            title: "2019 Nalas Debut: Entranze To The Future Mobility",
+            date: "14 янв. 2019 г.",
+            title: "Дебют в Наласе, 2019: вход в мобильность будущего",
             href: '/news',
             id: 4
         },
         {
             image: '/news/news-inner6.jpg',
-            date: "Jul 06,2018",
-            title: "Three River Source National Park",
+            date: "06 июля 2018 г.",
+            title: "Национальный парк Три-Ривер-Сурс",
             href: '/news',
             id: 5
         },
         {
             image: '/news/news-inner7.jpg',
-            date: "Dec 29,2017",
-            title: "2018 North American International Auto Show",
+            date: "29 декабря 2017 г.",
+            title: "Североамериканский международный автосалон 2018",
             href: '/news',
             id: 6
         },
