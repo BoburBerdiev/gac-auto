@@ -25,4 +25,9 @@ export const NavList = [
         id: 5,
         href: '/about',
     },
+    {
+        title: 'navbar.dealers',
+        id: 6,
+        href: '/dealers',
+    },
 ]

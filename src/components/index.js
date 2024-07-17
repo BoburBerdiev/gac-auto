@@ -1,5 +1,8 @@
 export { default as ImgUI } from './ui/ImgUI'
 export { default as ButtonUI } from './ui/ButtonUI'
+export { default as InputUI } from './ui/InputUI'
+export { default as SelectUI } from './ui/SelectUI'
+
 
 export { default as PerformanceCard } from './performance-card'
 export { default as FeaturesCard } from './features-car'

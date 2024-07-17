@@ -3,7 +3,7 @@ import Link from "next/link";
 
 const NewsCard = ({image, date, title, href}) => {
     return (
-        <Link href={href} className={'bg-white w-full h-fit hover:shadow-xl '}>
+        <Link href={href} className={'bg-white w-full h-fit md:hover:shadow-xl '}>
             <div className={'w-full aspect-[3/2] xl:aspect-[7/4] relative'}>
                 <ImgUI src={image}/>
             </div>

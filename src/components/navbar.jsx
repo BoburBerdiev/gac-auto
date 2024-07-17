@@ -45,11 +45,11 @@ const Navbar = () => {
   };
   return (
     <>
-      <nav className="bg-black w-full fixed h-12 z-[50] ">
+      <nav className="bg-black w-full fixed z-[50] ">
         <div className="container w-full">
           <div className="bg-black flex items-center w-full h-full justify-between py-2 lg:p-0">
             <div className="flex items-center gap-3 w-full">
-              <a href="/" className="relative block w-32 h-4 lg:w-40 lg:h-5">
+              <a href="/" className="relative block w-36 h-6 lg:w-40 lg:h-5">
                 <ImgUI
                   src={"/logo.png"}
                   alt={"logo_gacmotors"}
@@ -81,26 +81,24 @@ const Navbar = () => {
                   <div
                     className={`peer-hover:block  !-z-[999999] hidden w-full bg-black/50 size-[50%] top-0  fixed left-0`}
                   ></div>
-                  <div className={"lg:hidden max-lg:w-full"}>
-                    <NavbarDropdown />
-                  </div>
                 </ul>
               </div>
             </div>
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-5">
               <BiSearch
                 onClick={() => handleSearch()}
-                className=" text-white text-[18px] cursor-pointer"
+                className=" text-white h-6 w-6  cursor-pointer"
               />
+               <div className={"flex items-start group "}>
+                <NavbarDropdown />
+              </div>
               <RiMenuFill
-                className=" block lg:hidden font-medium text-[20px] text-white"
+                className=" block lg:hidden font-medium   h-6 w-6 text-white"
                 onClick={() => {
                   setNav(true);
                 }}
               />
-              <div className={"lg:flex items-start group hidden"}>
-                <NavbarDropdown />
-              </div>
+             
             </div>
           </div>
         </div>
@@ -205,11 +203,6 @@ const NavbarDropdown = () => {
       id: 1,
     },
   ];
-  useEffect(() => {
-    if (window.innerWidth < 1024) {
-      setDropdown(true);
-    }
-  }, []);
 
   const openDropdown = () => {
     setDropdown((prevState) => !prevState);
@@ -223,32 +216,33 @@ const NavbarDropdown = () => {
     setDropdown(false)
   })
   return (
-    <div className={"relative max-lg:mt-10 max-lg:w-full"}>
+    <div className={"relative "}>
       <p
         onClick={() => openDropdown()}
-        className={"text-white cursor-pointer max-lg:hidden"}
+        className={"text-white cursor-pointer text-lg"}
       >
         {i18n.language === "ru" ? t("lang.ru") : t("lang.uz")}
       </p>
      {
       dropdown &&
       <motion.div
+      key="dropdonw"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className={`flex flex-col  lg:w-10 lg:absolute z-50 top-full -left-2 duration-300`}
+      className={`flex flex-col  w-10 absolute z-50 top-full -left-2 duration-300`}
     >
       <div className={"overflow-hidden "}>
         <ul
           className={
-            "rounded-b-lg lg:text-sm flex lg:flex-col overflow-hidden  max-lg:divide-x bg-black  text-white  pt-2 "
+            "rounded-b-lg  flex flex-col overflow-hidden  bg-black  text-white  pt-2 "
           }
         >
           {langList.map((lang) => (
             <li
               onClick={() => handleLang(lang)}
               className={
-                "cursor-pointer hover:bg-gray-50/50 px-4 py-1.5 lg:px-2 !leading-[1]"
+                "cursor-pointer hover:bg-gray-50/50  py-1.5 px-2 !leading-[1]"
               }
               key={lang?.id}
             >
@@ -302,12 +296,10 @@ const NavSearch = ({ search, setSearch }) => {
     e.stopPropagation();
   };
   return (
-    <AnimatePresence>
+    <AnimatePresence initial={false}>
       {search && (
         <motion.div
-          initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
           className={`w-screen h-screen fixed top-0 py-20 left-0 bg-black/70 z-[999] duration-300 `}
           onClick={() => parentDiv()}
         >
