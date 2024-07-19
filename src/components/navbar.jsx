@@ -46,6 +46,7 @@ const Navbar = () => {
   return (
     <>
       <nav className="bg-black w-full fixed z-[50] ">
+      <AnimatePresence >
         <div className="container w-full">
           <div className="bg-black flex items-center w-full h-full justify-between py-2 lg:p-0">
             <div className="flex items-center gap-3 w-full">
@@ -106,8 +107,10 @@ const Navbar = () => {
           style={{ "--before-left": `${line}px` }}
           className={` beforeLine hidden lg:block w-full before:h-full before:-translate-x-1/2  before:duration-700 z-1 h-1 absolute bottom-0 before:absolute before:w-[30px] before:bg-[#d40021]`}
         ></div>
+        <NavSearch search={search} setSearch={setSearch} />
+      </AnimatePresence>
+
       </nav>
-      <NavSearch search={search} setSearch={setSearch} />
     </>
   );
 };
@@ -191,6 +194,7 @@ export const NavbarList = ({ menu, lineMove, pathname, setChildRef }) => {
 const NavbarDropdown = () => {
   const { t, i18n } = useTranslation();
   const [dropdown, setDropdown] = useState(false);
+  const dropdownRef = useRef()
   const langList = [
     {
       title: t("lang.ru"),
@@ -206,7 +210,13 @@ const NavbarDropdown = () => {
 
   const openDropdown = () => {
     setDropdown((prevState) => !prevState);
+    console.log(dropdown);
   };
+  window.addEventListener('click', (e) => {
+    if (dropdownRef.current !== e.target ) {
+      setDropdown(false)
+    }
+  })
   const handleLang = (lang) => {
     i18n.changeLanguage(lang.value);
     setDropdown(false);
@@ -217,26 +227,27 @@ const NavbarDropdown = () => {
   })
   return (
     <div className={"relative "}>
-      <p
+      <p 
+      ref={dropdownRef}
         onClick={() => openDropdown()}
         className={"text-white cursor-pointer text-lg"}
       >
         {i18n.language === "ru" ? t("lang.ru") : t("lang.uz")}
       </p>
      {
-      dropdown &&
+      dropdown ?
       <motion.div
       key="dropdonw"
-      initial={{ opacity: 0 }}
+      initial={{opacity: 0}}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className={`flex flex-col  w-10 absolute z-50 top-full -left-2 duration-300`}
+      className={`flex flex-col  w-10 absolute z-50 top-full -left-2 duration-300 `}
     >
-      <div className={"overflow-hidden "}>
         <ul
           className={
             "rounded-b-lg  flex flex-col overflow-hidden  bg-black  text-white  pt-2 "
           }
+          onClick={(e) => e.preventDefault()}
         >
           {langList.map((lang) => (
             <li
@@ -250,8 +261,9 @@ const NavbarDropdown = () => {
             </li>
           ))}
         </ul>
-      </div>
     </motion.div>
+    : 
+    null
      }
     </div>
   );
@@ -296,17 +308,20 @@ const NavSearch = ({ search, setSearch }) => {
     e.stopPropagation();
   };
   return (
-    <AnimatePresence initial={false}>
+   <>
       {search && (
         <motion.div
+          key="search"
+          initial={{opacity: 0}}
           animate={{ opacity: 1 }}
+          exit={{opacity: 0}}
           className={`w-screen h-screen fixed top-0 py-20 left-0 bg-black/70 z-[999] duration-300 `}
           onClick={() => parentDiv()}
         >
           <div className={"container-fluid "}>
             <div
               className={"max-w-[960px] mx-auto 3xl:max-w-[1270px] space-y-5"}
-              onClick={(e) => childPreventDefault(e)}
+              onClick={(e) => e.stopPropagation()}
             >
               <div className={"flex justify-between items-center text-white "}>
                 <h2 className={"text-lg xl:text-2xl"}>{t('search.sectionTitle')}</h2>
@@ -366,7 +381,7 @@ const NavSearch = ({ search, setSearch }) => {
           </div>
         </motion.div>
       )}
-    </AnimatePresence>
+      </>
   );
 };
 
