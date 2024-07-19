@@ -150,7 +150,7 @@ const newsCards = [
 export default function Home() {
   return (
     <>
-      <section className={"w-full h-screen aspect-square"}>
+      <section className={"w-full h-[60vh] aspect-square"}>
         <HomeHeaderBanner
           PaginationMod={true}
           isHeader={true}

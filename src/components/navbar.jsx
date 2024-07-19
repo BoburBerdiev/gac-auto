@@ -135,7 +135,7 @@ export const NavbarList = ({ menu, lineMove, pathname, setChildRef }) => {
         onMouseOver={lineMove}
         className={`${
           subTitle ? "peer" : null
-        } relative border-b-[1px] lg:border-0 w-full  lg:w-auto lg:py-[10px]  lg:p-[0px_12px_0px_12px] flex flex-row lg:flex-col justify-between lg:justify-center items-center group line`}
+        } relative border-b-[1px] lg:border-0 w-full  lg:w-auto py-3 px-5 lg:py-3 lg:px-0.5 xl:px-3  xl:py-[12px] flex flex-row lg:flex-col justify-between lg:justify-center items-center group line`}
       >
         {!subTitle ? (
           <Link
@@ -146,13 +146,13 @@ export const NavbarList = ({ menu, lineMove, pathname, setChildRef }) => {
           </Link>
         ) : (
           <>
-            <div className={`flex flex-col gap-4 lg:gap-0`}>
-              <Link
-                href={href}
+            <div className={`flex flex-col gap-4 lg:gap-0 !text-sm`}>
+              <li
+               
                 className="relative border-0 w-full lg:w-auto  flex flex-row lg:flex-col justify-between lg:justify-center items-center group whitespace-nowrap"
               >
                 {t(title)}
-              </Link>
+              </li>
               <ul
                 className={`lg:absolute lg:pb-[50px] lg:top-[35px] left-0 duration-300 gap-10 z-[20] ${
                   dropdown ? "block" : "hidden"
@@ -241,7 +241,7 @@ const NavbarDropdown = () => {
       initial={{opacity: 0}}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className={`flex flex-col fixed  w-10 absolute z-50 top-full -left-2  `}
+      className={`flex flex-col  w-10 absolute z-50 top-full -left-2  `}
     >
         <ul
           className={
@@ -301,22 +301,17 @@ const NavSearch = ({ search, setSearch }) => {
     setSearch(false);
     document.body.classList.remove("overflow-hidden");
   };
-  const parentDiv = () => {
-    closeSearch();
-  };
-  const childPreventDefault = (e) => {
-    e.stopPropagation();
-  };
+ 
   return (
    <>
       {search && (
         <motion.div
           key="search"
-          initial={{opacity: 0}}
-          animate={{ opacity: 1, position: "fixed" }}
-          exit={{opacity: 0}}
-          className={`w-screen h-screen  top-0 py-20 left-0 bg-black/70 z-[999]  `}
-          onClick={() => parentDiv()}
+          initial={{opacity: 0, scale: 0.8, translateY: 30}}
+          animate={{ opacity: 1, scale: 1, translateY: 0 }}
+          exit={{opacity: 0, scale: 0.8}}
+          className={`w-screen h-screen fixed top-0 py-20 left-0 bg-black/70 z-[999] mr-1 `}
+          onClick={() => closeSearch()}
         >
           <div className={"container-fluid "}>
             <div

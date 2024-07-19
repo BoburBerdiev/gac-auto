@@ -26,7 +26,7 @@ const NavbarCarInner = () => {
         },
     ]
     return (
-        <section className={'w-full bg-transparent absolute top-0 left-0 z-10 mt-12'}>
+        <section className={'w-full bg-transparent absolute top-0 left-0 z-10 mt-11'}>
             <div className={'container'}>
                 <div className={'flex flex-col lg:flex-row items-start  justify-between'}>
                     <div
@@ -40,7 +40,7 @@ const NavbarCarInner = () => {
                         </div>
                     </div>
                     <div className={'w-full !bg-white flex flex-col xl:pl-4 xl:py-1 2xl:py-2 lg:items-center max-lg:divide-y justify-between lg:flex-row'}>
-                        <ul className={' bg-white text-sm py-3 lg:py-2 xl:py-3 md:text-base max-lg:justify-center flex items-center flex-wrap text-currentTextBlack  divide-x divide-[#747474]'}>
+                        <ul className={' bg-white text-sm py-3 lg:py-4 xl:py-3 md:text-base max-lg:justify-center flex items-center flex-wrap text-currentTextBlack  divide-x divide-[#747474]'}>
                             {
                                 listLink.map((link) => (
                                     <li key={link?.id} className={'hover:text-currentRed text-sm 2xl:text-base duration-200 cursor-pointer leading-3 px-2 2xl:px-4 '}>
@@ -53,7 +53,7 @@ const NavbarCarInner = () => {
                                 ))
                             }
                         </ul>
-                        <div className={'flex items-center flex-wrap max-lg:justify-center  py-3 lg:py-2 xl:py-3 px-2 gap-x-2 xl:gap-x-6'}>
+                        {/* <div className={'flex items-center flex-wrap max-lg:justify-center  py-3 lg:py-2 xl:py-3 px-2 gap-x-2 xl:gap-x-6'}>
                             <div className={'flex items-center gap-x-1 '}>
                                 <FaMapLocationDot className={'2xl:text-xl shrink-1'}/>
                                 <p className={'text-sm 2xl:text-base font-bold  text-nowrap text-currentTextBlack'}>
@@ -66,7 +66,7 @@ const NavbarCarInner = () => {
                                     {t('carInnerNav.contactDealer')}
                                 </p>
                             </div>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             </div>

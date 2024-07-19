@@ -56,7 +56,7 @@ const models = [
 export default function Models() {
   return (
     <div className={"flex flex-col gap-5 md:gap-10"}>
-      <section className={"w-full aspect-[16/15] lg:aspect-[16/7]"}>
+      <section className={"w-full aspect-[16/14] lg:aspect-[16/6]"}>
         <SectionHeaderBanner list={sliderList} />
       </section>
       <div className="container flex flex-col gap-5 md:gap-10 pb-[30px] xl:pb-[75px] 2xl:pb-[85px] 3xl:pb-[110px]">
