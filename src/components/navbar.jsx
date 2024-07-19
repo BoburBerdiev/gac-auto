@@ -241,7 +241,7 @@ const NavbarDropdown = () => {
       initial={{opacity: 0}}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className={`flex flex-col  w-10 absolute z-50 top-full -left-2 duration-300 `}
+      className={`flex flex-col fixed  w-10 absolute z-50 top-full -left-2  `}
     >
         <ul
           className={
@@ -313,9 +313,9 @@ const NavSearch = ({ search, setSearch }) => {
         <motion.div
           key="search"
           initial={{opacity: 0}}
-          animate={{ opacity: 1 }}
+          animate={{ opacity: 1, position: "fixed" }}
           exit={{opacity: 0}}
-          className={`w-screen h-screen fixed top-0 py-20 left-0 bg-black/70 z-[999] duration-300 `}
+          className={`w-screen h-screen  top-0 py-20 left-0 bg-black/70 z-[999]  `}
           onClick={() => parentDiv()}
         >
           <div className={"container-fluid "}>
