@@ -43,6 +43,7 @@ const Navbar = () => {
 
     document.body.classList.add("overflow-hidden");
   };
+ 
   return (
     <>
       <nav className="bg-black w-full fixed z-[50] ">
@@ -64,6 +65,13 @@ const Navbar = () => {
                     nav ? "right-0" : "-right-full"
                   }  duration-300 fixed lg:static top-0 w-full bg-black lg:bg-transparent lg:flex-row font-thin text-base text-white items-center `}
                 >
+                  <a href="/" className="absolute block w-36 h-6 lg:w-40 lg:h-5 top-5 left-6 lg:hidden">
+                    <ImgUI
+                      src={"/logo.png"}
+                      objectFitContain={true}
+                      alt={"logo_gacmotors"}
+                    />
+                  </a>
                   <IoClose
                     className="block lg:hidden font-medium text-[25px] !text-white self-end mt-5"
                     onClick={() => {
@@ -77,6 +85,7 @@ const Navbar = () => {
                       lineMove={lineMove}
                       pathname={pathname}
                       setChildRef={setChildRef}
+                      onClick={() => setNav(false)}
                     />
                   ))}
                   <div
@@ -115,7 +124,7 @@ const Navbar = () => {
   );
 };
 
-export const NavbarList = ({ menu, lineMove, pathname, setChildRef }) => {
+export const NavbarList = ({ menu, lineMove, pathname, setChildRef, onClick }) => {
   const [dropdown, setDropdown] = useState(false);
   const ref = useRef();
   const { t } = useTranslation();
@@ -127,18 +136,24 @@ export const NavbarList = ({ menu, lineMove, pathname, setChildRef }) => {
     }
   }, [menu.href, pathname]);
 
+  const removeDropdown = () => {
+    setDropdown(false)
+    console.log(onClick);
+    return onClick
+  }
   return (
     <>
       <li
-        data-list
         ref={ref}
+       
         onMouseOver={lineMove}
         className={`${
           subTitle ? "peer" : null
-        } relative border-b-[1px] lg:border-0 w-full  lg:w-auto py-3 px-5 lg:py-3 lg:px-0.5 xl:px-3  xl:py-[12px] flex flex-row lg:flex-col justify-between lg:justify-center items-center group line`}
+        } relative border-b-[1px] lg:border-0 w-full border-[#666666] uppercase text-sm  lg:w-auto py-3 px-5 lg:py-3 lg:px-0.5 xl:px-3  xl:py-[12px] flex flex-row lg:flex-col justify-between lg:justify-center items-center group line`}
       >
         {!subTitle ? (
           <Link
+            onClick={onClick}
             href={href}
             className="relative border-0 w-full lg:w-auto  flex flex-row lg:flex-col justify-between lg:justify-center items-center group whitespace-nowrap"
           >
@@ -160,6 +175,7 @@ export const NavbarList = ({ menu, lineMove, pathname, setChildRef }) => {
               >
                 {subTitle?.map((item) => (
                   <button
+                    onClick={() => removeDropdown()}
                     key={item?.id}
                     className="flex flex-col text-start justify-center items-start group/edit "
                   >
@@ -177,7 +193,7 @@ export const NavbarList = ({ menu, lineMove, pathname, setChildRef }) => {
               </ul>
             </div>
             <IoIosArrowDown
-              className={`text-white text-[30px] font-thin block self-start lg:hidden ${
+              className={`text-white text-xl font-thin block self-start lg:hidden ${
                 dropdown ? "rotate-180" : null
               } `}
               onClick={() => {

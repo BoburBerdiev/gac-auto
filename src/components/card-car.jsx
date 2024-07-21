@@ -44,10 +44,10 @@ const CardCar = ({model}) => {
             "flex justify-center w-[30%] flex-col items-center gap-2 md:gap-3"
           }
         >
-          <MdAirlineSeatReclineExtra className={"text-lg lg:text-[24px]"} />
+          <MdAirlineSeatReclineExtra className={"text-lg lg:text-[22px]"} />
           <p
             className={
-              "space-x-1  text-[rgb(51, 51, 51)] md:text-base text-sm font-medium"
+              "space-x-1  text-[rgb(51, 51, 51)]  text-sm font-medium"
             }
           >
             <span>{model?.seats}</span>
@@ -56,11 +56,11 @@ const CardCar = ({model}) => {
         <div
           className={`flex justify-center w-[30%] flex-col items-center gap-2 md:gap-3 relative before:content-['']  before:absolute before:w-[.5px] before:top-[10%] before:h-[50%] before:bg-[#747474] before:left-0  after:content-['']  after:absolute after:w-[.5px] after:top-[10%] after:h-[50%] after:bg-[#747474] after:right-0`}
         >
-          <RiOilLine className={"text-lg lg:text-[24px]"} />
+          <RiOilLine className={"text-lg lg:text-[22px]"} />
 
           <p
             className={
-              "space-x-1  text-[rgb(51, 51, 51)] md:text-base text-sm font-medium"
+              "space-x-1  text-[rgb(51, 51, 51)]  text-sm font-medium"
             }
           >
           {model?.fuel}
@@ -71,10 +71,10 @@ const CardCar = ({model}) => {
             "flex justify-center w-[30%] flex-col items-center gap-2 md:gap-3"
           }
         >
-          <GiSteeringWheel className={"text-lg lg:text-[24px]"} />
+          <GiSteeringWheel className={"text-lg lg:text-[22px]"} />
           <p
             className={
-              "space-x-1  text-[rgb(51, 51, 51)] md:text-base text-sm font-medium"
+              "space-x-1  text-[rgb(51, 51, 51)]  text-sm font-medium"
             }
           >
            {model?.gearbox}

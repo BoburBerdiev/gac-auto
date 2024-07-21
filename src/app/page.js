@@ -162,7 +162,7 @@ export default function Home() {
       <section className="py-10 md:py-20  ">
         <div className="flex flex-col items-center container-fluid gap-6 md:gap-9 lg:gap-11">
           <SectionTitleCar title={'Наши модели'} aboutPage={false}/>
-          <div className="grid grid-cols-1 w-full md:grid-cols-2 xl:grid-cols-3  gap-4 md:gap-8 lg:gap-10 ">
+          <div className="grid grid-cols-1 w-full md:grid-cols-2 xl:grid-cols-4  gap-4 md:gap-8 lg:gap-10 ">
             {
               models.map(car => (
                 <CardCar model={car} key={car?.id}/>

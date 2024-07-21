@@ -4,26 +4,13 @@ import {TfiYoutube} from "react-icons/tfi";
 import {AiFillFacebook} from "react-icons/ai";
 import {FaTwitter} from "react-icons/fa";
 import {TiSocialInstagram} from "react-icons/ti";
+import { ImgUI } from '.';
 
 const Footer = () => {
     return (
-        <div className={'bg-black py-2'}>
+        <div className={'bg-black py-3 '}>
             <div className="container flex flex-col md:flex-row gap-4 justify-between items-center w-full">
-                <ul className={'text-sm  text-white flex gap-5'}>
-                    <li>
-                        <Link href="">Sitemap</Link>
-                    </li>
-                    <li>
-                        <Link href="">Privacy Policy</Link>
-                    </li>
-                    <li>
-                        <Link href="">Legal Terms</Link>
-                    </li>
-                </ul>
-                <p className={'text-sm text-white text-center'}>
-                    Copyright from 2015 to 2024 GAC INTERNATIONAL CO., LTD. 粤ICP备2022091938号
-                </p>
-                <div className={'flex gap-4 items-center '}>
+            <div className={'flex gap-4 items-center '}>
                     <a href="#" className={'block text-white text-xl'}>
                         <TfiYoutube/>
                     </a>
@@ -35,6 +22,15 @@ const Footer = () => {
                     </a>
                     <a href="#" className={'block text-white text-xl'}>
                         <TiSocialInstagram />
+                    </a>
+                </div>
+                <p className={'text-sm text-white text-center'}>
+                    Gac Motor Все права защищены.
+                </p>
+                <div className='flex items-center gap-2 text-white text-sm '>
+                    <p>Сайт создан:</p>
+                    <a href='https://abduganiev.uz' target='_blank' className='relative block w-[120px] h-10'>
+                        <ImgUI src={'/marss-logo.png'} alt={'Logo'} objectFitContain/>
                     </a>
                 </div>
             </div>

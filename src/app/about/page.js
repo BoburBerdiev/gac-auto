@@ -3,10 +3,11 @@ import {
   BannerSmall,
   ButtonUI,
   ImgUI,
+  NewsCard,
   SectionTitleCar,
 } from "@/components";
 
-export default function Page(props) {
+export default function Page() {
   const awards = [
     {
       image: "/about/awards-1.jpg",
@@ -106,7 +107,29 @@ export default function Page(props) {
     //     title: "Between 2012 and 2015, in cooperation with Shenzhen Society Thinking Welfare Foundation and Qinghai Education Department, GAC MOTOR organized public activities —highland mobile teaching vehicle ."
     // },
   ];
-
+  const newsCards = [
+    {
+        image: '/news/news-inner1.jpg',
+        date: "04 июля 2022 г.",
+        title: "GAC MOTOR｜ЦВЕТ ЦВЕТ",
+        href: '/news/1',
+        id: 0
+    },
+    {
+        image: '/news/news-inner2.jpg',
+        date: "20 июня 2022 г.",
+        title: "Премия GAC за дизайн 2022 года",
+        href: '/news',
+        id: 1
+    },
+    {
+        image: '/news/news-inner3.jpg',
+        date: "27 авг. 2021 г.",
+        title: "История владельца GAC",
+        href: '/news',
+        id: 2
+    },
+  ]
   return (
     <>
       <section>
@@ -179,13 +202,7 @@ export default function Page(props) {
             >
              Узнайте больше о нашей истории развития
             </p>
-            <ButtonUI
-              text={"ИДТИ"}
-              isBorderBtn={true}
-              extraStyle={
-                "lg:!border-white lg:!text-white hover:!border-borderBtn"
-              }
-            />
+           
           </div>
         </div>
       </section>
@@ -206,7 +223,20 @@ export default function Page(props) {
           }
         />
       </section>
-      <section
+      <section className="py-10 xl:py-[60px] 2xl:py-[70px] 3xl:py-[90px] bg-[#f8f8f8]">
+      <div className="flex flex-col items-center container-fluid gap-6 md:gap-9 lg:gap-11">
+          <SectionTitleCar title={'Наши новости'} aboutPage={true}/>
+          <div className="grid grid-cols-1 w-full md:grid-cols-2 xl:grid-cols-3  gap-4 md:gap-8 lg:gap-10 ">
+            {
+              newsCards.map(news => (
+                <NewsCard image={news?.image} date={news?.date} href={news?.href} title={news?.title} key={news?.id}/>
+              ))
+            }
+          </div>
+          <ButtonUI href={'/news'} text={'Показать больше'} isBorderBtn={true}  />
+        </div>
+      </section>
+      {/* <section
         className={
           "py-10 xl:py-[60px] 2xl:py-[70px] 3xl:py-[90px] bg-[#f8f8f8]"
         }
@@ -218,7 +248,7 @@ export default function Page(props) {
           />
           <SocialResponsibility list={socialResponsibility} />
         </div>
-      </section>
+      </section> */}
       <section
         className={"py-10 xl:py-[60px] 2xl:py-[65px] 3xl:py-[85px] bg-white"}
       >
@@ -231,30 +261,30 @@ export default function Page(props) {
   );
 }
 
-function SocialResponsibility({ list }) {
-  return (
-    <div
-      className={
-        "w-full flex flex-col items-center gap-10 2xl:gap-[50px] 3xl:gap-[60px]"
-      }
-    >
-      <div
-        className={
-          "grid grid-cols-1 lg:grid-cols-2 gap-y-[30px] lg:gap-x-[30px]"
-        }
-      >
-        {list?.map((card) => (
-          <SocialResponsibilityCard
-            key={card?.id}
-            title={card?.title}
-            image={card?.image}
-          />
-        ))}
-      </div>
-      <ButtonUI isBorderBtn={true} text={"Показать больше"} />
-    </div>
-  );
-}
+// function SocialResponsibility({ list }) {
+//   return (
+//     <div
+//       className={
+//         "w-full flex flex-col items-center gap-10 2xl:gap-[50px] 3xl:gap-[60px]"
+//       }
+//     >
+//       <div
+//         className={
+//           "grid grid-cols-1 lg:grid-cols-2 gap-y-[30px] lg:gap-x-[30px]"
+//         }
+//       >
+//         {list?.map((card) => (
+//           <SocialResponsibilityCard
+//             key={card?.id}
+//             title={card?.title}
+//             image={card?.image}
+//           />
+//         ))}
+//       </div>
+//       <ButtonUI isBorderBtn={true} text={"Показать больше"} />
+//     </div>
+//   );
+// }
 
 function SocialResponsibilityCard({ title, image, isCardAwards, isFullCard }) {
   return (
@@ -317,7 +347,6 @@ function AwardsSection({ list, firstCardFull }) {
           />
         ))}
       </div>
-      <ButtonUI isBorderBtn={true} text={"Показать больше"} />
     </div>
   );
 }

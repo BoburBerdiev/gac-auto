@@ -2,6 +2,7 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import { EffectFade, Autoplay, Pagination } from "swiper/modules";
 import { ImgUI } from "@/components/index";
+import Link from "next/link";
 
 const HomeHeaderBanner = ({ priority = false, Quality, card, list  }) => {
   return (
@@ -21,7 +22,7 @@ const HomeHeaderBanner = ({ priority = false, Quality, card, list  }) => {
         {
             list?.map(slider => (
                 <SwiperSlide key={slider?.id} className="relative flex justify-center w-full h-full">
-                <div className={`w-full h-full relative`}>
+                <Link href={slider?.href ? slider?.href : '#'} className={`w-full h-full block relative`}>
                   <ImgUI
                     src={slider?.image}
                     alt={slider?.alt}
@@ -30,8 +31,8 @@ const HomeHeaderBanner = ({ priority = false, Quality, card, list  }) => {
                     imageStyle={"object-center"}
                     card={card || false}
                   />
-                </div>
-              </SwiperSlide>
+                </Link>
+                </SwiperSlide>
             ))
         }
       <div className="absolute bottom-5 w-full z-20 flex justify-center items-center">
