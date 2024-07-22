@@ -242,16 +242,6 @@ export default function Page() {
                 <div className={'h-auto md:min-h-screen w-full relative bg-[#f5f5f5] '}>
                     <GoogleMap mapData={map}/>
                 </div>
-                <header className="bg-black lg:pt-[60px] h-[100vh] ">
-                    <div className="grid w-full h-full gap-4 overflow-x-hidden overflow-y-hidden lg:grid-cols-2">
-                        {
-                            filial?.map(item=>(
-                        <StoreBox key={item?._id} text={'ru'  ==='ru' ? item?.titleRu: item?.titleUz} bg={`/bg-car-inner.jpg`}/>
-
-                            ))
-                        }
-                    </div>
-                </header>
             </div>
     </>
   )
@@ -267,7 +257,7 @@ import { ImgUI } from '@/components'
 
 const GoogleMap = ({ mapData }) => {
   const { isLoaded, loadError } = useLoadScript({
-    googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY,
+    googleMapsApiKey: 'AIzaSyCgyx5fAyg8xJ__lQ28TwFGpnSStYHIYog',
   });
 
   const [mapRef, setMapRef] = useState();
@@ -352,8 +342,6 @@ const StoreBox = ({text, bg}) => {
             {text ? (
                 <div className="h-[50vh] lg:h-[100vh] relative   overflow-hidden group">
                     <div className="w-full h-full transition duration-1000 hover:scale-105 relative">
-         
-
                         <ImgUI src={bg} fill imageStyle="object-cover w-full h-full" alt={text}/>
                     </div>
                 </div>
@@ -362,10 +350,8 @@ const StoreBox = ({text, bg}) => {
                     {
                         bg?.map(image => (
                         <div  key={image?._id}  className={' h-[242px] lg:h-[485px] w-full relative'}>
-
                                     <ImgUI src={`/logo.png`} 
                                            imageStyle="object-cover w-full h-full" alt={'filial inner'}/>
-
                     </div>
                             )
                         )
