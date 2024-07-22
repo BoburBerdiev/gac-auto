@@ -40,18 +40,17 @@ const Navbar = () => {
 
   const handleSearch = () => {
     setSearch(true);
-
     document.body.classList.add("overflow-hidden");
   };
  
   return (
     <>
-      <nav className="bg-black w-full fixed z-[50] ">
+      <nav className="bg-black w-full fixed z-[50] py-1 ">
       <AnimatePresence >
         <div className="container w-full">
           <div className="bg-black flex items-center w-full h-full justify-between py-2 lg:p-0">
             <div className="flex items-center gap-3 w-full">
-              <a href="/" className="relative block w-36 h-6 lg:w-40 lg:h-5">
+              <a href="/" className="relative flex items-center justify-center  w-[190px] h-6 md:w-[190px] md:h-7 xl:w-56 xl:h-8">
                 <ImgUI
                   src={"/logo.png"}
                   alt={"logo_gacmotors"}
@@ -94,7 +93,7 @@ const Navbar = () => {
                 </ul>
               </div>
             </div>
-            <div className="flex items-center gap-5">
+            <div className="flex items-center gap-3 md:gap-5">
               <BiSearch
                 onClick={() => handleSearch()}
                 className=" text-white h-6 w-6  cursor-pointer"

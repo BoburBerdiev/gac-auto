@@ -7,6 +7,11 @@ import {
   SectionTitleCar,
 } from "@/components";
 
+export const metadata  = {
+  title: '...',
+  description: '...',
+}
+ 
 export default function Page() {
   const awards = [
     {

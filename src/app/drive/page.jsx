@@ -1,6 +1,19 @@
 import { ButtonUI, ImgUI, InputUI, SelectUI } from '@/components'
 import React from 'react'
-
+const models = [
+    {
+        title: "Empow",
+    },
+    {
+        title: "GS3",
+    },
+    {
+        title: "Emkoo",
+    },
+    {
+        title: "GS8",
+    },
+]
 export default function page() {
   return (
     <>
@@ -16,34 +29,12 @@ export default function page() {
                         className="relative z-10 w-full  h-screen pt-[10%]  grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 items-center">
                         <div
                             className="px-3 py-3 space-y-5 sm:py-5 sm:px-5 rounded-xl h-fit bg-white md:cols-span-1">
-                            <ul className=" text-sm font-medium text-center text-currentRed w-full  overflow-x-hidden ">
-                              <div className='flex gap-2 w-[280px] lg:w-[410px] drivemodelsTab  overflow-x-scroll pb-1 '>
-                              <li className="w-full">
-                                        <button
-                                            className={`block w-full h-full p-2 font-bold duration-300 hover:bg-currentRed hover:text-white  border border-currentRed rounded-lg outline-none`}>
-                                            Empow
-                                        </button>
-                                    </li>
-                                    <li className="w-full">
-                                        <button
-                                            className={`block w-full h-full p-2 font-bold duration-300 hover:bg-currentRed hover:text-white  border border-currentRed rounded-lg outline-none`}>
-                                            GS3
-                                        </button>
-                                    </li>
-                                    <li className="w-full">
-                                        <button
-                                            className={`block w-full h-full p-2 font-bold duration-300 hover:bg-currentRed hover:text-white  border border-currentRed rounded-lg outline-none`}>
-                                            Emkoo
-                                        </button>
-                                    </li>
-                                    <li className="w-full">
-                                        <button
-                                            className={`block w-full h-full p-2 font-bold duration-300 hover:bg-currentRed hover:text-white  border border-currentRed rounded-lg outline-none`}>
-                                            GS8
-                                        </button>
-                                    </li>
-                              </div>
-                            </ul>
+                            <h5 className="mb-2 text-base font-bold md:text-xl">
+                                        Выбор дилера
+                                    </h5>
+                            <div className=" ">
+                                <SelectUI placeholder={"Выберите модель"} nameLabel={'chooseModel'} labelText={"Выберите модель"} errorText={'Требуется модель'} optionValues={models}/>
+                            </div>
                             <form  className="space-y-2 sm:space-y-3">
                                 <div>
                                     <h5 className="mb-2 text-base font-bold md:text-xl">

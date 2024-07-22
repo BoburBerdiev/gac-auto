@@ -2,10 +2,8 @@ import { CardCar, SectionHeaderBanner } from "@/components";
 
 const tabsList = [
   { name: "Все модели", id: 1, isActive: true },
-  { name: "Седан", id: 2 },
-  { name: "Внедорожник", id: 3 },
-  { name: "Минивэн", id: 4 },
-  { name: "СВ", id: 5 },
+  { name: "Электронная", id: 4 },
+  { name: "Бензиновый", id: 5 },
 ];
 const sliderList = [
   {
@@ -79,7 +77,7 @@ export default function Models() {
         </section>
         <section>
           <div
-            className={"grid md:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-y-8 lg:gap-x-20"}>
+            className={"grid grid-cols-1 w-full md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4  gap-4 md:gap-8 lg:gap-10"}>
                 {
                     models?.map(model => (
                         <CardCar key={model?.id} model={model}/>

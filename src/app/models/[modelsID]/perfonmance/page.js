@@ -152,6 +152,10 @@ const PerfonmanceSwiper = ({ swiperList }) => {
         slidesPerView={2.3}
         spaceBetween={15}
         breakpoints={{
+          280: {
+            slidesPerView:"1.2",
+            spaceBetween: "20",
+          },
           1024: {
             spaceBetween: "50",
           },

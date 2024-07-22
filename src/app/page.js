@@ -1,4 +1,4 @@
-import { ButtonUI, CardCar, CardServiceCar, HomeHeaderBanner, NewsCard, SectionTitleCar } from "@/components";
+import { ButtonUI, CardCar,  HomeHeaderBanner, NewsCard, SectionTitleCar } from "@/components/index";
 
 const swiperList = [
   {
