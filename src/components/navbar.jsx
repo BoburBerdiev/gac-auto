@@ -138,7 +138,6 @@ export const NavbarList = ({ menu, lineMove, pathname, setChildRef, onClick }) =
 
   const removeDropdown = () => {
     setDropdown(false)
-    console.log(onClick);
     return onClick
   }
   return (
@@ -210,6 +209,8 @@ export const NavbarList = ({ menu, lineMove, pathname, setChildRef, onClick }) =
 const NavbarDropdown = () => {
   const { t, i18n } = useTranslation();
   const [dropdown, setDropdown] = useState(false);
+
+  
   const dropdownRef = useRef()
   const langList = [
     {
@@ -226,7 +227,6 @@ const NavbarDropdown = () => {
 
   const openDropdown = () => {
     setDropdown((prevState) => !prevState);
-    console.log(dropdown);
   };
   window.addEventListener('click', (e) => {
     if (dropdownRef.current !== e.target ) {
