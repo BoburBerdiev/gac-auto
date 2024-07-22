@@ -26,6 +26,7 @@ module.exports = {
       },
       screens: {
         '3xl': '1680px',
+        "xs": "460px"
       },
       fontFamily: {
          montserrat: "var(--font-montserrat)",

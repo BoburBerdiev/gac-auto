@@ -27,7 +27,7 @@ export default function InputUI({
         :
         
         <input
-        type={type}
+        type={type ? type : 'text'}
         id={nameLabel}
         className="bg-white border focus:bg-currentRed/5 duration-300 border-currentGray text-sm outline-none block w-full p-2.5 "
         placeholder={placeholder}

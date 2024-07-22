@@ -19,11 +19,6 @@ const NavbarCarInner = () => {
             link:  "/models/1/perfonmance",
             id: 1
         },
-        {
-            title: t('carInnerNav.specification'),
-            link:  "/models/1",
-            id: 2
-        },
     ]
     return (
         <section className={'w-full bg-transparent absolute top-0 left-0 z-10 mt-11'}>
@@ -35,11 +30,11 @@ const NavbarCarInner = () => {
                             <ImgUI src={'/car-inner-logo-bg.png'} alt={'Bg'}/>
                         </div>
                         <div className={' absolute z-10 w-[190px] h-7 lg:w-[150px] lg:h-[22px] xl:w-[195px] xl:h-[30px]'}>
-                            <ImgUI src={'/car-inner-logo.png'} objectFitContain={true} alt={'logo'} card={true}
+                            <ImgUI src={'/empow-logo.png'} objectFitContain={true} alt={'logo'} card={true}
                                    imageStyle={'z-20'}/>
                         </div>
                     </div>
-                    <div className={'w-full !bg-white flex flex-col xl:pl-4 xl:py-1 2xl:py-2 lg:items-center max-lg:divide-y justify-between lg:flex-row'}>
+                    <div className={'w-full !bg-white flex flex-col xl:pl-4 xl:py-2 2xl:py-2.5 lg:items-center max-lg:divide-y justify-between lg:flex-row'}>
                         <ul className={' bg-white text-sm py-3 lg:py-4 xl:py-3 md:text-base max-lg:justify-center flex items-center flex-wrap text-currentTextBlack  divide-x divide-[#747474]'}>
                             {
                                 listLink.map((link) => (

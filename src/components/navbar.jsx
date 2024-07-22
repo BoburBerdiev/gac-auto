@@ -149,7 +149,7 @@ export const NavbarList = ({ menu, lineMove, pathname, setChildRef, onClick }) =
         onMouseOver={lineMove}
         className={`${
           subTitle ? "peer" : null
-        } relative border-b-[1px] lg:border-0 w-full border-[#666666] uppercase text-sm  lg:w-auto py-3 px-5 lg:py-3 lg:px-0.5 xl:px-3  xl:py-[12px] flex flex-row lg:flex-col justify-between lg:justify-center items-center group line`}
+        } relative border-b-[1px] lg:border-0 w-full border-[#666666] uppercase lg:text-xs xl:text-sm  lg:w-auto py-3 px-5 lg:py-3 lg:px-0.5 xl:px-3  xl:py-[12px] flex flex-row lg:flex-col justify-between lg:justify-center items-center group line`}
       >
         {!subTitle ? (
           <Link

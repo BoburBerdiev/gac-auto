@@ -1,5 +1,4 @@
 import { ButtonUI, CardCar, CardServiceCar, HomeHeaderBanner, NewsCard, SectionTitleCar } from "@/components";
-import CardIndexPage from "@/components/card-index-page";
 
 const swiperList = [
   {
@@ -36,57 +35,27 @@ const swiperList = [
 
 const models = [
   {
+    id: 0,
+    href: "/models/1",
+    category: "СЕДАН",
+    logo: "/empow-logo1.png",
+    image: "/empow.png",
+    gearbox: "AT",
+    seats: "5 Сиденья",
+    fuel: "Бензин",
+  },
+  {
     id: 1,
     href: "",
     category: "СВ",
     logo: "/model-logo1.png",
     image: "/model-image1.png",
     gearbox: "AT",
-    seats: "7 Сиденья",
+    seats: "5 Сиденья",
     fuel: "Бензин",
   },
   {
     id: 2,
-    href: "",
-    category: "МИНИВЭН",
-    logo: "/model-logo2.png",
-    image: "/model-image2.png",
-    gearbox: "AT",
-    seats: "7 Сиденья",
-    fuel: "Бензин",
-  },
-  {
-    id: 3,
-    href: "",
-    category: "МИНИВЭН",
-    logo: "/model-logo2.png",
-    image: "/model-image2.png",
-    gearbox: "AT",
-    seats: "7 Сиденья",
-    fuel: "Бензин",
-  },
-  {
-    id: 4,
-    href: "",
-    category: "МИНИВЭН",
-    logo: "/model-logo2.png",
-    image: "/model-image2.png",
-    gearbox: "AT",
-    seats: "7 Сиденья",
-    fuel: "Бензин",
-  },
-  {
-    id: 5,
-    href: "",
-    category: "МИНИВЭН",
-    logo: "/model-logo2.png",
-    image: "/model-image2.png",
-    gearbox: "AT",
-    seats: "7 Сиденья",
-    fuel: "Бензин",
-  },
-  {
-    id: 6,
     href: "",
     category: "МИНИВЭН",
     logo: "/model-logo2.png",
@@ -162,7 +131,7 @@ export default function Home() {
       <section className="py-10 md:py-20  ">
         <div className="flex flex-col items-center container-fluid gap-6 md:gap-9 lg:gap-11">
           <SectionTitleCar title={'Наши модели'} aboutPage={false}/>
-          <div className="grid grid-cols-1 w-full md:grid-cols-2 xl:grid-cols-4  gap-4 md:gap-8 lg:gap-10 ">
+          <div className="grid grid-cols-1 w-full md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4  gap-4 md:gap-8 lg:gap-10 ">
             {
               models.map(car => (
                 <CardCar model={car} key={car?.id}/>

@@ -14,7 +14,7 @@ const CardCar = ({model}) => {
     >
       <div className="px-4 border border-currentGray pb-5 pt-6  group-hover:border-currentRed duration-200">
       <div className={"px-2 md:px-4"}>
-        <div className={"h-[31px] md:h-[34px] w-[140px] lg:w-[150px] lg:h-11 2xl:w-[220px] 2xl:h-10  relative "}>
+        <div className={"h-7 w-[150px] lg:w-[160px] lg:h-6 2xl:w-[190px] 2xl:h-9 relative "}>
           <ImgUI
             src={model?.logo}
             card={true}

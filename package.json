@@ -9,6 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@fancyapps/ui": "^5.0.36",
+    "@react-google-maps/api": "^2.19.3",
     "framer-motion": "^11.2.14",
     "i18next": "^23.11.5",
     "i18next-browser-languagedetector": "^8.0.0",

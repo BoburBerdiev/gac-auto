@@ -36,7 +36,7 @@ const ToTop = () => {
             <span>{t('toTop')}</span>
             <IoIosArrowUp className={'mb-1 text-lg 3xl:text-xl'}/>
         </div>
-        <a href="tel:+998901112233" className="fixed bottom-[10%] z-[99999] right-5 flex flex-col items-center justify-center">
+        <a href="tel:+998901112233" className="fixed bottom-[12%] z-[99999] right-5 flex flex-col items-center justify-center">
             <div className="w-[90%] h-[90%] rounded-full animate-ping border border-currentRed absolute "></div>
             <div className="p-3 xl:p-6 rounded-full relative z-10 bg-[#c31e1a] block w-fit text-white ">
                 <FaPhone className="xl:text-xl"/>

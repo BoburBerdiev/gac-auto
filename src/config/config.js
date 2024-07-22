@@ -24,37 +24,37 @@ export const NavList = [
     {
         title: 'GS3',
         id: 2,
-        href: '/models/1',
+        href: '#',
     },
     {
         title: 'EMKOO',
         id: 3,
-        href: '/models/1',
+        href: '#',
     },
     {
         title: 'GS8',
         id: 4,
-        href: '/models/1',
+        href: '#',
     },
     {
         title: ' SS',
         id: 4,
-        href: '/models/1',
+        href: '#',
     },
     {
         title: ' S MAX',
         id: 5,
-        href: '/models/1',
+        href: '#',
     },
     {
         title: ' Y Plus',
         id: 6,
-        href: '/models/1',
+        href: '#',
     },
     {
         title: ' V Plus',
         id: 7,
-        href: '/models/1',
+        href: '#',
     },
     {
         title: 'Подробнее',
@@ -73,8 +73,18 @@ export const NavList = [
             },
             {
                 title: 'navbar.news',
-                id: 2,
+                id: 3,
                 href: '/news',
+            },
+            {
+                title: 'navbar.contact',
+                id: 4,
+                href: '/dealers-center',
+            },
+            {
+                title: 'navbar.drive',
+                id: 5,
+                href: '/drive',
             },
         ]
     },
