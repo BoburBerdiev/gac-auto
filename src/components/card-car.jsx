@@ -1,7 +1,7 @@
 import { ImgUI } from "@/components/index";
 import { MdAirlineSeatReclineExtra } from "react-icons/md";
 import { RiOilLine } from "react-icons/ri";
-import { GiSteeringWheel } from "react-icons/gi";
+import { GiElectric, GiSteeringWheel } from "react-icons/gi";
 import Link from "next/link";
 
 const CardCar = ({model}) => {
@@ -56,8 +56,17 @@ const CardCar = ({model}) => {
         <div
           className={`flex justify-center w-[30%] flex-col items-center gap-2 md:gap-3 relative before:content-['']  before:absolute before:w-[.5px] before:top-[10%] before:h-[50%] before:bg-[#747474] before:left-0  after:content-['']  after:absolute after:w-[.5px] after:top-[10%] after:h-[50%] after:bg-[#747474] after:right-0`}
         >
-          <RiOilLine className={"text-lg lg:text-[22px]"} />
-
+          {
+            model.fuel === 'Электро' ? 
+            <GiElectric className={"text-lg lg:text-[22px]"}  />
+            : model.fuel === "Бензин" ?
+            <RiOilLine className={"text-lg lg:text-[22px]"} />
+            : model.fuel === "Гибрид" ? 
+            <div className="relative h-6 w-6">
+              <ImgUI src={'/hybrid.png'} alt={'Icon'} objectFitContain/>
+            </div>
+            : ""
+          }
           <p
             className={
               "space-x-1  text-[rgb(51, 51, 51)]  text-sm font-medium"

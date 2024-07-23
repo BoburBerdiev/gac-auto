@@ -29,9 +29,9 @@ export default function page() {
                         className="relative z-10 w-full  h-screen pt-[10%]  grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 items-center">
                         <div
                             className="px-3 py-3 space-y-5 sm:py-5 sm:px-5 rounded-xl h-fit bg-white md:cols-span-1">
-                            <h5 className="mb-2 text-base font-bold md:text-xl">
-                                        Выбор дилера
-                                    </h5>
+                                <h5 className="mb-2 text-xl font-bold md:text-2xl">
+                                Запрос на тест-драйв
+                                </h5>
                             <div className=" ">
                                 <SelectUI placeholder={"Выберите модель"} nameLabel={'chooseModel'} labelText={"Выберите модель"} errorText={'Требуется модель'} optionValues={models}/>
                             </div>

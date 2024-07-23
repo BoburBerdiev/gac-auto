@@ -29,7 +29,7 @@ const Footer = () => {
                 </p>
                 <div className='flex items-center gap-2 text-white text-sm '>
                     <p>Сайт создан:</p>
-                    <a href='https://abduganiev.uz' target='_blank' className='relative block w-[120px] h-10'>
+                    <a href='https://abduganiev.uz' target='_blank' className='relative block w-[70px] h-6'>
                         <ImgUI src={'/marss-logo.png'} alt={'Logo'} objectFitContain/>
                     </a>
                 </div>

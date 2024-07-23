@@ -35,7 +35,6 @@ const Navbar = () => {
     if (childRef) {
       setLine(childRef);
     }
-    console.log(childRef);
   };
 
   const handleSearch = () => {
@@ -50,7 +49,7 @@ const Navbar = () => {
         <div className="container w-full">
           <div className="bg-black flex items-center w-full h-full justify-between py-2 lg:p-0">
             <div className="flex items-center gap-3 w-full">
-              <a href="/" className="relative flex items-center justify-center  w-[190px] h-6 md:w-[190px] md:h-7 xl:w-56 xl:h-8">
+              <a href="/" className="relative flex items-center justify-center  w-[190px] h-6 lg:w-[150px] lg:h-5 2xl:w-56 2xl:h-8">
                 <ImgUI
                   src={"/logo.png"}
                   alt={"logo_gacmotors"}
@@ -60,7 +59,7 @@ const Navbar = () => {
               <div className="flex items-center flex-col">
                 <ul
                   onMouseLeave={onMouseLeaveFunc}
-                  className={`px-2 gap-3 flex flex-col z-50 h-screen lg:h-auto ${
+                  className={`px-2 2xl:gap-3 flex flex-col z-50 h-screen lg:h-auto ${
                     nav ? "right-0" : "-right-full"
                   }  duration-300 fixed lg:static top-0 w-full bg-black lg:bg-transparent lg:flex-row font-thin text-base text-white items-center `}
                 >
@@ -128,7 +127,7 @@ export const NavbarList = ({ menu, lineMove, pathname, setChildRef, onClick }) =
   const ref = useRef();
   const { t } = useTranslation();
   const { title, href, subTitle } = menu;
-
+  console.log(subTitle);
   useEffect(() => {
     if (pathname === href) {
       setChildRef(ref.current.offsetLeft + ref.current.clientWidth / 2);
@@ -146,16 +145,30 @@ export const NavbarList = ({ menu, lineMove, pathname, setChildRef, onClick }) =
        
         onMouseOver={lineMove}
         className={`${
-          subTitle ? "peer" : null
-        } relative border-b-[1px] lg:border-0 w-full border-[#666666] uppercase lg:text-xs xl:text-sm  lg:w-auto py-3 px-5 lg:py-3 lg:px-0.5 xl:px-3  xl:py-[12px] flex flex-row lg:flex-col justify-between lg:justify-center items-center group line`}
+          subTitle ? "peer" : " "
+        } relative border-b-[1px] lg:border-0 w-full border-[#666666] uppercase lg:text-xs xl:text-sm  lg:w-auto py-3 px-5 lg:py-3 lg:px-2 xl:px-3  xl:py-[12px] flex flex-row lg:flex-col justify-between lg:justify-center items-center group line`}
       >
         {!subTitle ? (
           <Link
             onClick={onClick}
             href={href}
-            className="relative border-0 w-full lg:w-auto  flex flex-row lg:flex-col justify-between lg:justify-center items-center group whitespace-nowrap"
+            className="relative border-0 w-full lg:w-auto  flex gap-1 justify-between lg:justify-center items-center group whitespace-nowrap"
           >
-            {t(title)}
+            {
+              menu.company === "aion" &&
+              <div className="relative w-3 h-3 xl:w-5 xl:h-4 ">
+                <ImgUI src={'/AION-logo.png'} alt={'Logo Aion'}/>
+              </div>
+            }
+             {
+              menu.company === "gac" &&
+              <div className="relative w-3 h-3 xl:w-5 xl:h-4 ">
+                <ImgUI src={'/logo-gac.png'} alt={'Logo Aion'}/>
+              </div>
+            }
+            <span className="">
+              {t(title)}  
+            </span>
           </Link>
         ) : (
           <>
@@ -227,19 +240,23 @@ const NavbarDropdown = () => {
   const openDropdown = () => {
     setDropdown((prevState) => !prevState);
   };
-  window.addEventListener('click', (e) => {
-    if (dropdownRef.current !== e.target ) {
-      setDropdown(false)
-    }
-  })
+  if (typeof window !== "undefined") {
+    window.addEventListener('click', (e) => {
+      if (dropdownRef.current !== e.target ) {
+        setDropdown(false)
+      }
+    })
+}
   const handleLang = (lang) => {
     i18n.changeLanguage(lang.value);
     setDropdown(false);
   };
-
-  window.addEventListener("scroll", () => {
-    setDropdown(false)
-  })
+  if (typeof window !== "undefined") {
+    window.addEventListener("scroll", () => {
+      setDropdown(false)
+    })
+  }
+  
   return (
     <div className={"relative "}>
       <p 

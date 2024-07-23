@@ -6,9 +6,11 @@ import {
   NewsCard,
   SectionTitleCar,
 } from "@/components";
+import {metadataConfig} from '@/config/staticmetadatas'
 
-export const metadata  = {
-  title: '...',
+ 
+export const metadata = {
+  title: 'dawda',
   description: '...',
 }
  

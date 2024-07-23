@@ -52,10 +52,60 @@ const models = [
     image: "/model-image1.png",
     gearbox: "AT",
     seats: "5 Сиденья",
-    fuel: "Бензин",
+    fuel: "Электро",
   },
   {
     id: 2,
+    href: "",
+    category: "МИНИВЭН",
+    logo: "/model-logo2.png",
+    image: "/model-image2.png",
+    gearbox: "AT",
+    seats: "7 Сиденья",
+    fuel: "Бензин",
+  },
+  {
+    id: 3,
+    href: "/models/1",
+    category: "СЕДАН",
+    logo: "/empow-logo1.png",
+    image: "/empow.png",
+    gearbox: "AT",
+    seats: "5 Сиденья",
+    fuel: "Гибрид",
+  },
+  {
+    id: 4,
+    href: "",
+    category: "СВ",
+    logo: "/model-logo1.png",
+    image: "/model-image1.png",
+    gearbox: "AT",
+    seats: "5 Сиденья",
+    fuel: "Электро",
+  },
+  {
+    id: 5,
+    href: "",
+    category: "МИНИВЭН",
+    logo: "/model-logo2.png",
+    image: "/model-image2.png",
+    gearbox: "AT",
+    seats: "7 Сиденья",
+    fuel: "Бензин",
+  },
+  {
+    id: 6,
+    href: "",
+    category: "СВ",
+    logo: "/model-logo1.png",
+    image: "/model-image1.png",
+    gearbox: "AT",
+    seats: "5 Сиденья",
+    fuel: "Электро",
+  },
+  {
+    id: 7,
     href: "",
     category: "МИНИВЭН",
     logo: "/model-logo2.png",
@@ -87,34 +137,6 @@ const newsCards = [
       href: '/news',
       id: 2
   },
-  // {
-  //     image: '/news/news-inner4.jpg',
-  //     date: "27 авг. 2021 г.",
-  //     title: "Рождение GAC MOTOR",
-  //     href: '/news',
-  //     id: 3
-  // },
-  // {
-  //     image: '/news/news-inner5.jpg',
-  //     date: "14 янв. 2019 г.",
-  //     title: "Дебют в Наласе, 2019: вход в мобильность будущего",
-  //     href: '/news',
-  //     id: 4
-  // },
-  // {
-  //     image: '/news/news-inner6.jpg',
-  //     date: "06 июля 2018 г.",
-  //     title: "Национальный парк Три-Ривер-Сурс",
-  //     href: '/news',
-  //     id: 5
-  // },
-  // {
-  //     image: '/news/news-inner7.jpg',
-  //     date: "29 декабря 2017 г.",
-  //     title: "Североамериканский международный автосалон 2018",
-  //     href: '/news',
-  //     id: 6
-  // },
 ]
 export default function Home() {
   return (
@@ -131,7 +153,7 @@ export default function Home() {
       <section className="py-10 md:py-20  ">
         <div className="flex flex-col items-center container-fluid gap-6 md:gap-9 lg:gap-11">
           <SectionTitleCar title={'Наши модели'} aboutPage={false}/>
-          <div className="grid grid-cols-1 w-full md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4  gap-4 md:gap-8 lg:gap-10 ">
+          <div className="grid grid-cols-1 w-full md:grid-cols-2 lg:grid-cols-3  xl:grid-cols-4  gap-4  ">
             {
               models.map(car => (
                 <CardCar model={car} key={car?.id}/>

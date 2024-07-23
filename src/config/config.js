@@ -17,48 +17,55 @@ export const NavList = [
     //     ]
     // },
     {
+        company: "gac",
         title: 'Empow',
         id: 1,
         href: '/models/1',
     },
     {
+        company: "gac",
         title: 'GS3',
         id: 2,
         href: '#',
     },
     {
+        company: "gac",
         title: 'EMKOO',
         id: 3,
         href: '#',
     },
     {
+        company: "gac",
         title: 'GS8',
         id: 4,
         href: '#',
     },
-    {
-        title: ' SS',
-        id: 4,
-        href: '#',
-    },
-    {
-        title: ' S MAX',
+    {   company: "aion",
+        title: ' S',
         id: 5,
         href: '#',
     },
-    {
-        title: ' Y Plus',
+    {   
+        company: "aion",
+        title: ' S MAX',
         id: 6,
         href: '#',
     },
     {
-        title: ' V Plus',
+        company: "aion",
+        title: ' Y Plus',
         id: 7,
+        href: '#',
+    },
+    {   
+        company: "aion",
+        title: ' V Plus',
+        id: 8,
         href: '#',
     },
     {
         title: 'Подробнее',
-        id: 3,
+        id: 9,
         href: '/about',
         subTitle: [
             {

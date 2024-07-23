@@ -8,27 +8,32 @@ const ToTop = () => {
     const [isHidden, setIsHidden] = useState(false);
     const {t} = useTranslation()
     useEffect(() => {
-        const handleScroll = () => {
-            if (window.pageYOffset > 600) {
-                setIsHidden(true);
-            } else {
-                setIsHidden(false);
-            }
-        };
-
-        window.addEventListener('scroll', handleScroll);
-
-        // Clean up the event listener on component unmount
-        return () => {
-            window.removeEventListener('scroll', handleScroll);
-        };
+        if (typeof window !== "undefined") {
+            const handleScroll = () => {
+                if (window.pageYOffset > 600) {
+                    setIsHidden(true);
+                } else {
+                    setIsHidden(false);
+                }
+            };
+    
+            window.addEventListener('scroll', handleScroll);
+    
+            // Clean up the event listener on component unmount
+            return () => {
+                window.removeEventListener('scroll', handleScroll);
+            };
+        }
     }, []);
 
     const toTop = () => {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        })
+        if (typeof window !== "undefined") {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            })
+        }
+       
     }
     return (
         <>

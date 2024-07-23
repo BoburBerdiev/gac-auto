@@ -74,3 +74,6 @@
 .drivemodelsTab::-webkit-scrollbar {
   display: none ;
 }
+.leaflet-container {
+  height: 100vh;
+}
