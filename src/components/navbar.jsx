@@ -240,6 +240,7 @@ const NavbarDropdown = () => {
   const openDropdown = () => {
     setDropdown((prevState) => !prevState);
   };
+  
   if (typeof window !== "undefined") {
     window.addEventListener('click', (e) => {
       if (dropdownRef.current !== e.target ) {
