@@ -240,23 +240,35 @@ const NavbarDropdown = () => {
   const openDropdown = () => {
     setDropdown((prevState) => !prevState);
   };
-  
-  if (typeof window !== "undefined") {
-    window.addEventListener('click', (e) => {
-      if (dropdownRef.current !== e.target ) {
-        setDropdown(false)
+
+  useEffect(() => {
+    const handleClick = (e) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+        setDropdown(false);
       }
-    })
-}
+    };
+
+    // Add event listeners for click and scroll events
+    if (dropdown) {
+      window.addEventListener('click', handleClick);
+      window.addEventListener('scroll', () => setDropdown(false));
+    }
+
+    // Cleanup event listeners on component unmount or when dropdown state changes
+    return () => {
+      window.removeEventListener('click', handleClick);
+      window.removeEventListener('scroll', () => setDropdown(false));
+    };
+  }, [dropdown]); 
+  
+
+  
+
   const handleLang = (lang) => {
     i18n.changeLanguage(lang.value);
     setDropdown(false);
   };
-  if (typeof window !== "undefined") {
-    window.addEventListener("scroll", () => {
-      setDropdown(false)
-    })
-  }
+ 
   
   return (
     <div className={"relative "}>
