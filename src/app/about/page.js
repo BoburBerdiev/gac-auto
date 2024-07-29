@@ -1,4 +1,4 @@
-import { MetaData } from '@/components'
+// import { MetaData } from '@/components'
 import {AboutPage} from '@/components/pages'
 
 
@@ -10,7 +10,7 @@ async function getAbout() {
   return [dataAbout]
 }
 
-<MetaData/>
+{/* <MetaData/> */}
 
 
 export default async function Page () {
