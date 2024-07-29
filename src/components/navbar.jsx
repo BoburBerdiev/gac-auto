@@ -11,6 +11,7 @@ import { usePathname } from "next/navigation";
 import { IoMdClose } from "react-icons/io";
 import { useTranslation } from "react-i18next";
 import { AnimatePresence, motion } from "framer-motion";
+import { langSelect } from "@/helper";
 
 const Navbar = () => {
   const [nav, setNav] = useState(false);
@@ -45,7 +46,7 @@ const Navbar = () => {
   return (
     <>
       <nav className="bg-black w-full fixed z-[50] py-1 ">
-      <AnimatePresence >
+      <AnimatePresence key={'navbar'} >
         <div className="container w-full">
           <div className="bg-black flex items-center w-full h-full justify-between py-2 lg:p-0">
             <div className="flex items-center gap-3 w-full">
@@ -127,12 +128,25 @@ export const NavbarList = ({ menu, lineMove, pathname, setChildRef, onClick }) =
   const ref = useRef();
   const { t } = useTranslation();
   const { title, href, subTitle } = menu;
-  console.log(subTitle);
   useEffect(() => {
     if (pathname === href) {
+      console.log(href);
+      console.log(pathname);
+      setChildRef(ref.current.offsetLeft + ref.current.clientWidth / 2);
+      console.log(true);
+    }else{
+      console.log(false);
+    }
+    if (pathname.includes('models') || pathname.includes('news')) {
       setChildRef(ref.current.offsetLeft + ref.current.clientWidth / 2);
     }
-  }, [menu.href, pathname]);
+    subTitle?.forEach((itemLink) => {
+      if (itemLink.href === pathname) {
+        setChildRef(ref.current.offsetLeft + ref.current.clientWidth / 2);
+      }
+    });
+  
+  }, [ pathname]);
 
   const removeDropdown = () => {
     setDropdown(false)
@@ -262,8 +276,6 @@ const NavbarDropdown = () => {
   }, [dropdown]); 
   
 
-  
-
   const handleLang = (lang) => {
     i18n.changeLanguage(lang.value);
     setDropdown(false);
@@ -277,12 +289,12 @@ const NavbarDropdown = () => {
         onClick={() => openDropdown()}
         className={"text-white cursor-pointer text-lg"}
       >
-        {i18n.language === "ru" ? t("lang.ru") : t("lang.uz")}
+        {langSelect( i18n.language ,t('lang.ru') ,  t('lang.uz'))}
       </p>
      {
       dropdown ?
       <motion.div
-      key="dropdonw"
+      key={'dropdown'}
       initial={{opacity: 0}}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
@@ -351,7 +363,7 @@ const NavSearch = ({ search, setSearch }) => {
    <>
       {search && (
         <motion.div
-          key="search"
+          key={'search'}
           initial={{opacity: 0, scale: 0.8, translateY: 30}}
           animate={{ opacity: 1, scale: 1, translateY: 0 }}
           exit={{opacity: 0, scale: 0.8}}
@@ -393,12 +405,13 @@ const NavSearch = ({ search, setSearch }) => {
               </form>
               {
                   !isModels ? 
-                  <motion.div initial={{ opacity: 0, scale: 0.2 }}
+                  <motion.div key={'searchModels'}
+                  initial={{ opacity: 0, scale: 0.2 }}
                               animate={{ opacity: 1,  scale: 1 }}
                               exit={{ opacity: 0, scale: 0.2 }}  
                               className="flex flex-col items-center ">
                     <div className=" aspect-square relative w-[240px] mt-10">
-                      <ImgUI src={'/no-content.png'}/>
+                      <ImgUI src={'/no-content.png'} alt={'not found '}/>
                     </div>
                     <h2 className="text-white font-bold md:text-lg text-center lg:text-xl xl:text-2xl  max-w-[700px]">Никакой соответствующий контент не был получен, попробуйте ввести другие ключевые слова</h2>
                   </motion.div>

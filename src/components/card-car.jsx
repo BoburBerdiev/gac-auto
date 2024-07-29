@@ -38,7 +38,7 @@ const CardCar = ({model}) => {
           quality={70}
         />
       </div>
-      <div className={"px-2 md:px-4 flex justify-between items-center"}>
+      <div className={"px-1 2xl:px-4 flex justify-between items-center"}>
         <div
           className={
             "flex justify-center w-[30%] flex-col items-center gap-2 md:gap-3"
@@ -47,7 +47,7 @@ const CardCar = ({model}) => {
           <MdAirlineSeatReclineExtra className={"text-lg lg:text-[22px]"} />
           <p
             className={
-              "space-x-1  text-[rgb(51, 51, 51)]  text-sm font-medium"
+              "space-x-1  text-[rgb(51, 51, 51)]  text-xs 2xl:text-sm font-medium"
             }
           >
             <span>{model?.seats}</span>
@@ -69,7 +69,7 @@ const CardCar = ({model}) => {
           }
           <p
             className={
-              "space-x-1  text-[rgb(51, 51, 51)]  text-sm font-medium"
+              "space-x-1  text-[rgb(51, 51, 51)]  text-xs 2xl:text-sm font-medium"
             }
           >
           {model?.fuel}
@@ -83,7 +83,7 @@ const CardCar = ({model}) => {
           <GiSteeringWheel className={"text-lg lg:text-[22px]"} />
           <p
             className={
-              "space-x-1  text-[rgb(51, 51, 51)]  text-sm font-medium"
+              "space-x-1  text-[rgb(51, 51, 51)]  text-xs 2xl:text-sm font-medium"
             }
           >
            {model?.gearbox}

@@ -1,10 +1,21 @@
 "use client";
-import { CardServiceCar, ImgUI, NavbarCarInner } from "@/components";
+import { CardServiceCar, ImgUI, NavbarCarInner, SaleCarModal } from "@/components";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
-import { FaChevronLeft, FaChevronRight, FaDownload, FaFileContract, FaPhone } from "react-icons/fa";
+import {
+  FaCarAlt,
+  FaChevronLeft,
+  FaChevronRight,
+  FaDollarSign,
+  FaDownload,
+  FaFileContract,
+  FaPhone,
+} from "react-icons/fa";
+import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 export default function Page() {
+  const {t} = useTranslation()
   const interior = [
     {
       title: "Плоское нижнее рулевое колесо",
@@ -45,11 +56,22 @@ export default function Page() {
       image: "/empow-intelligent4.jpg",
     },
     {
-        id: 4,
-        title: "Спортивное сиденьеДоступна связь телефона с автомобилем.",
-        image: "/empow-intelligent5.jpg"
+      id: 4,
+      title: "Спортивное сиденьеДоступна связь телефона с автомобилем.",
+      image: "/empow-intelligent5.jpg",
     },
   ];
+
+  const [saleModal , setSaleModal] = useState(false)
+    
+  useEffect(() => {
+    if (saleModal === true) {
+      document.body.classList.add('overflow-hidden')
+    }else{
+      document.body.classList.remove('overflow-hidden')
+    }
+  }, [saleModal])
+  
   return (
     <div className={"relative"}>
       <NavbarCarInner />
@@ -85,12 +107,26 @@ export default function Page() {
         <PerfonmanceSwiper swiperList={swiperList} />
       </section>
       <section className={"bg-[#f5f5f5]  md:py-10"}>
-        <div className="container-fluid flex flex-col md:flex-row justify-center gap-x-20 divide-y md:divide-y-0 divide-[#e1e1e1] ">
-            <CardServiceCar text={'Скачать каталог'} icon={<FaDownload />} />
-            <CardServiceCar text={"Свяжитесь с дилером"} icon={<FaFileContract />}/>                  
-            <CardServiceCar text={'Связаться с нами'} icon={<FaPhone />}/>
-        </div>
+                <div
+                    className="container-fluid flex flex-wrap justify-evenly  divide-y md:divide-y-0 divide-[#e1e1e1] ">
+                        <div className="w-full md:w-[30%] lg:w-[15%]">
+                            <CardServiceCar href={'/drive'} text={t('serviceCard.testDrive')} id={'driveCard'} icon={<FaCarAlt />}/>
+                        </div>
+                        <div className="w-full md:w-[30%] lg:w-[15%]">
+                            <CardServiceCar text={t('serviceCard.saleCar')} icon={<FaDollarSign /> } id={'saleCard'} onClick={()=> setSaleModal(true)}/>
+                        </div>
+                        <div className="w-full md:w-[30%] lg:w-[15%]">
+                            <CardServiceCar download={true} href={'/AION-logo.png'} id={'catalogCard'} text={t('btn.downloadCatalog')} icon={<FaDownload />} />
+                        </div>
+                        <div className="w-full md:w-[30%] lg:w-[15%]">
+                            <CardServiceCar href={'/dealers'} text={t('serviceCard.dealer')} id={'dealersCard'} icon={<FaFileContract />}/>      
+                        </div>
+                        <div className="w-full md:w-[30%] lg:w-[15%]">
+                            <CardServiceCar href={'/dealers-center'} text={t('serviceCard.contactUs')} id={'contactCard'} icon={<FaPhone />}/>
+                        </div>
+                </div>
       </section>
+      <SaleCarModal modal={saleModal} setModal={setSaleModal} />
     </div>
   );
 }
@@ -114,7 +150,7 @@ const PerfonmanceInterior = ({ list }) => {
           className={
             "absolute top-0 left-0 w-full h-full z-10 bg-[linear-gradient(0deg,rgba(0,0,0,1)0%,rgba(0,0,0,0.5)60%,rgba(0,0,0,0)100%)]"
           }
-        /> 
+        />
       </div>
       <div
         className={
@@ -153,7 +189,7 @@ const PerfonmanceSwiper = ({ swiperList }) => {
         spaceBetween={15}
         breakpoints={{
           280: {
-            slidesPerView:"1.2",
+            slidesPerView: "1.2",
             spaceBetween: "20",
           },
           1024: {
@@ -200,7 +236,7 @@ const PerfonmanceSwiper = ({ swiperList }) => {
         <div className="swiper-button-next absolute bottom-2 z-[40] max-md:hidden right-[34%] translate-x-[34%] text-lg xl:text-2xl 2xl:text-3xl 3xl:text-4xl">
           <FaChevronRight />
         </div>
-        <div className="swiper-button-prev absolute bottom-2 z-[40] max-md:hidden left-[34%] translate-x-[34%] text-lg xl:text-2xl 2xl:text-3xl 3xl:text-4xl">
+        <div className="swiper-button-prev absolute bottom-2 z-[40] max-md:hidden left-[29%] translate-x-[29%] text-lg xl:text-2xl 2xl:text-3xl 3xl:text-4xl">
           <FaChevronLeft />
         </div>
       </Swiper>

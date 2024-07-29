@@ -1,23 +1,33 @@
 {
   "translation": {
     "navbar": {
-      "home" : "Asosiy",
+      "home": "Asosiy",
       "about": "Biz haqimizda",
       "models": "Modellar",
       "drive": "Test drayv",
       "contact": "Bog'lanish",
-      "innovation":"Inovatsiyalar",
-      "dealers":"Dilerlarga aylaning",
+      "more": "Batafsil",
+      "innovation": "Inovatsiyalar",
+      "dealers": "Dilerlarga aylaning",
       "news": "Yangiliklar"
     },
     "lang": {
       "ru": "RU",
       "uz": "UZ"
     },
+    "footer": {
+      "allRights": "Barcha huquqlar himoyalangan.",
+      "byCreated": "Web-sayt yaratildi:"
+    },
     "search": {
       "sectionTitle": "Modelni qidiring",
       "input": "Model nomini qidiring yoki kiriting",
       "buttonText": "Qidirmoq"
+    },
+    "btn": {
+      "showMore": "Ko'proq ko'rish",
+      "readMore": "Batafsil oʻqish",
+      "downloadCatalog": "Katalog yuklab olish"
     },
     "carInnerNav": {
       "overview": "Umumiy ko'rinish",
@@ -26,6 +36,27 @@
       "setYourLoc": "Joylashuvingizni belgilang",
       "contactDealer": "Diler bilan bog'laning"
     },
-    "toTop": "Tepaga"
+    "serviceCard": {
+      "testDrive": "Test drayv",
+      "saleCar": "Avtomobil sotib olish",
+      "dealer": "Dilerlikni olish",
+      "contactUs": "Biz bilan bog'lanish"
+    },
+    "innerModel": {
+      "specs": "Xususiyatlari",
+      "sizes": "O'lchamlari",
+      "features": "Funktsiyalari"
+    },
+    "toTop": "Tepaga",
+    "index": {
+      "ourModels": "Bizning modellarimiz",
+      "ourNews": "Bizning yangiliklarimiz"
+    },
+    "models": {
+      "all": "Hammasi"
+    },
+    "about": {
+      "title": "GAC International haqida"
+    }
   }
 }

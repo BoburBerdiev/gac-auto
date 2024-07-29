@@ -21,14 +21,22 @@ const HomeHeaderBanner = ({ priority = false, Quality, card, list  }) => {
     >
         {
             list?.map(slider => (
-                <SwiperSlide key={slider?.id} className="relative flex justify-center w-full h-full">
-                <Link href={slider?.href ? slider?.href : '#'} className={`w-full h-full block relative`}>
+                <SwiperSlide key={slider?._id} className="relative flex justify-center w-full h-full">
+                <Link href={slider?.link ? slider?.link : '#'} className={`w-full h-full block relative`}>
                   <ImgUI
-                    src={slider?.image}
-                    alt={slider?.alt}
+                    src={`${process.env.NEXT_PUBLIC_API_URL}/${slider?.bannerWeb?.path}`}
+                    alt={'Banner Home'}
                     quality={Quality}
                     priority={priority}
-                    imageStyle={"object-center"}
+                    Style={"!object-center max-lg:hidden"}
+                    card={card || false}
+                  />
+                  <ImgUI
+                    src={`${process.env.NEXT_PUBLIC_API_URL}/${slider?.bannerRes?.path}`}
+                    alt={'Banner Home'}
+                    quality={Quality}
+                    priority={priority}
+                    imageStyle={"object-center lg:hidden"}
                     card={card || false}
                   />
                 </Link>

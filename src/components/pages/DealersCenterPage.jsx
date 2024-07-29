@@ -1,0 +1,17 @@
+
+import dynamic from 'next/dynamic';
+
+const ClientMap = dynamic(() => import('@/components/map'), {
+  ssr: false
+});
+
+const DealersCenterPage = ({}) => {
+  return (
+    <div className={'bg-black store'}>
+      <div className={'w-screen relative bg-[#f5f5f5] overflow-hidden'}>
+        <ClientMap salom="Hello, world!" />
+      </div>
+    </div>
+  );
+}
+export default DealersCenterPage

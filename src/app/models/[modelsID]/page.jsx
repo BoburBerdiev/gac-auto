@@ -1,5 +1,5 @@
 "use client"
-import { FaDownload,  FaFileContract, FaPhone    } from "react-icons/fa";
+import { FaDownload,  FaFileContract, FaPhone , FaCarAlt, FaDollarSign   } from "react-icons/fa";
 import {
     ButtonUI,
     CardServiceCar,
@@ -7,8 +7,11 @@ import {
     ImgUI,
     NavbarCarInner,
     PerformanceCard,
+    SaleCarModal,
     SectionTitleCar
 } from "@/components";
+import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 const modelColors = [
     {
@@ -72,6 +75,16 @@ const features = [
 ]
 
 export default function ModelsDetails() {
+    const [saleModal , setSaleModal] = useState(false)
+    const {t} = useTranslation()
+  useEffect(() => {
+    if (saleModal === true) {
+      document.body.classList.add('overflow-hidden')
+    }else{
+      document.body.classList.remove('overflow-hidden')
+    }
+  }, [saleModal])
+  
     return (
         <div className={'relative'}>
             <NavbarCarInner/>
@@ -81,7 +94,7 @@ export default function ModelsDetails() {
             <section className={'bg-gradient-to-b lg:bg-gradient-to-r to-white from-50%  from-[#41454b] to-50% md:py-[70px] py-5'}>
                 <div className="container grid grid-cols-1 lg:grid-cols-2 relative">
                     <div>
-                        <SectionTitleCar title={'Спецификация'} isTextLeft={true} isTextWhite={true}/>
+                        <SectionTitleCar title={t('innerModel.specs')} isTextLeft={true} isTextWhite={true}/>
                         <ul className={'text-white  space-y-3 lg:space-y-8 py-5 lg:py-10'}>
                             <li>
                                 <p className={'text-sm lg:text-base space-x-2'}>
@@ -131,14 +144,14 @@ export default function ModelsDetails() {
                         </div>
                     </div>
                     <div className={'flex justify-center items-center relative z-10 col-span-1 lg:col-span-2 mt-10 lg:mt-20'}>
-                        <ButtonUI text={'Скачать каталог'} href={'#'}/>
+                        <ButtonUI text={t('btn.downloadCatalog')} href={'#'}/>
                     </div>
                 </div>
             </section>
             <section
                 className={'bg-[#efefef]  md:bg-[url(/bg-car-inner.jpg)] bg-no-repeat bg-cover bg-top bg-scroll lg:pt-[90px] md:pt-[72px] pt-20 pb-[15px] lg:pb-[20px]'}>
                 <div className="container">
-                    <SectionTitleCar title={'Размеры'}/>
+                    <SectionTitleCar title={t('innerModel.sizes')}/>
                     <div className={'w-full h-[350px] md:h-[450px] flex items-end'}>
                         <div className={'relative h-[350px] w-full'}>
                             <ImgUI src={'/empow-dimensions.png'} alt={'Gag Image'} imageStyle={'hidden md:block'} objectFitContain={true}
@@ -162,14 +175,14 @@ export default function ModelsDetails() {
                                          text={'Мегастар шасси'}/>
                     </div>
                     <div className={'flex justify-center items-center '}>
-                        <ButtonUI text={'Читать далее'} href={'/models/1/perfonmance'}/>
+                        <ButtonUI text={t('btn.readMore')} href={'/models/1/perfonmance'}/>
                     </div>
                 </div>
             </section>
             <section
                 className={'bg-[#fff]  lg:pt-[90px] md:py-[72px] py-20 '}>
                 <div className="container space-y-8 md:space-y-12 ">
-                    <SectionTitleCar title={'Функции'}/>
+                    <SectionTitleCar title={t('innerModel.features')}/>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-0">
                         {
                             features?.map(model => (
@@ -178,18 +191,31 @@ export default function ModelsDetails() {
                         }
                     </div>
                     <div className={'flex justify-center items-center'}>
-                        <ButtonUI text={'Читать далее'} href={'/models/1/perfonmance'}/>
+                        <ButtonUI text={t('btn.readMore')} href={'/models/1/perfonmance'}/>
                     </div>
                 </div>
             </section>
             <section className={'bg-[#f5f5f5]  md:py-10'}>
                 <div
-                    className="container-fluid flex flex-col md:flex-row justify-center gap-x-20 divide-y md:divide-y-0 divide-[#e1e1e1] ">
-                    <CardServiceCar text={'Скачать каталог'} icon={<FaDownload />} />
-                    <CardServiceCar text={"Свяжитесь с дилером"} icon={<FaFileContract />}/>
-                    <CardServiceCar text={'Связаться с нами'} icon={<FaPhone />}/>
+                    className="container-fluid flex flex-wrap justify-evenly  divide-y md:divide-y-0 divide-[#e1e1e1] ">
+                        <div className="w-full md:w-[30%] lg:w-[15%]">
+                            <CardServiceCar href={'/drive'} text={t('serviceCard.testDrive')} id={'driveCard'} icon={<FaCarAlt />}/>
+                        </div>
+                        <div className="w-full md:w-[30%] lg:w-[15%]">
+                            <CardServiceCar text={t('serviceCard.saleCar')} icon={<FaDollarSign /> } id={'saleCard'} onClick={()=> setSaleModal(true)}/>
+                        </div>
+                        <div className="w-full md:w-[30%] lg:w-[15%]">
+                            <CardServiceCar download={true} href={'/AION-logo.png'} id={'catalogCard'} text={t('btn.downloadCatalog')} icon={<FaDownload />} />
+                        </div>
+                        <div className="w-full md:w-[30%] lg:w-[15%]">
+                            <CardServiceCar href={'/dealers'} text={t('serviceCard.dealer')} id={'dealersCard'} icon={<FaFileContract />}/>      
+                        </div>
+                        <div className="w-full md:w-[30%] lg:w-[15%]">
+                            <CardServiceCar href={'/dealers-center'} text={t('serviceCard.contactUs')} id={'contactCard'} icon={<FaPhone />}/>
+                        </div>
                 </div>
             </section>
+            <SaleCarModal modal={saleModal} setModal={setSaleModal} />
         </div>
     );
 }

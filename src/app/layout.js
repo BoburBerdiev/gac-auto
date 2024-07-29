@@ -18,7 +18,8 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <Head/>
+      <Head>
+      </Head>
       <body className={`overflow-x-hidden !font-montserrat ${montserrat.variable}`} >
         <Layout>
           {children}

@@ -1,34 +1,35 @@
-// "use client"
-// import {
-//   MapContainer,
-//   TileLayer,
-//   CircleMarker,
-//   Popup,
-// } from "react-leaflet";
+// components/Map .js
+"use client";
+import { useEffect, useRef } from "react";
+import "leaflet/dist/leaflet.css";
 
-// import "leaflet/dist/leaflet";
+export default function Map ({ salom }) {
+  const mapRef = useRef(null);
 
-// export default function Map() {
-//   return (
-//     <div>
-//         <MapContainer  center={[40.609787846393196, 20.7890265133657]} zoom={5}>
-//         <TileLayer
-//             attribution='SALOM'
-//             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-//           />
-//           <CircleMarker
-//             className="n w-[150px] h-[150px]"
-//             center={[40.609787846393196, 20.7890265133657]}
-//             radius={10}
-//             color="transparent"
-//             fillColor="green"
-//             fillOpacity={0.5}
-//           >
-//             <Popup className="w-[460px] h-[150px]">
-//               <p className="text-[25px]">My Location </p>
-//             </Popup>
-//           </CircleMarker>
-//         </MapContainer>
-//     </div>
-//   )
-// }
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      import("leaflet").then(L => {
+        if (!mapRef.current) {
+          mapRef.current = L.map('map').setView([41.296195423949996, 69.24763083457948], 13);
+
+          L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+          }).addTo(mapRef.current);
+        }
+
+        return () => {
+          if (mapRef.current) {
+            mapRef.current.remove();
+            mapRef.current = null;
+          }
+        };
+      });
+    }
+  }, []);
+
+  console.log(salom);
+
+  return (
+    <div className="relative z-0 h-[91vh] mt-12" id="map" />
+  );
+}

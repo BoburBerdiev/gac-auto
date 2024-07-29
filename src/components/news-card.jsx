@@ -6,7 +6,7 @@ const NewsCard = ({image, date, title, href}) => {
         <Link href={href} className={'bg-white w-full h-fit md:hover:shadow-xl group'}>
             <div className={'w-full aspect-[3/2] xl:aspect-[7/4] overflow-hidden '}>
                 <div className="group-hover:scale-110 relative w-full h-full duration-150">
-                    <ImgUI src={image} />
+                    <ImgUI src={image}  alt={title}/>
                 </div>
             </div>
             <div className={'p-4 border border-[#d2d2d2] xl:px-7 xl:pt-6 2xl:px-9 2xl:pt-8'}>

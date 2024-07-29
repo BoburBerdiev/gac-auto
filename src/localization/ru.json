@@ -6,6 +6,7 @@
       "models": "Модели",
       "drive": "Тест-драйв",
       "contact": "Контакт",
+      "more": "Подробнее",
       "innovation":"Инновации",
       "dealers":"Стать дилерами",
       "news": "Новости"
@@ -14,10 +15,19 @@
       "ru": "РУ",
       "uz": "УЗ"
     },
+    "footer": {
+      "allRights": "Все права защищены.",
+      "byCreated": "Сайт создан:"
+    },
     "search": {
       "sectionTitle": "Ищите модель",
       "input": "Найдите или введите имя модели",
       "buttonText": "Поиск"
+    },
+    "btn" : {
+      "showMore" : "Показать больше",
+      "readMore" : "Читать далее",
+      "downloadCatalog": "Скачать каталог"
     },
     "carInnerNav": {
       "overview": "Обзор",
@@ -25,6 +35,27 @@
       "specification": "Спецификация",
       "setYourLoc": "Установите свое местоположение",
       "contactDealer": "Свяжитесь с дилером"
+    },
+    "serviceCard": {
+      "testDrive": "Тест-драйв",
+      "saleCar": "Покупка автомобиля",
+      "dealer": "Стать дилером",
+      "contactUs": "Связаться с нами"
+    },    
+    "index": {
+      "ourModels" : "Наши модели",
+      "ourNews" : "Наши новости"
+    },
+    "innerModel": {
+      "specs" : "Спецификация",
+      "sizes" : "Размеры",
+      "features" : "Функции"
+    },
+    "about": {
+      "title": "О компании GAC International"
+    },
+    "models": {
+      "all": "Все"
     },
     "toTop": "Верх"
   }
