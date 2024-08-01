@@ -6,7 +6,7 @@ import Link from "next/link";
 import {useTranslation} from "react-i18next";
 
 
-const NavbarCarInner = () => {
+const NavbarCarInner = ({logo}) => {
     const {t} = useTranslation();
     const listLink = [
         {
@@ -30,7 +30,7 @@ const NavbarCarInner = () => {
                             <ImgUI src={'/car-inner-logo-bg.png'} alt={'Bg'}/>
                         </div>
                         <div className={' absolute z-10 w-[190px] h-7 lg:w-[150px] lg:h-[22px] xl:w-[195px] xl:h-[30px]'}>
-                            <ImgUI src={'/empow-logo.png'} objectFitContain={true} alt={'logo'} card={true}
+                            <ImgUI src={logo} objectFitContain={true} alt={'logo'} card={true}
                                    imageStyle={'z-20'}/>
                         </div>
                     </div>

@@ -1,10 +1,11 @@
-// components/Map .js
+// components/Map.js
 "use client";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import "leaflet/dist/leaflet.css";
 
-export default function Map ({ salom }) {
+export default function Map({ salom }) {
   const mapRef = useRef(null);
+  const [currentLocation, setCurrentLocation] = useState(null);
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -17,6 +18,22 @@ export default function Map ({ salom }) {
           }).addTo(mapRef.current);
         }
 
+        // Get the user's current location
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition((position) => {
+            const { latitude, longitude } = position.coords;
+            setCurrentLocation([latitude, longitude]);
+
+            // Add a marker at the current location
+            L.marker([latitude, longitude]).addTo(mapRef.current)
+              .bindPopup("You are here")
+              .openPopup();
+
+            // Center the map to the current location
+            mapRef.current.setView([latitude, longitude], 13);
+          });
+        }
+        console.log(currentLocation);
         return () => {
           if (mapRef.current) {
             mapRef.current.remove();

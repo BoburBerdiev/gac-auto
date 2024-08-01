@@ -350,7 +350,7 @@ const models = [
 ];
 
 const NavSearch = ({ search, setSearch }) => {
-  const [isModels, setIsModels] = useState(true)
+  const [isModels, setIsModels] = useState(false)
   const {t} = useTranslation()
 
 

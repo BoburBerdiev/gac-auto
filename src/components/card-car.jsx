@@ -1,13 +1,17 @@
+"use client"
 import { ImgUI } from "@/components/index";
 import { MdAirlineSeatReclineExtra } from "react-icons/md";
 import { RiOilLine } from "react-icons/ri";
 import { GiElectric, GiSteeringWheel } from "react-icons/gi";
 import Link from "next/link";
+import { useTranslation } from "react-i18next";
+import { langSelect } from "@/helper";
 
 const CardCar = ({model}) => {
+  const {t , i18n} = useTranslation()
   return (
     <Link
-      href={model ? model?.href : ' '}
+      href={`models/${model?.slug}`}
       className={
         "block   bg-white font-montserrat  h-fit overflow-hidden  text-[#747474] group duration-200 ease-linear"
       }
@@ -16,14 +20,14 @@ const CardCar = ({model}) => {
       <div className={"px-2 md:px-4"}>
         <div className={"h-7 w-[150px] lg:w-[160px] lg:h-6 2xl:w-[190px] 2xl:h-9 relative "}>
           <ImgUI
-            src={model?.logo}
+            src={`${process.env.NEXT_PUBLIC_API_URL}/${model?.logoCard?.path}`}
             card={true}
             quality={100}
             alt={"logo"}
             objectFitContain={true}
           />
         </div>
-        <h3 className={"text-xs sm:text-sm md:text-base mt-3"}>{model?.category}</h3>
+        <h3 className={"text-xs sm:text-sm md:text-base mt-3"}>{langSelect(i18n.language, model?.category?.nameRu , model?.category?.nameUz)}</h3>
       </div>
       <div
         className={
@@ -31,8 +35,8 @@ const CardCar = ({model}) => {
         }
       >
         <ImgUI
-          src={model?.image}
-          alt={"car"}
+            src={`${process.env.NEXT_PUBLIC_API_URL}/${model?.carColor[0]?.carImage?.path}`}
+            alt={"car"}
           card={true}
           objectFitContain={true}
           quality={70}
@@ -50,29 +54,37 @@ const CardCar = ({model}) => {
               "space-x-1  text-[rgb(51, 51, 51)]  text-xs 2xl:text-sm font-medium"
             }
           >
-            <span>{model?.seats}</span>
+            <span>{model?.place}</span>
           </p>
         </div>
         <div
           className={`flex justify-center w-[30%] flex-col items-center gap-2 md:gap-3 relative before:content-['']  before:absolute before:w-[.5px] before:top-[10%] before:h-[50%] before:bg-[#747474] before:left-0  after:content-['']  after:absolute after:w-[.5px] after:top-[10%] after:h-[50%] after:bg-[#747474] after:right-0`}
         >
           {
-            model.fuel === 'Электро' ? 
+            model?.fuel === 'Petrol' ? 
             <GiElectric className={"text-lg lg:text-[22px]"}  />
-            : model.fuel === "Бензин" ?
+            :  model?.fuel === 'Electro' ?
             <RiOilLine className={"text-lg lg:text-[22px]"} />
-            : model.fuel === "Гибрид" ? 
+            :  model?.fuel === 'Hybrid' ? 
             <div className="relative h-6 w-6">
               <ImgUI src={'/hybrid.png'} alt={'Icon'} objectFitContain/>
             </div>
-            : ""
+            : null
           }
           <p
             className={
               "space-x-1  text-[rgb(51, 51, 51)]  text-xs 2xl:text-sm font-medium"
             }
           >
-          {model?.fuel}
+          { 
+            model?.fuel === 'Petrol' ? 
+              (t("models.petrol"))
+            :  model?.fuel === 'Electro' ?
+              (t("models.electro"))
+            :  model?.fuel === 'Hybrid' ? 
+              (t("models.hybrid"))
+            : null
+            }
           </p>
         </div>
         <div
@@ -86,19 +98,27 @@ const CardCar = ({model}) => {
               "space-x-1  text-[rgb(51, 51, 51)]  text-xs 2xl:text-sm font-medium"
             }
           >
-           {model?.gearbox}
+             { 
+            model?.gearbox === 'AT' ? 
+              (t("models.AT"))
+            :  model?.gearbox === 'MT' ?
+              (t("models.MT"))
+            :  model?.gearbox === 'MT/AT' ? 
+              (t("models.MT-AT"))
+            : null
+            }
           </p>
         </div>
       </div>
       </div>
       <div className="px-2 md:px-4 flex  py-3 justify-between items-center bg-currentRed border border-currentRed">
         <div className="flex flex-col">
-          <p className="text-sm text-white">Цена:</p>
-          <h4 className="font-bold text-white">50 000 000</h4>
+          <p className="text-sm text-white">{t('models.price')}</p>
+          <h4 className="font-bold text-white">{model?.price}</h4>
         </div>
         <div className="flex flex-col items-end">
-          <p className="text-sm text-white">Цена в рассрочку:</p>
-          <h4 className="font-bold text-white">8 000 000</h4>
+          <p className="text-sm text-white">{t('models.splitPrice')}</p>
+          <h4 className="font-bold text-white">{model?.splitPrice}</h4>
         </div>
       </div>
     </Link>

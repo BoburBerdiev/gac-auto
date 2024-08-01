@@ -1,5 +1,11 @@
 "use client"
-import { BannerSmall, ButtonUI, InputUI, SectionTitleCar, SelectUI } from "@/components";
+import { BannerSmall, ButtonUI, InputUI, SectionTitleCar, SelectUI, SuccessModal } from "@/components";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
+import { useTranslation } from "react-i18next";
+import { AiOutlineLoading } from "react-icons/ai";
+import { useMutation } from "react-query";
 const optionValues = [
   {
     title: "Ташкент", 
@@ -56,6 +62,42 @@ const optionValues = [
  
 ]
 const DealersPage =() => {
+  const navigate = useRouter()
+  const { t } = useTranslation();
+  const [successModal, setSuccessModal] = useState(false)
+ 
+  const {
+    register,
+    handleSubmit,
+    reset,
+    control,
+    formState: { errors },
+  } = useForm();
+  const {
+    mutate: userPost,
+    data: userPostData,
+    isLoading: userPostLoading,
+    isSuccess: userPostSuccess,
+  } = useMutation(({ url, data }) => apiService.postData(url, data));
+
+  
+  useEffect(() => {
+    if (userPostSuccess) {
+      reset();
+      setSuccessModal(true);
+      setTimeout(() => {
+        setSuccessModal(false);
+        navigate.push("/");
+      }, 2000);
+    }
+  }, [userPostSuccess]);
+
+
+  const onSubmit = (data) => {
+    console.log(data);
+    const postData = {...data}
+    userPost({url: '/dealers', data: postData})
+}
 
   return (
     <div className=" ">
@@ -66,15 +108,15 @@ const DealersPage =() => {
         />
       </section>
       <div className="container-fluid  py-10  lg:pt-[55px] ">
-        <SectionTitleCar title={'Стать дилером'} aboutPage={true}/>
+        <SectionTitleCar title={t('dealers.title')} aboutPage={true}/>
       </div>
       <section className="py-5 md:pb-10 md:pt-10 lg:pb-20 text-currentTextBlack">
           <div className="container-fluid space-y-3">
-            <h5 className="text-base font-bold md:text-xl">Общая информация</h5>
-            <form>
+            <h5 className="text-base font-bold md:text-xl">{t('dealers.allInfo')}</h5>
+            <form onSubmit={handleSubmit(onSubmit)}>
               <div className="grid grid-cols-1 gap-5 mb-5">
                 <div>
-                  <InputUI errorText={'Требуется название'} type={'text'} labelText={'Название предприятия *'} nameLabel={'companyName'} placeholder={'Название предприятия'} isError={true}/>                
+                  <InputUI  register={{...register('model', {required: true})}} errorText={'Требуется название'} type={'text'} labelText={'Название предприятия *'} nameLabel={'companyName'} placeholder={'Название предприятия'} isError={true}/>                
                 </div>
               </div>
               <div className="grid grid-cols-1 gap-5 mb-5">
@@ -146,14 +188,14 @@ const DealersPage =() => {
                   </div>
                 </div>
                 <div className="flex items-end justify-end  w-full h-full col-span-1 md:col-span-2">
-                  <ButtonUI isBorderBtn={true} text={'Отправить запрос'} type={'submit'} extraStyle={'!px-7 !py-3 !text-sm !bg-borderBtn text-white'}/>
+                  <ButtonUI isBorderBtn={true} text={userPostLoading ? <AiOutlineLoading className="animate-spin text-2xl"  /> : t("btn.send")} type={'submit'} extraStyle={'!px-7 !py-3 !text-sm !bg-borderBtn text-white'}/>
                 </div>
               </div>
             </form>
           </div>
           
         </section>
-
+        <SuccessModal setModal={setSuccessModal} modal={successModal} />
     </div>
   )
 }

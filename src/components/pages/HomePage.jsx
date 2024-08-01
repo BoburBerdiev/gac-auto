@@ -139,7 +139,7 @@ const newsCards = [
       id: 2
   },
 ]
-const HomePage = ({banner}) => {
+const HomePage = ({banner, ourModels}) => {
   const {t} = useTranslation()
   return (
     <>
@@ -157,8 +157,8 @@ const HomePage = ({banner}) => {
           <SectionTitleCar title={t('index.ourModels')} aboutPage={false}/>
           <div className="grid grid-cols-1 w-full md:grid-cols-2 lg:grid-cols-3  xl:grid-cols-4  gap-4  ">
             {
-              models.map(car => (
-                <CardCar model={car} key={car?.id}/>
+              ourModels?.map(car => (
+                <CardCar model={car} key={car?._id}/>
               ))
             }
           </div>

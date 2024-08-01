@@ -1,14 +1,14 @@
 {
   "translation": {
     "navbar": {
-      "home" : "Главная",
+      "home": "Главная",
       "about": "О нас",
       "models": "Модели",
       "drive": "Тест-драйв",
       "contact": "Контакт",
       "more": "Подробнее",
-      "innovation":"Инновации",
-      "dealers":"Стать дилерами",
+      "innovation": "Инновации",
+      "dealers": "Стать дилерами",
       "news": "Новости"
     },
     "lang": {
@@ -24,10 +24,11 @@
       "input": "Найдите или введите имя модели",
       "buttonText": "Поиск"
     },
-    "btn" : {
-      "showMore" : "Показать больше",
-      "readMore" : "Читать далее",
-      "downloadCatalog": "Скачать каталог"
+    "btn": {
+      "showMore": "Показать больше",
+      "readMore": "Читать далее",
+      "downloadCatalog": "Скачать каталог",
+      "send": "Отправить запрос"
     },
     "carInnerNav": {
       "overview": "Обзор",
@@ -41,21 +42,57 @@
       "saleCar": "Покупка автомобиля",
       "dealer": "Стать дилером",
       "contactUs": "Связаться с нами"
-    },    
+    },
     "index": {
-      "ourModels" : "Наши модели",
-      "ourNews" : "Наши новости"
+      "ourModels": "Наши модели",
+      "ourNews": "Наши новости"
     },
     "innerModel": {
-      "specs" : "Спецификация",
-      "sizes" : "Размеры",
-      "features" : "Функции"
+      "specs": "Спецификация",
+      "sizes": "Размеры",
+      "features": "Функции"
     },
     "about": {
       "title": "О компании GAC International"
     },
     "models": {
-      "all": "Все"
+      "all": "Все",
+      "electro": "Электро",
+      "petrol": "Бензин",
+      "hybrid": "Гибрид",
+      "AT": "АТ",
+      "MT": "МТ",
+      "MT-AT": "МТ/АТ",
+      "price": "Цена:",
+      "splitPrice": "Цена в рассрочку:"
+    },
+    "drive": {
+      "title": "Запрос на тест-драйв",
+      "chooseModel": "Выберите модель",
+      "errorModel": "Требуется модель",
+      "chooseDealerTitle": "Выбор дилера",
+      "errorRegion": "Требуется регион",
+      "chooseRegion": "Выберите регион",
+      "chooseDealer": "Выберите дилера",
+      "errorDealer": "Требуется дилера",
+      "contractTitle": "Договориться о времени",
+      "errorDate": "Требуется день",
+      "chooseDate": "Выберите день",
+      "errorTime": "Требуется время",
+      "chooseTime": "Выберите время",
+      "dataTitle": "  Ваши данные",
+      "errorName": "Требуется ваши данные",
+      "chooseName": " Ф.И.О.",
+      "chooseNumber": "Телефон",
+      "errorNumber": "Требуется телефон данные"
+    },
+    "modal": {
+      "successTitle": "Ваша заявка принята"
+    },
+    "dealers": {
+      "title": "Стать дилером",
+      "allInfo": "Общая информация"
+      
     },
     "toTop": "Верх"
   }

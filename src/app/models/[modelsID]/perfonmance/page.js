@@ -13,9 +13,12 @@ import {
 } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { usePathname } from 'next/navigation'
 
 export default function Page() {
   const {t} = useTranslation()
+  const [saleModal , setSaleModal] = useState(false)
+  
   const interior = [
     {
       title: "Плоское нижнее рулевое колесо",
@@ -61,8 +64,6 @@ export default function Page() {
       image: "/empow-intelligent5.jpg",
     },
   ];
-
-  const [saleModal , setSaleModal] = useState(false)
     
   useEffect(() => {
     if (saleModal === true) {

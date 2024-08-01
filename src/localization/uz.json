@@ -27,7 +27,8 @@
     "btn": {
       "showMore": "Ko'proq ko'rish",
       "readMore": "Batafsil oʻqish",
-      "downloadCatalog": "Katalog yuklab olish"
+      "downloadCatalog": "Katalog yuklab olish",
+      "send": "So'rov yuborish"
     },
     "carInnerNav": {
       "overview": "Umumiy ko'rinish",
@@ -53,7 +54,38 @@
       "ourNews": "Bizning yangiliklarimiz"
     },
     "models": {
-      "all": "Hammasi"
+      "all": "Hammasi",
+      "electro": "elektr",
+      "petrol": "benzin",
+      "hybrid": "gibrid",
+      "AT": "AT",
+      "MT": "MT",
+      "MT-AT": "MT/AT",
+      "price": "Narxi:",
+      "splitPrice": "Bo'lib to'lash narxi:"
+    },
+    "drive": {
+      "title": "Test haydovi uchun so'rov",
+      "chooseModel": "Modelni tanlang",
+      "errorModel": "Model talab qilinadi",
+      "chooseDealerTitle": "Diler tanlash",
+      "errorRegion": "Hudud talab qilinadi",
+      "chooseRegion": "Hududni tanlang",
+      "chooseDealer": "Dilerni tanlang",
+      "errorDealer": "Diler talab qilinadi",
+      "contractTitle": "Vaqtni kelishish",
+      "errorDate": "Kun talab qilinadi",
+      "chooseDate": "Kunni tanlang",
+      "errorTime": "Vaqt talab qilinadi",
+      "chooseTime": "Vaqtni tanlang",
+      "dataTitle": "Ma'lumotlaringiz",
+      "errorName": "Ismingiz kerak",
+      "chooseName": "F.I.Sh",
+      "chooseNumber": "Telefon",
+      "errorNumber": "Telefon raqami kerak"
+    },
+     "modal": {
+      "successTitle": "Sizning arizangiz qabul qilindi"
     },
     "about": {
       "title": "GAC International haqida"
