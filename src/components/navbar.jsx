@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, useCallback } from "react";
 import { ButtonUI, CardCar, ImgUI } from "@/components/index";
 import { IoClose } from "react-icons/io5";
 import { RiMenuFill } from "react-icons/ri";
@@ -7,11 +7,14 @@ import { BiSearch } from "react-icons/bi";
 import { IoIosArrowDown } from "react-icons/io";
 import Link from "next/link";
 import { NavList } from "@/config/config";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { IoMdClose } from "react-icons/io";
 import { useTranslation } from "react-i18next";
 import { AnimatePresence, motion } from "framer-motion";
 import { langSelect } from "@/helper";
+import { useQuery, useQueryClient } from "react-query";
+import apiService from "@/service/axios";
+import { useForm } from "react-hook-form";
 
 const Navbar = () => {
   const [nav, setNav] = useState(false);
@@ -19,6 +22,20 @@ const Navbar = () => {
   const [line, setLine] = useState();
   const [childRef, setChildRef] = useState();
   const pathname = usePathname();
+  const [query , setQuery] = useState()
+  const [navbarLists , setNavbarLists] = useState()
+
+  const {
+    data: modelsData,
+    refetch: modelsRefetch,
+    isSuccess: modelsIsSucces,
+  } = useQuery( "models", () => apiService.getData('/car/model'),{ enabled: false, }
+  )
+
+  useEffect(() => {
+    modelsRefetch()
+  }, [query])
+
   useEffect(() => {
     if (childRef) {
       setLine(childRef);
@@ -96,7 +113,7 @@ const Navbar = () => {
             <div className="flex items-center gap-3 md:gap-5">
               <BiSearch
                 onClick={() => handleSearch()}
-                className=" text-white h-6 w-6  cursor-pointer"
+                className=" text-white h-6 w-6 hidden cursor-pointer"
               />
                <div className={"flex items-start group "}>
                 <NavbarDropdown />
@@ -123,19 +140,14 @@ const Navbar = () => {
   );
 };
 
-export const NavbarList = ({ menu, lineMove, pathname, setChildRef, onClick }) => {
+const NavbarList = ({ menu, lineMove, pathname, setChildRef, onClick }) => {
   const [dropdown, setDropdown] = useState(false);
   const ref = useRef();
   const { t } = useTranslation();
   const { title, href, subTitle } = menu;
   useEffect(() => {
     if (pathname === href) {
-      console.log(href);
-      console.log(pathname);
       setChildRef(ref.current.offsetLeft + ref.current.clientWidth / 2);
-      console.log(true);
-    }else{
-      console.log(false);
     }
     if (pathname.includes('models') || pathname.includes('news')) {
       setChildRef(ref.current.offsetLeft + ref.current.clientWidth / 2);
@@ -154,6 +166,8 @@ export const NavbarList = ({ menu, lineMove, pathname, setChildRef, onClick }) =
   }
   return (
     <>
+
+
       <div
         ref={ref}
        
@@ -262,13 +276,11 @@ const NavbarDropdown = () => {
       }
     };
 
-    // Add event listeners for click and scroll events
     if (dropdown) {
       window.addEventListener('click', handleClick);
       window.addEventListener('scroll', () => setDropdown(false));
     }
 
-    // Cleanup event listeners on component unmount or when dropdown state changes
     return () => {
       window.removeEventListener('click', handleClick);
       window.removeEventListener('scroll', () => setDropdown(false));
@@ -353,6 +365,65 @@ const NavSearch = ({ search, setSearch }) => {
   const [isModels, setIsModels] = useState(false)
   const {t} = useTranslation()
 
+  const queryClient = useQueryClient();
+  const [isOpenSearch, setIsOpenSearch] = useState(false);
+  const { register, handleSubmit, reset } = useForm();
+  const [searchProduct, setSearchProduct] = useState("");
+  const router = useRouter();
+
+
+  const {
+    data: searchProductFiltered,
+    refetch: searchProductFilteredRefetch,
+    isSuccess: searchProductIsSuccess
+  } = useQuery(
+      "search",
+      () => apiService.getData(`/car?search=${searchProduct}`),
+      {
+          enabled: false,
+      }
+  );
+    
+  const debounce = (func, delay) => {
+  };
+  
+  const handleInputChange = debounce((e) => {
+      const value = e.target.value;
+      if (value.length > 2) {
+          setSearchProduct(value);
+          setIsOpenSearch(true);
+      } else {
+          setSearchProduct("");
+          setIsOpenSearch(false);
+      }
+  }, 500);
+  
+  useEffect(() => {
+      if (searchProduct.length > 2) {
+          searchProductFilteredRefetch();
+      }
+  }, [searchProduct, searchProductFilteredRefetch]);
+  
+  const eventStopPropagation = (e) => e.stopPropagation();
+  
+  const closeSearchPanel = useCallback(() => {
+      setIsOpenSearch(false);
+  }, []);
+  
+  const routerPushClear = () => {
+      reset({ search: "" });
+      setSearchProduct("");
+      setIsOpenSearch(false);
+      queryClient.removeQueries("search");
+  }
+
+
+
+
+
+
+
+
 
   const closeSearch = () => {
     setSearch(false);
@@ -383,6 +454,7 @@ const NavSearch = ({ search, setSearch }) => {
                 />
               </div>
               <form
+                 onSubmit={handleSubmit(() => {})}
                 className={
                   "border-2 w-full border-[#c83837] grid grid-cols-4 md:grid-cols-5"
                 }
@@ -393,6 +465,7 @@ const NavSearch = ({ search, setSearch }) => {
                     "w-full pl-4 bg-white font-montserrat col-span-3 text-sm md:text-base md:col-span-4 outline-none py-2 2xl:py-3"
                   }
                   placeholder={t('search.input')}
+                  {...register("search")}
                 />
                 <ButtonUI
                   type={"submit"}
@@ -403,8 +476,15 @@ const NavSearch = ({ search, setSearch }) => {
                   }
                 />
               </form>
+
+
+
+
+
+
+
               {
-                  !isModels ? 
+                  !searchProductFiltered ? 
                   <motion.div key={'searchModels'}
                   initial={{ opacity: 0, scale: 0.2 }}
                               animate={{ opacity: 1,  scale: 1 }}
@@ -421,7 +501,7 @@ const NavSearch = ({ search, setSearch }) => {
                     "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 w-full h-[70vh]  overflow-y-scroll"
                   }
                 >
-                  {models.map((model) => (
+                  {searchProductFiltered?.map((model) => (
                     <div key={model?.id} className="h-fit">
                       <CardCar model={model}  />
                     </div>

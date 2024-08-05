@@ -46,7 +46,8 @@
     "innerModel": {
       "specs": "Xususiyatlari",
       "sizes": "O'lchamlari",
-      "features": "Funktsiyalari"
+      "features": "Funktsiyalari",
+      "tvc": "TVC"
     },
     "toTop": "Tepaga",
     "index": {

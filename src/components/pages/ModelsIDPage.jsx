@@ -24,85 +24,13 @@ import { langSelect } from "@/helper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 
-
-
-const features = [
-  {
-    image: "/empow-features1.jpg",
-    text: "Впечатляющий дизайн истребителя",
-    id: 0,
-  },
-  {
-    image: "/empow-features2.jpg",
-    text: "Максимальная управляемость",
-    id: 1,
-  },
-  {
-    image: "/empow-features3.jpg",
-    text: "Лучшее в своем классе пространство салона",
-    id: 2,
-  },
-  {
-    image: "/empow-features4.jpg",
-    text: "Улучшенное оборудование для пробуждения технологий",
-    id: 3,
-  },
-];
-const interior = [
-  {
-    title: "Плоское нижнее рулевое колесо",
-    image: "/empow-expansive1.jpg",
-    id: 0,
-  },
-  {
-    title: "Джойстик-переключатель",
-    image: "/empow-expansive2.jpg",
-    id: 1,
-  },
-  {
-    title:
-      "7 дюймов. экран приборной панели и 10,25-дюймовый. сенсорный дисплей",
-    image: "/empow-expansive3.jpg",
-    id: 2,
-  },
-];
-const swiperList = [
-  {
-    id: 0,
-    title: "0,26CD сверхнизкий коэффициент аэродинамического сопротивления",
-    image: "/empow-intelligent1.jpg",
-  },
-  {
-    id: 1,
-    title: "Помощь в рулевом управлении DP-EPS",
-    image: "/empow-intelligent2.jpg",
-  },
-  {
-    id: 2,
-    title: "Динамическая поверхность",
-    image: "/empow-intelligent3.jpg",
-  },
-  {
-    id: 3,
-    title: "Спортивное сиденье",
-    image: "/empow-intelligent4.jpg",
-  },
-  {
-    id: 4,
-    title: "Спортивное сиденьеДоступна связь телефона с автомобилем.",
-    image: "/empow-intelligent5.jpg",
-  },
-];
-
 export default function ModelsDetails({ data }) {
   const [innerPage, setInnerPage] = useState('overview')
   const [saleModal, setSaleModal] = useState(false);
   const [isModelColor, setIsModelColor] = useState();
   const [carColor, setCarColor] = useState()
   const { t, i18n } = useTranslation();
-
-  console.log(data);
-
+  console.log(data?.video?.path);
   useEffect(() => {
     setCarColor(data?.carColor[0].carImage?.path)
     setIsModelColor(data?.carColor[0]._id);
@@ -298,13 +226,23 @@ export default function ModelsDetails({ data }) {
               </div>
             </div>
           </section>
+          <section className="bg-[#f8f8f8] py-6 md:py-8 ">
+            <div className="container flex flex-col items-center gap-6 md:gap-8 ">
+              <SectionTitleCar title={t("innerModel.tvc")} />
+              <div className="w-full aspect-video">
+              <video className="w-full h-full " controls="controls" autoplay="autoplay" muted poster webkit-playsinline playsinline x-webkit-airplay="true" airplay="allow" loop="loop">
+                <source src={`${process.env.NEXT_PUBLIC_API_URL}/${data?.video?.path}`} type="video/mp4" />
+              </video>
+              </div>
+            </div>
+          </section>
           <section className={"bg-[#fff]  lg:pt-[90px] md:py-[72px] py-20 "}>
             <div className="container space-y-8 md:space-y-12 ">
               <SectionTitleCar title={t("innerModel.features")} />
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-0">
                 {data?.feutures?.map((model) => (
                   <FeaturesCard
-                    image={`${process.env.NEXT_PUBLIC_API_URL}/${model?.image}`}
+                    image={`${process.env.NEXT_PUBLIC_API_URL}/${model?.image?.path}`}
                     text={langSelect(i18n.language, model?.titleRu, model?.titleUz)}
                     key={model?._id}
                   />
@@ -532,7 +470,7 @@ const PerfonmanceSwiper = ({ swiperList }) => {
         className="perfonmanceSwiper !w-full"
       >
         {swiperList?.map((slider) => (
-          <SwiperSlide key={slider?.id} className={"w-full h-full "}>
+          <SwiperSlide key={slider?._id} className={"w-full h-full "}>
             <div
               className={
                 "flex flex-col items-center gap-5 2xl:gap-[25px] 3xl:gap-[30px]"

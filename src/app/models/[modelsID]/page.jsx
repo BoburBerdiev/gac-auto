@@ -1,5 +1,4 @@
 import { ModelsIDPage} from '@/components/pages'
-import { useParams } from 'next/navigation';
 
 async function getModel(params) {
   const resModel = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/car/${params}`, { cache: 'no-store' })

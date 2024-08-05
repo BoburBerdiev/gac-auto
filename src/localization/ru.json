@@ -50,7 +50,8 @@
     "innerModel": {
       "specs": "Спецификация",
       "sizes": "Размеры",
-      "features": "Функции"
+      "features": "Функции",
+      "tvc": "ТВЦ"
     },
     "about": {
       "title": "О компании GAC International",

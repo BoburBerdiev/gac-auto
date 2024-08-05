@@ -1,4 +1,5 @@
 // import { MetaData } from '@/components'
+import { MetaData } from '@/components'
 import {AboutPage} from '@/components/pages'
 
 
@@ -10,8 +11,7 @@ async function getAbout() {
   return [dataAbout]
 }
 
-{/* <MetaData/> */}
-
+<MetaData title={'About page'}/>
 
 export default async function Page () {
   const [dataAbout] = await getAbout()

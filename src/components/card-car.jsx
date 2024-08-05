@@ -62,9 +62,9 @@ const CardCar = ({model}) => {
         >
           {
             model?.fuel === 'Petrol' ? 
-            <GiElectric className={"text-lg lg:text-[22px]"}  />
-            :  model?.fuel === 'Electro' ?
             <RiOilLine className={"text-lg lg:text-[22px]"} />
+            :  model?.fuel === 'Electro' ?
+            <GiElectric className={"text-lg lg:text-[22px]"}  />
             :  model?.fuel === 'Hybrid' ? 
             <div className="relative h-6 w-6">
               <ImgUI src={'/hybrid.png'} alt={'Icon'} objectFitContain/>
