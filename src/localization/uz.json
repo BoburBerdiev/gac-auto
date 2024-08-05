@@ -84,11 +84,52 @@
       "chooseNumber": "Telefon",
       "errorNumber": "Telefon raqami kerak"
     },
+    "dealers": {
+      "title": "Dilerga aylaning",
+      "allInfoTitle": "Umumiy ma'lumot",
+      "errorCompany": "Kopmaniya nomi talab qilinadi",
+      "labelCompany": "Kopmaniya nomi *",
+      "errorRegion": "Hudud talab qilinadi",
+      "labelRegion": "Mintaqa/viloyat *",
+      "labelAddress": "Manzil *",
+      "errorAddress": "Manzil talab qilinadi",
+      "errorCount": "Aholi soni talab qilinadi",
+      "labelCount": "Aholi soni *",
+      "otherInfoTitle": "Boshqa ma'lumotlar",
+      "errorBank": "Bank rekvizitlari talab qilinadi",
+      "labelBank": "Bank rekvizitlari *",
+      "showroomInfoTitle": "Ko'rgazma zali mavjudligi",
+      "totalArea": "Umumiy maydoni *",
+      "totalAreaPlaseholder": "kv m",
+      "errorTotalArea": "Umumiy maydon talab qilinadi",
+      "usableArea": "Foydalanish maydoni *",
+      "errorUsableArea": "Foydalanish maydoni talab qilinadi",
+      "serviceInfoTitle": "Xizmat ko'rsatish maydoning mavjudligi",
+      "serviceTotalArea": "Umumiy maydoni *",
+      "errorServiceTotalArea": "Umumiy maydon talab qilinadi",
+      "serviceUsableArea": "Foydalanish maydoni *",
+      "errorServiceUsableArea": "Foydalanish maydoni talab qilinadi",
+      "experienceInfoTitle": "Tajriba",
+      "carExperience": "Avtomobil savdosi bo'yicha tajriba *",
+      "errorCarExperience": "Tajriba vaqti talab qilinadi",
+      "soldCars": "Haqiqiy sotilgan mashinalar haqida ma'lumot *",
+      "soldCarsPlaceholder": "dona",
+      "errorSoldCars": "Sotilgan avtomobillar soni to'g'risida ma'lumot talab qilinadi",
+      "salesMonth": "Oylik sotish prognozi *",
+      "salesMonthPlaceholder": "dona",
+      "errorSalesMonth": "Oyiga sotish talab qilinadi",
+      "contactName": "Aloqa qiluvchi shaxs *",
+      "contactNamePlaceholder": "Akrom",
+      "errorContactName": "Aloqa qiluvchi shaxs talab qilinadi",
+      "contactNumber": "Aloqa raqami",
+      "errorContactNumber": "Aloqa raqami talab qilinadi"
+    },
      "modal": {
       "successTitle": "Sizning arizangiz qabul qilindi"
     },
     "about": {
-      "title": "GAC International haqida"
+      "title": "GAC International haqida",
+      "awards": "Mukofotlar"
     }
   }
 }

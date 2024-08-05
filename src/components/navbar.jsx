@@ -88,7 +88,7 @@ const Navbar = () => {
                     />
                   ))}
                   <div
-                    className={`peer-hover:block  !-z-[999999] hidden w-full bg-black/50 size-[50%] top-0  fixed left-0`}
+                    className={`peer-hover:block  !-z-[999999] hidden w-full bg-black size-[50%] top-0  fixed left-0`}
                   ></div>
                 </ul>
               </div>
@@ -154,13 +154,13 @@ export const NavbarList = ({ menu, lineMove, pathname, setChildRef, onClick }) =
   }
   return (
     <>
-      <li
+      <div
         ref={ref}
        
         onMouseOver={lineMove}
         className={`${
           subTitle ? "peer" : " "
-        } relative border-b-[1px] lg:border-0 w-full border-[#666666] uppercase lg:text-xs xl:text-sm  lg:w-auto py-3 px-5 lg:py-3 lg:px-2 xl:px-3  xl:py-[12px] flex flex-row lg:flex-col justify-between lg:justify-center items-center group line`}
+        } relative border-b-[1px] lg:border-0 w-full  border-[#666666] uppercase lg:text-xs xl:text-sm  lg:w-auto py-3 px-5 lg:py-3 lg:px-2 xl:px-3  xl:py-[12px] flex flex-row lg:flex-col justify-between lg:justify-center items-center group line`}
       >
         {!subTitle ? (
           <Link
@@ -186,7 +186,7 @@ export const NavbarList = ({ menu, lineMove, pathname, setChildRef, onClick }) =
           </Link>
         ) : (
           <>
-            <div className={`flex flex-col gap-4 lg:gap-0 !text-sm`}>
+            <div className={`flex flex-col gap-4 lg:gap-0 !text-sm `}>
               <li
                
                 className="relative border-0 w-full lg:w-auto  flex flex-row lg:flex-col justify-between lg:justify-center items-center group whitespace-nowrap"
@@ -194,7 +194,7 @@ export const NavbarList = ({ menu, lineMove, pathname, setChildRef, onClick }) =
                 {t(title)}
               </li>
               <ul
-                className={`lg:absolute lg:pb-[50px] lg:top-[35px] left-0 duration-300 gap-10 z-[20] ${
+                className={`lg:absolute lg:pb-[50px]  lg:top-[35px] left-0 duration-300 gap-10 z-[20] ${
                   dropdown ? "block" : "hidden"
                 } lg:group-hover:block whitespace-nowrap w-full`}
               >
@@ -227,7 +227,7 @@ export const NavbarList = ({ menu, lineMove, pathname, setChildRef, onClick }) =
             />
           </>
         )}
-      </li>
+      </div>
     </>
   );
 };

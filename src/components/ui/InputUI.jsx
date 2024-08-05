@@ -20,7 +20,7 @@ export default function InputUI({
       {
         isTextArea ? 
         <textarea
-        
+        {...register}
         id={nameLabel}
         rows={textAreaRows}
         placeholder={placeholder}

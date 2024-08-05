@@ -20,7 +20,7 @@ export const NavList = [
         company: "gac",
         title: 'Empow',
         id: 1,
-        href: '/models/1',
+        href: '/models/Empow',
     },
     {
         company: "gac",

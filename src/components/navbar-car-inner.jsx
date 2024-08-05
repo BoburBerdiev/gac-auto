@@ -1,25 +1,10 @@
 "use client"
 import {ImgUI} from "@/components/index";
-import {FaMapLocationDot} from "react-icons/fa6";
-import {IoIosDocument} from "react-icons/io";
-import Link from "next/link";
 import {useTranslation} from "react-i18next";
 
 
-const NavbarCarInner = ({logo}) => {
+const NavbarCarInner = ({logo, innerPage , setInnerPage}) => {
     const {t} = useTranslation();
-    const listLink = [
-        {
-            title: t('carInnerNav.overview'),
-            link:  "/models/1",
-            id: 0
-        },
-        {
-            title: t('carInnerNav.performance') ,
-            link:  "/models/1/perfonmance",
-            id: 1
-        },
-    ]
     return (
         <section className={'w-full bg-transparent absolute top-0 left-0 z-10 mt-11'}>
             <div className={'container'}>
@@ -35,19 +20,14 @@ const NavbarCarInner = ({logo}) => {
                         </div>
                     </div>
                     <div className={'w-full !bg-white flex flex-col xl:pl-4 xl:py-2 2xl:py-2.5 lg:items-center max-lg:divide-y justify-between lg:flex-row'}>
-                        <ul className={' bg-white text-sm py-3 lg:py-4 xl:py-3 md:text-base max-lg:justify-center flex items-center flex-wrap text-currentTextBlack  divide-x divide-[#747474]'}>
-                            {
-                                listLink.map((link) => (
-                                    <li key={link?.id} className={'hover:text-currentRed text-sm 2xl:text-base duration-200 cursor-pointer leading-3 px-2 2xl:px-4 '}>
-                                        <Link href={link?.link}>
-                                            {
-                                                link?.title
-                                            }
-                                        </Link>
-                                    </li>
-                                ))
-                            }
-                        </ul>
+                        <div className={' bg-white text-sm py-3 lg:py-4 xl:py-3 md:text-base max-lg:justify-center flex items-center flex-wrap text-currentTextBlack  divide-x divide-[#747474]'}>
+                                <p onClick={() => setInnerPage('overview')} className={` ${innerPage === 'overview' && 'text-currentRed'} hover:text-currentRed text-sm 2xl:text-base duration-200 cursor-pointer leading-3 px-2 2xl:px-4 `}>
+                                    {t('carInnerNav.overview')}
+                                </p>
+                                <p onClick={() => setInnerPage('performance')} className={` ${innerPage === 'performance' && 'text-currentRed'} hover:text-currentRed text-sm 2xl:text-base duration-200 cursor-pointer leading-3 px-2 2xl:px-4 `}>
+                                    {t('carInnerNav.performance')}
+                                </p>
+                        </div>
                         {/* <div className={'flex items-center flex-wrap max-lg:justify-center  py-3 lg:py-2 xl:py-3 px-2 gap-x-2 xl:gap-x-6'}>
                             <div className={'flex items-center gap-x-1 '}>
                                 <FaMapLocationDot className={'2xl:text-xl shrink-1'}/>

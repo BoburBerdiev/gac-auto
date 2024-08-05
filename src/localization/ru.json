@@ -53,7 +53,8 @@
       "features": "Функции"
     },
     "about": {
-      "title": "О компании GAC International"
+      "title": "О компании GAC International",
+      "awards": "Награды"
     },
     "models": {
       "all": "Все",
@@ -91,9 +92,45 @@
     },
     "dealers": {
       "title": "Стать дилером",
-      "allInfo": "Общая информация"
-      
+      "allInfoTitle": "Общая информация",
+      "errorCompany": "Название компании обязательно",
+      "labelCompany": "Название компании *",
+      "errorRegion": "Регион обязателен",
+      "labelRegion": "Регион/область *",
+      "labelAddress": "Адрес *",
+      "errorAddress": "Адрес обязателен",
+      "errorCount": "Количество населения обязательно",
+      "labelCount": "Количество населения *",
+      "otherInfoTitle": "Дополнительная информация",
+      "errorBank": "Банковские реквизиты обязательны",
+      "labelBank": "Банковские реквизиты *",
+      "showroomInfoTitle": "Наличие выставочного зала",
+      "totalArea": "Общая площадь *",
+      "totalAreaPlaseholder": "кв м",
+      "errorTotalArea": "Общая площадь обязательна",
+      "usableArea": "Полезная площадь *",
+      "errorUsableArea": "Полезная площадь обязательна",
+      "serviceInfoTitle": "Наличие сервисной зоны",
+      "serviceTotalArea": "Общая площадь *",
+      "errorServiceTotalArea": "Общая площадь обязательна",
+      "serviceUsableArea": "Полезная площадь *",
+      "errorServiceUsableArea": "Полезная площадь обязательна",
+      "experienceInfoTitle": "Опыт",
+      "carExperience": "Опыт продаж автомобилей *",
+      "errorCarExperience": "Продолжительность опыта обязательна",
+      "soldCars": "Информация о фактически проданных автомобилях *",
+      "soldCarsPlaceholder": "штук",
+      "errorSoldCars": "Информация о количестве проданных автомобилей обязательна",
+      "salesMonth": "Прогноз продаж на месяц *",
+      "salesMonthPlaceholder": "штук",
+      "errorSalesMonth": "Прогноз продаж на месяц обязателен",
+      "contactName": "Контактное лицо *",
+      "contactNamePlaceholder": "Акром",
+      "errorContactName": "Контактное лицо обязательно",
+      "contactNumber": "Контактный номер",
+      "errorContactNumber": "Контактный номер обязателен"
     },
+    
     "toTop": "Верх"
   }
 }

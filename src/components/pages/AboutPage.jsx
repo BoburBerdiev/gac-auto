@@ -145,7 +145,7 @@ const AboutPage = ({data}) =>{
         className={"py-10 xl:py-[60px] 2xl:py-[65px] 3xl:py-[85px] bg-white"}
       >
         <div className="container-fluid space-y-[30px] lg:space-y-[50px] 2xl:space-y-[55px] 3xl:space-y-[65px] ">
-          <SectionTitleCar aboutPage={true} title={"Награды"} />
+          <SectionTitleCar aboutPage={true} title={t('about.awards')} />
           <AwardsSection firstCardFull={true} list={awards} />
         </div>
       </section>

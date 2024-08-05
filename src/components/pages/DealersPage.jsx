@@ -1,5 +1,6 @@
 "use client"
 import { BannerSmall, ButtonUI, InputUI, SectionTitleCar, SelectUI, SuccessModal } from "@/components";
+import apiService from "@/service/axios";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
@@ -8,55 +9,55 @@ import { AiOutlineLoading } from "react-icons/ai";
 import { useMutation } from "react-query";
 const optionValues = [
   {
-    title: "Ташкент", 
+    name: "Ташкент", 
     id: 0,
   },
   {
-    title: "Андижан", 
+    name: "Андижан", 
     id: 1,
   },
   {
-    title: "Бухара", 
+    name: "Бухара", 
     id: 2,
   },
   {
-    title: "Фергана", 
+    name: "Фергана", 
     id: 3,
   },
   {
-    title: "Жиззах", 
+    name: "Жиззах", 
     id: 4,
   },
   {
-    title: "Хоразм", 
+    name: "Хоразм", 
     id: 5,
   },
   {
-    title: "Наманган", 
+    name: "Наманган", 
     id: 6,
   },
   {
-    title: "Навоий", 
+    name: "Навоий", 
     id: 7,
   },
   {
-    title: "Қашқадарё", 
+    name: "Қашқадарё", 
     id: 8,
   },
   {
-    title: "Қорақалпоғистон", 
+    name: "Қорақалпоғистон", 
     id: 9,
   },
   {
-    title: "Самарқанд", 
+    name: "Самарқанд", 
     id: 10,
   },
   {
-    title: "Сирдарё", 
+    name: "Сирдарё", 
     id: 11,
   },
   {
-    title: "Сурхондарё", 
+    name: "Сурхондарё", 
     id: 12,
   },
  
@@ -112,79 +113,79 @@ const DealersPage =() => {
       </div>
       <section className="py-5 md:pb-10 md:pt-10 lg:pb-20 text-currentTextBlack">
           <div className="container-fluid space-y-3">
-            <h5 className="text-base font-bold md:text-xl">{t('dealers.allInfo')}</h5>
+            <h5 className="text-base font-bold md:text-xl">{t('dealers.allInfoTitle')}</h5>
             <form onSubmit={handleSubmit(onSubmit)}>
               <div className="grid grid-cols-1 gap-5 mb-5">
                 <div>
-                  <InputUI  register={{...register('model', {required: true})}} errorText={'Требуется название'} type={'text'} labelText={'Название предприятия *'} nameLabel={'companyName'} placeholder={'Название предприятия'} isError={true}/>                
+                  <InputUI  register={{...register('nameEnterprises', {required: true})}} errorText={t('dealers.errorCompany')} type={'text'} labelText={t('dealers.labelCompany')} nameLabel={'companyName'} placeholder={t('dealers.labelCompany')} isError={errors.nameEnterprises}/>                
                 </div>
               </div>
               <div className="grid grid-cols-1 gap-5 mb-5">
                 <div>
-                  <SelectUI nameLabel={"countries"} labelText={"  Регион / Область *"} placeholder={'Выберите регион'} errorText={" Требуется регион"} optionValues={optionValues}/>
+                  <SelectUI register={{...register('region', {required: true})}} nameLabel={"countries"} labelText={t('dealers.labelRegion')} placeholder={t('dealers.labelRegion')} errorText={t('dealers.errorRegion')} optionValues={optionValues} isError={errors.region}/>
                 </div>
                 <div>
-                  <InputUI nameLabel={'address'} labelText={" Адрес *"} type={'text'} placeholder={'Адрес'} errorText={"Требуется адрес"}/>
+                  <InputUI register={{...register('address', {required: true})}} isError={errors.address} nameLabel={'address'} labelText={t('dealers.labelAddress')} type={'text'} placeholder={t('dealers.labelAddress')} errorText={t('dealers.errorAddress')}/>
                 </div>
                 <div>
-                  <InputUI nameLabel={'countUser'} labelText={"  Численность населения *"} type={'number'} placeholder={'Численность населения'} errorText={"   Требуется численность населения"}/>
+                  <InputUI register={{...register('countUser', {required: true})}} isError={errors.countUser} nameLabel={'countUser'} labelText={t('dealers.labelCount')} type={'number'} placeholder={t('dealers.labelCount')} errorText={t('dealers.errorCount')}/>
                 </div>
               </div>
               <div className="w-full h-[0.5px] bg-currentRed/30 my-16 rounded"></div>
               <div className="grid grid-cols-1 gap-5 mb-5 md:grid-cols-2">
                 <div>
                   <h5 className="text-base font-bold md:text-xl">
-                    Прочая информация
+                    {t('dealers.otherInfoTitle')}
                   </h5>
-                  <InputUI errorText={'Требуется банковские реквизиты'} type={'text'} labelText={'  Банковские реквизиты *'} nameLabel={'message'} placeholder={'Банковские реквизиты *'} isTextArea={true} textAreaRows={8}/>
+                  <InputUI register={{...register('otherInformation', {required: true})}} isError={errors.otherInformation} errorText={t('dealers.errorBank')} type={'text'} labelText={t('dealers.labelBank')} nameLabel={'message'} placeholder={t('dealers.labelBank')} isTextArea={true} textAreaRows={8}/>
                 </div>
                 <div className="space-y-3">
                   <h5 className="text-base font-bold md:text-xl">
-                    Наличие шоурума
+                  {t('dealers.showroomInfoTitle')}
                   </h5>
                   <div className="flex justify-between space-x-5 ">
                     <div className="w-full">
-                       <InputUI nameLabel={'showroomTotalAreat'} labelText={"Общая площадь *"} type={'number'} placeholder={'кв м'} errorText={"  Требуется общая площадь"}/>
+                       <InputUI  register={{...register('showroomTotalArea', {required: true})}} isError={errors.showroomTotalArea}  nameLabel={'showroomTotalArea'} labelText={t('dealers.totalArea')} type={'number'} placeholder={t('dealers.totalAreaPlaseholder')} errorText={t('dealers.errorTotalArea')}/>
                     </div>
                     <div className={"w-full"}>
-                     <InputUI nameLabel={'showroomUsableArea'} labelText={"  Полезная площадь *"} type={'number'} placeholder={'кв м'} errorText={" Требуется полезная площадь"}/>
+                     <InputUI register={{...register('showroomUsableArea', {required: true})}} isError={errors.showroomUsableArea} nameLabel={'showroomUsableArea'} labelText={t('dealers.usableArea')} type={'number'} placeholder={t('dealers.totalAreaPlaseholder')} errorText={t('dealers.errorUsableArea')}/>
                     </div>
                   </div>
                   <h5 className="text-base font-bold md:text-xl">
-                    Наличие СТО
+                  {t('dealers.serviceInfoTitle')}
                   </h5>
                   <div className="flex justify-between space-x-5">
                     <div className="w-full">
-                      <InputUI nameLabel={'serviceTotalArea'} labelText={"  Общая площадь *"} type={'number'} placeholder={'кв м'} errorText={"  Требуется общая площадь"}/>
+                      <InputUI  register={{...register('serviceTotalArea', {required: true})}} isError={errors.serviceTotalArea} nameLabel={'serviceTotalArea'} labelText={t('dealers.serviceTotalArea')} type={'number'} placeholder={t('dealers.totalAreaPlaseholder')} errorText={t('dealers.errorServiceTotalArea')}/>
                     </div>
                     <div className="w-full">
-                      <InputUI nameLabel={'serviceUsableArea'} labelText={"  Полезная площадь *"} type={'number'} placeholder={'кв м'} errorText={"  Требуется полезная площадь"}/>
+                      <InputUI  register={{...register('serviceUsableArea', {required: true})}} isError={errors.serviceUsableArea} nameLabel={'serviceUsableArea'} labelText={t('dealers.serviceUsableArea')} type={'number'} placeholder={t('dealers.totalAreaPlaseholder')} errorText={t('dealers.errorServiceUsableArea')}/>
                     </div>
                   </div>
                 </div>
                 <div className="w-full h-[0.5px] bg-currentRed/30 my-16 rounded  md:col-span-2 "></div>
                 <div className="col-span-1 space-y-5 md:col-span-2">
                   <h5 className="text-base font-bold md:text-xl">
-                    Наличие опыта
+                  {t('dealers.experienceInfoTitle')}
                   </h5>
                   <div>
-                    <InputUI nameLabel={'carExperience'} labelText={"  Наличие опыта в сфере торговли автомобилями *"} type={'date'} placeholder={'Выбрать год'} errorText={"Требуется опыт периода"}/>
+                    <InputUI register={{...register('carExperience', {required: true})}} isError={errors.carExperience} nameLabel={'carExperience'} labelText={t('dealers.carExperience')} type={'date'} errorText={t('dealers.errorCarExperience')}/>
                   </div>
                   <div>
-                    <InputUI nameLabel={'infoAboutSoldCard'} labelText={"Информация о фактически реализованных автомобилях *"} type={'text'} placeholder={'шт'} errorText={"Информация о фактическом количестве проданных автомобилей"}/>
+                    <InputUI register={{...register('infoAboutSoldCard', {required: true})}} isError={errors.infoAboutSoldCard} nameLabel={'infoAboutSoldCard'} labelText={t('dealers.soldCars')} type={'text'} placeholder={t('dealers.soldCarsPlaceholder')} errorText={t('dealers.errorSoldCars')}/>
                   </div>
                   <div>
-                    <InputUI nameLabel={'salesMonth'} labelText={" Прогноз продаж в месяц *"} type={'text'} placeholder={'шт'} errorText={" Требуется продаж в месяц"}/>
+                    <InputUI register={{...register('salesMonth', {required: true})}} isError={errors.salesMonth}  nameLabel={'salesMonth'} labelText={t('dealers.salesMonth')} type={'text'} placeholder={t('dealers.soldCarsPlaceholder')} errorText={t('dealers.errorSalesMonth')}/>
                   </div>
                 </div>
               </div>
               <div className="grid justify-between grid-cols-1 gap-2 md:grid-cols-5">
                 <div className="flex col-span-1 gap-2 md:col-span-3 ">
                   <div>
-                   <InputUI nameLabel={'contactPerson'} labelText={" Контактное лицо *"} type={'text'} placeholder={'Иван'} errorText={"Требуется контактное лицо"}/>
+                   <InputUI register={{...register('contactPerson', {required: true})}} isError={errors.contactPerson} nameLabel={'contactPerson'} labelText={t('dealers.contactName')} type={'text'} placeholder={t('dealers.contactNamePlaceholder')} errorText={t('dealers.errorContactName')}/>
                   </div>
                   <div>
-                    <InputUI nameLabel={'contactPhone'} labelText={"  Контактный номер"} type={'text'} placeholder={'+998 99 999 99 99'} errorText={"Требуется контактный номер"}/>
+                    <InputUI register={{...register('contactPhone', {required: true})}} isError={errors.contactPhone} nameLabel={'contactPhone'} labelText={t('dealers.contactNumber')} type={'text'} placeholder={'+998 99 999 99 99'} errorText={t('dealers.errorContactNumber')}/>
                   </div>
                 </div>
                 <div className="flex items-end justify-end  w-full h-full col-span-1 md:col-span-2">
