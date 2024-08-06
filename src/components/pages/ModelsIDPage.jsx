@@ -30,7 +30,6 @@ export default function ModelsDetails({ data }) {
   const [isModelColor, setIsModelColor] = useState();
   const [carColor, setCarColor] = useState()
   const { t, i18n } = useTranslation();
-  console.log(data?.video?.path);
   useEffect(() => {
     setCarColor(data?.carColor[0].carImage?.path)
     setIsModelColor(data?.carColor[0]._id);
@@ -230,7 +229,7 @@ export default function ModelsDetails({ data }) {
             <div className="container flex flex-col items-center gap-6 md:gap-8 ">
               <SectionTitleCar title={t("innerModel.tvc")} />
               <div className="w-full aspect-video">
-              <video className="w-full h-full " controls="controls" autoplay="autoplay" muted poster webkit-playsinline playsinline x-webkit-airplay="true" airplay="allow" loop="loop">
+              <video className="w-full h-full " controls autoPlay  muted loop playsInline>
                 <source src={`${process.env.NEXT_PUBLIC_API_URL}/${data?.video?.path}`} type="video/mp4" />
               </video>
               </div>
@@ -329,8 +328,8 @@ export default function ModelsDetails({ data }) {
       }
 
 
-      <section className={"bg-[#f5f5f5]  md:py-10"}>
-        <div className="container-fluid flex flex-wrap justify-evenly  divide-y md:divide-y-0 divide-[#e1e1e1] ">
+      <section className={"bg-[#f5f5f5]  relative md:py-10"}>
+        <div className="container-fluid flex flex-wrap relative z-10 justify-evenly  divide-y md:divide-y-0 divide-[#e1e1e1] ">
           <div className="w-full md:w-[30%] lg:w-[15%]">
             <CardServiceCar
               href={"/drive"}
@@ -373,6 +372,9 @@ export default function ModelsDetails({ data }) {
             />
           </div>
         </div>
+        <img  src="/bg-1.jpg" className="absolute z-[5] top-0 left-0 w-full h-full " alt="Banner Image" />
+        <div className="w-full h-full bg-black/60 absolute top-0 left-0 z-[6] "></div>
+        {/* <ImgUI  imageStyle={'z-5 object-center'} src={'/bg-1.jpg'} alt={'Banner image'}/> */}
       </section>
       <SaleCarModal modal={saleModal} setModal={setSaleModal} />
     </div>

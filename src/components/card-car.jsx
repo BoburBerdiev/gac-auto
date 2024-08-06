@@ -9,9 +9,10 @@ import { langSelect } from "@/helper";
 
 const CardCar = ({model}) => {
   const {t , i18n} = useTranslation()
+  console.log(model);
   return (
     <Link
-      href={`models/${model?.slug}`}
+      href={`/models/${model?.slug}`}
       className={
         "block   bg-white font-montserrat  h-fit overflow-hidden  text-[#747474] group duration-200 ease-linear"
       }

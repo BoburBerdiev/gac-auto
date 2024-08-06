@@ -1,44 +1,38 @@
 export const NavList = [
     {
-        title: 'navbar.home',
-        id: 0,
-        href: '/'
+        name: 'navbar.home',
+        _id: 1,
+        slug: '/'
     },
     {
-        company: "gac",
-        title: 'Empow',
-        id: 1,
-        href: '/models/Empow',
-    },
-    {
-        title: 'navbar.more',
-        id: 9,
-        href: '/about',
+        name: 'navbar.more',
+        _id: 9,
+        slug: '/about',
         subTitle: [
             {
-                title: 'navbar.about',
-                id: 1,
-                href: '/about',
+                name: 'navbar.about',
+                _id: 1,
+                slug: '/about',
             },
             {
-                title: 'navbar.dealers',
-                id: 2,
-                href: '/dealers',
+                name: 'navbar.dealers',
+                _id: 2,
+                slug: '/dealers',
             },
             {
-                title: 'navbar.news',
-                id: 3,
-                href: '/news',
+                name: 'navbar.news',
+                _id: 3,
+                slug: '/news',
             },
             {
-                title: 'navbar.contact',
-                id: 4,
-                href: '/dealers-center',
+                name: 'navbar.contact',
+                _id: 4,
+                slug: '/dealers-center',
             },
             {
-                title: 'navbar.drive',
-                id: 5,
-                href: '/drive',
+                name: 'navbar.drive',
+                _id: 5,
+                slug: '/drive',
             },
         ]
     },

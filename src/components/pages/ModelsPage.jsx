@@ -18,7 +18,7 @@ const ModelsPage = ({banner, filterBtns}) => {
     data: modelsData,
     refetch: modelsRefetch,
     isSuccess: modelsIsSucces,
-  } = useQuery( "models", () => apiService.getData(tabActive === 'all' ? 'car' : `/car?category=${query}`),{ enabled: false, }
+  } = useQuery( "models", () => apiService.getData(tabActive === 'all' ? '/car' : `/car?category=${query}`),{ enabled: false, }
   );
 
   useEffect(() => {

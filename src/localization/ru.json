@@ -22,7 +22,8 @@
     "search": {
       "sectionTitle": "Ищите модель",
       "input": "Найдите или введите имя модели",
-      "buttonText": "Поиск"
+      "buttonText": "Поиск",
+      "notFound": "Соответствующий контент не найден, попробуйте еще раз."
     },
     "btn": {
       "showMore": "Показать больше",
@@ -45,7 +46,7 @@
     },
     "index": {
       "ourModels": "Наши модели",
-      "ourNews": "Наши новости"
+      "ourNews": "Новости"
     },
     "innerModel": {
       "specs": "Спецификация",
@@ -126,7 +127,7 @@
       "salesMonthPlaceholder": "штук",
       "errorSalesMonth": "Прогноз продаж на месяц обязателен",
       "contactName": "Контактное лицо *",
-      "contactNamePlaceholder": "Акром",
+      "contactNamePlaceholder": "ФИО",
       "errorContactName": "Контактное лицо обязательно",
       "contactNumber": "Контактный номер",
       "errorContactNumber": "Контактный номер обязателен"

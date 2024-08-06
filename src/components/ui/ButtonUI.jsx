@@ -10,7 +10,7 @@ const ButtonUl = ({ href , text ,onClick ,  type, isBorderBtn , extraStyle , dow
                 download
                   href={href} 
                   className={` 
-                    ${isBorderBtn ? `duration-500 py-3 px-20 border-borderBtn text-borderBtn hover:bg-borderBtn 2xl:text-base lg:px-24 2xl:px-28 3xl:px-32 xl:py-4` : `rounded-[45px] px-4 py-2 border-currentRed text-currentRed hover:bg-currentRed`}    
+                    ${isBorderBtn ? `duration-500 py-3 px-16  md:px-20 border-borderBtn text-borderBtn hover:bg-borderBtn 2xl:text-base  xl:py-4` : `rounded-[45px] px-4 py-2  hover:bg-transparent duration-200 hover:!text-currentRed text-white border-currentRed bg-currentRed`}    
                     text-sm font-bold border hover:text-white ${extraStyle}`
                   }
                 >
@@ -20,11 +20,11 @@ const ButtonUl = ({ href , text ,onClick ,  type, isBorderBtn , extraStyle , dow
             : 
              href 
               ?
-                <Link href={href}  className={` ${ isBorderBtn ? `duration-500 py-3 px-20 border-borderBtn text-borderBtn hover:bg-borderBtn 2xl:text-base lg:px-24 2xl:px-28 3xl:px-32 xl:py-4` : `rounded-[45px] px-4 py-2 border-currentRed text-currentRed hover:bg-currentRed`}    text-sm font-bold border   hover:text-white ${extraStyle}`}>
+                <Link href={href}  className={` ${ isBorderBtn ? `duration-500 py-3 px-16  md:px-20 border-borderBtn text-borderBtn hover:bg-borderBtn 2xl:text-base  xl:py-4` : `rounded-[45px] px-4 py-2  hover:bg-transparent duration-200 hover:!text-currentRed text-white border-currentRed bg-currentRed`}    text-sm font-bold border   hover:text-white ${extraStyle}`}>
                     {text}
                 </Link>
                 :
-               <button type={type}  onClick={onClick} className={` ${ isBorderBtn ? `duration-500 py-3 px-20 border-borderBtn text-borderBtn hover:bg-borderBtn 2xl:text-base lg:px-24 2xl:px-28 3xl:px-32 xl:py-4` : `rounded-[45px] px-4 py-2 border-currentRed text-currentRed hover:bg-currentRed`}    text-sm font-bold border   hover:text-white ${extraStyle}`}>
+               <button type={type}  onClick={onClick} className={` ${ isBorderBtn ? `duration-500 py-3 px-16  md:px-20 border-borderBtn text-borderBtn hover:bg-borderBtn 2xl:text-base  xl:py-4` : `rounded-[45px] px-4 py-2  hover:bg-transparent duration-200 hover:!text-currentRed text-white border-currentRed bg-currentRed`}    text-sm font-bold border   hover:text-white ${extraStyle}`}>
                     {text}
                </button> 
             

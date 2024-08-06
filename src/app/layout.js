@@ -11,9 +11,11 @@ const montserrat = Montserrat({
 })
 
 export const metadata = {
-  title: "GacMotor",
+  title: "Gacauto",
   description: "Dealler of GacMotor in Tashkent ",
-  icon: "/logo-gac.png"
+  icons: {
+    icon: '/logo-gac.png',
+  },
 };
 
 export default function RootLayout({ children }) {

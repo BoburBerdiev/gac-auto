@@ -22,7 +22,8 @@
     "search": {
       "sectionTitle": "Modelni qidiring",
       "input": "Model nomini qidiring yoki kiriting",
-      "buttonText": "Qidirmoq"
+      "buttonText": "Qidirmoq",
+      "notFound": "Mos kontent topilmadi , yana bir bor urinib ko`ring"
     },
     "btn": {
       "showMore": "Ko'proq ko'rish",
@@ -52,7 +53,7 @@
     "toTop": "Tepaga",
     "index": {
       "ourModels": "Bizning modellarimiz",
-      "ourNews": "Bizning yangiliklarimiz"
+      "ourNews": " Yangiliklarimiz"
     },
     "models": {
       "all": "Hammasi",
@@ -120,7 +121,7 @@
       "salesMonthPlaceholder": "dona",
       "errorSalesMonth": "Oyiga sotish talab qilinadi",
       "contactName": "Aloqa qiluvchi shaxs *",
-      "contactNamePlaceholder": "Akrom",
+      "contactNamePlaceholder": "FIO",
       "errorContactName": "Aloqa qiluvchi shaxs talab qilinadi",
       "contactNumber": "Aloqa raqami",
       "errorContactNumber": "Aloqa raqami talab qilinadi"

@@ -15,6 +15,8 @@ import { langSelect } from "@/helper";
 import { useQuery, useQueryClient } from "react-query";
 import apiService from "@/service/axios";
 import { useForm } from "react-hook-form";
+import SearchPanel from "./search-panel";
+import { FaGlobeAmericas } from "react-icons/fa";
 
 const Navbar = () => {
   const [nav, setNav] = useState(false);
@@ -29,8 +31,7 @@ const Navbar = () => {
     data: modelsData,
     refetch: modelsRefetch,
     isSuccess: modelsIsSucces,
-  } = useQuery( "models", () => apiService.getData('/car/model'),{ enabled: false, }
-  )
+  } = useQuery( "modelsLink", () => apiService.getData('/car/model'),{ enabled: false, })
 
   useEffect(() => {
     modelsRefetch()
@@ -48,6 +49,16 @@ const Navbar = () => {
       setLine(left);
     }
   };
+  useEffect(() => {
+    if (modelsIsSucces) {
+      let allList = [
+        NavList[0],
+        ...modelsData,
+        ...NavList.slice(1)
+      ];
+      setNavbarLists(allList)
+    }
+  }, [modelsData])
 
   const onMouseLeaveFunc = () => {
     if (childRef) {
@@ -67,9 +78,9 @@ const Navbar = () => {
         <div className="container w-full">
           <div className="bg-black flex items-center w-full h-full justify-between py-2 lg:p-0">
             <div className="flex items-center gap-3 w-full">
-              <a href="/" className="relative flex items-center justify-center  w-[190px] h-6 lg:w-[150px] lg:h-5 2xl:w-56 2xl:h-8">
+              <a href="/" className="relative flex items-center justify-center lg:z-40 w-[190px] h-6 lg:w-[150px] lg:h-5 2xl:w-56 2xl:h-8">
                 <ImgUI
-                  src={"/logo.png"}
+              src={"/logo.png"}
                   alt={"logo_gacmotors"}
                   objectFitContain={true}
                 />
@@ -77,7 +88,7 @@ const Navbar = () => {
               <div className="flex items-center flex-col">
                 <ul
                   onMouseLeave={onMouseLeaveFunc}
-                  className={`px-2 2xl:gap-3 flex flex-col z-50 h-screen lg:h-auto ${
+                  className={`px-2 2xl:gap-3 flex flex-col z-30 h-screen lg:h-auto   ${
                     nav ? "right-0" : "-right-full"
                   }  duration-300 fixed lg:static top-0 w-full bg-black lg:bg-transparent lg:flex-row font-thin text-base text-white items-center `}
                 >
@@ -94,9 +105,10 @@ const Navbar = () => {
                       setNav(false);
                     }}
                   />
-                  {NavList?.map((item) => (
+                  {navbarLists?.map((item) => (
                     <NavbarList
-                      key={item?.id}
+                      setNav={setNav}
+                      key={item?._id}
                       menu={item}
                       lineMove={lineMove}
                       pathname={pathname}
@@ -105,7 +117,7 @@ const Navbar = () => {
                     />
                   ))}
                   <div
-                    className={`peer-hover:block  !-z-[999999] hidden w-full bg-black size-[50%] top-0  fixed left-0`}
+                    className={`md:peer-hover:block  ${nav ? 'hidden' : ''} !-z-[99] hidden w-full bg-black/50 size-[40%] top-0  fixed left-0`}
                   ></div>
                 </ul>
               </div>
@@ -113,8 +125,10 @@ const Navbar = () => {
             <div className="flex items-center gap-3 md:gap-5">
               <BiSearch
                 onClick={() => handleSearch()}
-                className=" text-white h-6 w-6 hidden cursor-pointer"
+                className=" text-white h-6 w-6 cursor-pointer"
               />
+              <SearchPanel search={search} setSearch={setSearch}/>
+
                <div className={"flex items-start group "}>
                 <NavbarDropdown />
               </div>
@@ -132,28 +146,28 @@ const Navbar = () => {
           style={{ "--before-left": `${line}px` }}
           className={` beforeLine hidden lg:block w-full before:h-full before:-translate-x-1/2  before:duration-700 z-1 h-1 absolute bottom-0 before:absolute before:w-[30px] before:bg-[#d40021]`}
         ></div>
-        <NavSearch search={search} setSearch={setSearch} />
+        {/* <NavSearch search={search} setSearch={setSearch} /> */}
       </AnimatePresence>
-
-      </nav>
+        </nav>
     </>
   );
 };
 
-const NavbarList = ({ menu, lineMove, pathname, setChildRef, onClick }) => {
+const NavbarList = ({ menu, lineMove, pathname, setChildRef, onClick , setNav }) => {
   const [dropdown, setDropdown] = useState(false);
   const ref = useRef();
   const { t } = useTranslation();
-  const { title, href, subTitle } = menu;
+  const { name, slug, subTitle } = menu;
   useEffect(() => {
-    if (pathname === href) {
+    if (pathname === slug) {
       setChildRef(ref.current.offsetLeft + ref.current.clientWidth / 2);
     }
-    if (pathname.includes('models') || pathname.includes('news')) {
+    if (pathname.includes(slug)) {
       setChildRef(ref.current.offsetLeft + ref.current.clientWidth / 2);
+      console.log(true);
     }
     subTitle?.forEach((itemLink) => {
-      if (itemLink.href === pathname) {
+      if (itemLink.slug === pathname) {
         setChildRef(ref.current.offsetLeft + ref.current.clientWidth / 2);
       }
     });
@@ -161,13 +175,11 @@ const NavbarList = ({ menu, lineMove, pathname, setChildRef, onClick }) => {
   }, [ pathname]);
 
   const removeDropdown = () => {
+    setNav(false)
     setDropdown(false)
-    return onClick
   }
   return (
     <>
-
-
       <div
         ref={ref}
        
@@ -179,52 +191,54 @@ const NavbarList = ({ menu, lineMove, pathname, setChildRef, onClick }) => {
         {!subTitle ? (
           <Link
             onClick={onClick}
-            href={href}
-            className="relative border-0 w-full lg:w-auto  flex gap-1 justify-between lg:justify-center items-center group whitespace-nowrap"
+            href={menu?.company ? `/models/${slug}` : slug}
+            className="relative border-0 w-full lg:w-auto  flex gap-2 lg:gap-1  lg:justify-center items-center group whitespace-nowrap"
           >
             {
-              menu.company === "aion" &&
+              menu?.company === "aion" &&
               <div className="relative w-3 h-3 xl:w-5 xl:h-4 ">
                 <ImgUI src={'/AION-logo.png'} alt={'Logo Aion'}/>
               </div>
             }
              {
-              menu.company === "gac" &&
-              <div className="relative w-3 h-3 xl:w-5 xl:h-4 ">
+              menu?.company === "gac" &&
+              <div className="relative w-7 h-5 ">
                 <ImgUI src={'/logo-gac.png'} alt={'Logo Aion'}/>
               </div>
             }
             <span className="">
-              {t(title)}  
+              {t(name)}  
             </span>
           </Link>
         ) : (
           <>
-            <div className={`flex flex-col gap-4 lg:gap-0 !text-sm `}>
+            <div className={`flex flex-col gap-4 lg:gap-0 !text-sm `}  >
               <li
-               
+                onClick={() => {
+                  setDropdown(!dropdown);
+                }}
                 className="relative border-0 w-full lg:w-auto  flex flex-row lg:flex-col justify-between lg:justify-center items-center group whitespace-nowrap"
               >
-                {t(title)}
+                {t(name)}
               </li>
               <ul
-                className={`lg:absolute lg:pb-[50px]  lg:top-[35px] left-0 duration-300 gap-10 z-[20] ${
+                className={`lg:absolute lg:pb-[50px] rounded lg:top-[35px] left-0 duration-300 gap-10 lg:gap-0 z-[20] ${
                   dropdown ? "block" : "hidden"
                 } lg:group-hover:block whitespace-nowrap w-full`}
               >
                 {subTitle?.map((item) => (
                   <button
                     onClick={() => removeDropdown()}
-                    key={item?.id}
-                    className="flex flex-col text-start justify-center items-start group/edit "
+                    key={item?._id}
+                    className="flex flex-col text-start  p-2   bg-black  justify-center items-start group/edit "
                   >
                     <Link
-                      href={item?.href}
-                      className="mt-2 lg:mt-5 pb-1 flex flex-col gap-2 "
+                      href={item?.slug}
+                      className=" pb-1 flex flex-col gap-2 mt-2 lg:mt-3"
                     >
-                      {t(item?.title)}
+                      {t(item?.name)}
                       <div
-                        className={`w-64 h-[2px] relative rounded-lg overflow-hidden bg-white/50 hidden lg:block before:w-0 before:group-hover/edit:w-full before:absolute before:duration-300 before:bg-[#d40021]  before:h-full  before:top-0 before:left-0 before:z-50`}
+                        className={`w-64 h-[1px] relative rounded-lg overflow-hidden bg-white/50 hidden lg:block before:w-0 before:group-hover/edit:w-full before:absolute before:duration-300 before:bg-[#d40021]  before:h-full  before:top-0 before:left-0 before:z-50`}
                       ></div>
                     </Link>
                   </button>
@@ -232,12 +246,13 @@ const NavbarList = ({ menu, lineMove, pathname, setChildRef, onClick }) => {
               </ul>
             </div>
             <IoIosArrowDown
+              onClick={() => {
+               setDropdown(!dropdown);
+              }}
               className={`text-white text-xl font-thin block self-start lg:hidden ${
                 dropdown ? "rotate-180" : null
               } `}
-              onClick={() => {
-                setDropdown(!dropdown);
-              }}
+             
             />
           </>
         )}
@@ -296,13 +311,19 @@ const NavbarDropdown = () => {
   
   return (
     <div className={"relative "}>
-      <p 
-      ref={dropdownRef}
-        onClick={() => openDropdown()}
-        className={"text-white cursor-pointer text-lg"}
-      >
-        {langSelect( i18n.language ,t('lang.ru') ,  t('lang.uz'))}
-      </p>
+
+      <div className="flex gap-1 items-center">
+         <FaGlobeAmericas className=" text-white" />
+        <p 
+        ref={dropdownRef}
+          onClick={() => openDropdown()}
+          className={"text-white cursor-pointer text-lg"}
+        >
+          {langSelect( i18n.language ,t('lang.ru') ,  t('lang.uz'))}
+        </p>
+      </div>
+      
+
      {
       dropdown ?
       <motion.div
@@ -310,7 +331,7 @@ const NavbarDropdown = () => {
       initial={{opacity: 0}}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className={`flex flex-col  w-10 absolute z-50 top-full -left-2  `}
+      className={`flex flex-col  w-14 absolute z-50 top-full -left-2  `}
     >
         <ul
           className={
@@ -322,7 +343,7 @@ const NavbarDropdown = () => {
             <li
               onClick={() => handleLang(lang)}
               className={
-                "cursor-pointer hover:bg-gray-50/50  py-1.5 px-2 !leading-[1]"
+                "cursor-pointer hover:bg-gray-50/50 text-center  py-1.5 px-2 !leading-[1]"
               }
               key={lang?.id}
             >
@@ -338,184 +359,5 @@ const NavbarDropdown = () => {
   );
 };
 
-const models = [
-  {
-    id: 1,
-    href: "",
-    category: "СВ",
-    logo: "/model-logo1.png",
-    image: "/model-image1.png",
-    gearbox: "AT",
-    seats: "7 Сиденья",
-    fuel: "Бензин",
-  },
-  {
-    id: 2,
-    href: "",
-    category: "МИНИВЭН",
-    logo: "/model-logo2.png",
-    image: "/model-image2.png",
-    gearbox: "AT",
-    seats: "7 Сиденья",
-    fuel: "Бензин",
-  },
-];
-
-const NavSearch = ({ search, setSearch }) => {
-  const [isModels, setIsModels] = useState(false)
-  const {t} = useTranslation()
-
-  const queryClient = useQueryClient();
-  const [isOpenSearch, setIsOpenSearch] = useState(false);
-  const { register, handleSubmit, reset } = useForm();
-  const [searchProduct, setSearchProduct] = useState("");
-  const router = useRouter();
-
-
-  const {
-    data: searchProductFiltered,
-    refetch: searchProductFilteredRefetch,
-    isSuccess: searchProductIsSuccess
-  } = useQuery(
-      "search",
-      () => apiService.getData(`/car?search=${searchProduct}`),
-      {
-          enabled: false,
-      }
-  );
-    
-  const debounce = (func, delay) => {
-  };
-  
-  const handleInputChange = debounce((e) => {
-      const value = e.target.value;
-      if (value.length > 2) {
-          setSearchProduct(value);
-          setIsOpenSearch(true);
-      } else {
-          setSearchProduct("");
-          setIsOpenSearch(false);
-      }
-  }, 500);
-  
-  useEffect(() => {
-      if (searchProduct.length > 2) {
-          searchProductFilteredRefetch();
-      }
-  }, [searchProduct, searchProductFilteredRefetch]);
-  
-  const eventStopPropagation = (e) => e.stopPropagation();
-  
-  const closeSearchPanel = useCallback(() => {
-      setIsOpenSearch(false);
-  }, []);
-  
-  const routerPushClear = () => {
-      reset({ search: "" });
-      setSearchProduct("");
-      setIsOpenSearch(false);
-      queryClient.removeQueries("search");
-  }
-
-
-
-
-
-
-
-
-
-  const closeSearch = () => {
-    setSearch(false);
-    document.body.classList.remove("overflow-hidden");
-  };
- 
-  return (
-   <>
-      {search && (
-        <motion.div
-          key={'search'}
-          initial={{opacity: 0, scale: 0.8, translateY: 30}}
-          animate={{ opacity: 1, scale: 1, translateY: 0 }}
-          exit={{opacity: 0, scale: 0.8}}
-          className={`w-screen h-screen fixed top-0 py-20 left-0 bg-black/70 z-[999] mr-1 `}
-          onClick={() => closeSearch()}
-        >
-          <div className={"container-fluid "}>
-            <div
-              className={"max-w-[960px] mx-auto 3xl:max-w-[1270px] space-y-5"}
-              onClick={(e) => e.stopPropagation()}
-            >
-              <div className={"flex justify-between items-center text-white "}>
-                <h2 className={"text-lg xl:text-2xl"}>{t('search.sectionTitle')}</h2>
-                <IoMdClose
-                  onClick={() => closeSearch()}
-                  className={"text-3xl 2xl:text-4xl cursor-pointer"}
-                />
-              </div>
-              <form
-                 onSubmit={handleSubmit(() => {})}
-                className={
-                  "border-2 w-full border-[#c83837] grid grid-cols-4 md:grid-cols-5"
-                }
-              >
-                <input
-                  type="text"
-                  className={
-                    "w-full pl-4 bg-white font-montserrat col-span-3 text-sm md:text-base md:col-span-4 outline-none py-2 2xl:py-3"
-                  }
-                  placeholder={t('search.input')}
-                  {...register("search")}
-                />
-                <ButtonUI
-                  type={"submit"}
-                  isBorderBtn={true}
-                  text={t('search.buttonText')}
-                  extraStyle={
-                    "bg-borderBtn text-white max-md:py-2 text-sm md:text-base !px-1"
-                  }
-                />
-              </form>
-
-
-
-
-
-
-
-              {
-                  !searchProductFiltered ? 
-                  <motion.div key={'searchModels'}
-                  initial={{ opacity: 0, scale: 0.2 }}
-                              animate={{ opacity: 1,  scale: 1 }}
-                              exit={{ opacity: 0, scale: 0.2 }}  
-                              className="flex flex-col items-center ">
-                    <div className=" aspect-square relative w-[240px] mt-10">
-                      <ImgUI src={'/no-content.png'} alt={'not found '}/>
-                    </div>
-                    <h2 className="text-white font-bold md:text-lg text-center lg:text-xl xl:text-2xl  max-w-[700px]">Никакой соответствующий контент не был получен, попробуйте ввести другие ключевые слова</h2>
-                  </motion.div>
-              :
-                <div
-                  className={
-                    "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 w-full h-[70vh]  overflow-y-scroll"
-                  }
-                >
-                  {searchProductFiltered?.map((model) => (
-                    <div key={model?.id} className="h-fit">
-                      <CardCar model={model}  />
-                    </div>
-                  ))}
-                </div>
-
-              }
-              
-            </div>
-          </div>
-        </motion.div>
-      )}
-      </>
-  );
-};
 
 export default Navbar;

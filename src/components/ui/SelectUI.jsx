@@ -20,7 +20,7 @@ export default function SelectUI({
       <select
         {...register}
         id={nameLabel}
-        className="bg-white border focus:bg-currentRed/5 duration-300 border-currentGray text-sm outline-none block w-full p-2.5"
+        className="bg-white border focus:bg-currentRed/5 duration-300 border-currentGray text-sm outline-none block w-full !p-2.5"
       >
         {optionValues?.map((value, idx) => (
           <option key={idx} value={value?.name}>

@@ -188,8 +188,8 @@ const DealersPage =() => {
                     <InputUI register={{...register('contactPhone', {required: true})}} isError={errors.contactPhone} nameLabel={'contactPhone'} labelText={t('dealers.contactNumber')} type={'text'} placeholder={'+998 99 999 99 99'} errorText={t('dealers.errorContactNumber')}/>
                   </div>
                 </div>
-                <div className="flex items-end justify-end  w-full h-full col-span-1 md:col-span-2">
-                  <ButtonUI isBorderBtn={true} text={userPostLoading ? <AiOutlineLoading className="animate-spin text-2xl"  /> : t("btn.send")} type={'submit'} extraStyle={'!px-7 !py-3 !text-sm !bg-borderBtn text-white'}/>
+                <div className="  w-full h-full col-span-2 mt-3">
+                  <ButtonUI isBorderBtn={true} text={userPostLoading ? <AiOutlineLoading className="animate-spin text-2xl"  /> : t("btn.send")} type={'submit'} extraStyle={'!px-7 !py-2.5 w-full !text-sm !bg-borderBtn text-white'}/>
                 </div>
               </div>
             </form>

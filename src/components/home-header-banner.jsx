@@ -28,7 +28,7 @@ const HomeHeaderBanner = ({ priority = false, Quality, card, list  }) => {
                     alt={'Banner Home'}
                     quality={Quality}
                     priority={priority}
-                    Style={"!object-center max-lg:hidden"}
+                    Style={"!object-center object-cover max-lg:hidden"}
                     card={card || false}
                   />
                   <ImgUI
@@ -36,7 +36,7 @@ const HomeHeaderBanner = ({ priority = false, Quality, card, list  }) => {
                     alt={'Banner Home'}
                     quality={Quality}
                     priority={priority}
-                    imageStyle={"object-center lg:hidden"}
+                    imageStyle={"!object-center object-cover lg:hidden"}
                     card={card || false}
                   />
                 </Link>

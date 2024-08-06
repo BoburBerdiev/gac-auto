@@ -38,6 +38,7 @@ const DrivePage = ({ models }) => {
   const navigate = useRouter()
   const { t } = useTranslation();
   const [selectModel, setSelectModel] = useState(false);
+  const [clientHeight, setClientHeight] = useState(0);
   const [successModal, setSuccessModal] = useState(false)
   useEffect(() => {
     setSelectModel(models[0]?.name);
@@ -69,9 +70,7 @@ const DrivePage = ({ models }) => {
     }
   }, [userPostSuccess]);
 
-  console.log(userPostSuccess)
-
-  console.log(errors);
+  
 
   const onSubmit = (data) => {
     console.log(data);
@@ -81,9 +80,8 @@ const DrivePage = ({ models }) => {
 
   return (
     <>
-      <section className="relative h-screen bg-black">
-        {models?.map(
-          (image) =>
+      <section className={`relative h-[85vh] md:h-[94.9vh] bg-black`} >
+        {models?.map((image) =>
             selectModel === image?.name && (
               <>
                 <div className="relative z-7 md:hidden w-full h-full">
@@ -108,7 +106,7 @@ const DrivePage = ({ models }) => {
         <div className="!w-full !h-full absolute top-0 left-0 right-0 bottom-0">
           <div className="container-fluid relative h-full ">
             <div className="relative z-10 w-full  h-screen pt-[7.5%]  grid grid-cols-1 md:grid-cols-5 xl:grid-cols-3 items-center">
-              <div className="px-3 py-3 space-y-5 sm:py-5 sm:px-5 rounded-xl md:col-span-3 xl:col-span-1 h-fit bg-white md:cols-span-1">
+              <div className="px-3 py-3 space-y-5 sm:py-5 sm:px-5 md:col-span-3 xl:col-span-1 h-fit bg-white/60 backdrop-blur-lg	 md:cols-span-1">
                 <h5 className="mb-2 text-xl font-bold md:text-2xl">
                   {t("drive.title")}
                 </h5>
@@ -220,7 +218,7 @@ const DrivePage = ({ models }) => {
                       </div>
                     </div>
                   </div>
-                  <div className="flex justify-center ">
+                  <div className="flex justify-center !pt-3 ">
                     <ButtonUI
                       isBorderBtn={true}
                       text={userPostLoading ? <AiOutlineLoading className="animate-spin text-2xl"  /> : t("btn.send")}

@@ -10,16 +10,19 @@ async function getHome() {
 
   const resNewsList = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/news`, { cache: 'no-store' })
   const newsData = await resNewsList.json()
+  
+  const resAbout = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/about`, { cache: 'no-store' })
+  const aboutData = await resAbout.json()
 
-  return [bannerData, modelsData, newsData]
+  return [bannerData, modelsData, newsData ,aboutData]
 }
 
 
 export default async function Page () {
   
-  const [bannerData, modelsData, newsData] = await getHome()
+  const [bannerData, modelsData, newsData , aboutData] = await getHome()
 
   return (
-       <HomePage banner={bannerData} ourModels={modelsData} news={newsData}/>
+       <HomePage banner={bannerData} ourModels={modelsData} news={newsData} about={aboutData}/>
   );
 };

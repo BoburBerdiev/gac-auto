@@ -118,6 +118,7 @@ const AboutPage = ({data}) =>{
         {
           brandValues?.map((section , idx) => (
             <AboutUsSection
+            key={section?._id}
               image={`${process.env.NEXT_PUBLIC_API_URL}/${section?.image?.path}`}
               title={langSelect(i18n.language , section?.titleRu ,  section?.titleUz)}
               isImageLeft={idx % 2 && true}
@@ -127,19 +128,6 @@ const AboutPage = ({data}) =>{
             />
           ))
         }
-      </section>
-      <section className="py-10 xl:py-[60px] 2xl:py-[70px] 3xl:py-[90px] bg-[#f8f8f8]">
-      <div className="flex flex-col items-center container-fluid gap-6 md:gap-9 lg:gap-11">
-          <SectionTitleCar title={'Наши новости'} aboutPage={true}/>
-          <div className="grid grid-cols-1 w-full md:grid-cols-2 xl:grid-cols-3  gap-4 md:gap-8 lg:gap-10 ">
-            {
-              newsCards.map(news => (
-                <NewsCard image={news?.image} date={news?.date} href={news?.href} title={news?.title} key={news?.id}/>
-              ))
-            }
-          </div>
-          <ButtonUI href={'/news'} text={'Показать больше'} isBorderBtn={true}  />
-        </div>
       </section>
       <section
         className={"py-10 xl:py-[60px] 2xl:py-[65px] 3xl:py-[85px] bg-white"}
