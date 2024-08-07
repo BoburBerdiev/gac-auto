@@ -180,7 +180,7 @@ const DealersPage =() => {
                 </div>
               </div>
               <div className="grid justify-between grid-cols-1 gap-2 md:grid-cols-5">
-                <div className="flex col-span-1 gap-2 md:col-span-3 ">
+                <div className="flex col-span-1 gap-2 md:col-span-3 xl:col-span-4">
                   <div>
                    <InputUI register={{...register('contactPerson', {required: true})}} isError={errors.contactPerson} nameLabel={'contactPerson'} labelText={t('dealers.contactName')} type={'text'} placeholder={t('dealers.contactNamePlaceholder')} errorText={t('dealers.errorContactName')}/>
                   </div>
@@ -188,7 +188,7 @@ const DealersPage =() => {
                     <InputUI register={{...register('contactPhone', {required: true})}} isError={errors.contactPhone} nameLabel={'contactPhone'} labelText={t('dealers.contactNumber')} type={'text'} placeholder={'+998 99 999 99 99'} errorText={t('dealers.errorContactNumber')}/>
                   </div>
                 </div>
-                <div className="  w-full h-full col-span-2 mt-3">
+                <div className="  w-full h-full col-span-2 xl:col-span-1 flex items-end ">
                   <ButtonUI isBorderBtn={true} text={userPostLoading ? <AiOutlineLoading className="animate-spin text-2xl"  /> : t("btn.send")} type={'submit'} extraStyle={'!px-7 !py-2.5 w-full !text-sm !bg-borderBtn text-white'}/>
                 </div>
               </div>

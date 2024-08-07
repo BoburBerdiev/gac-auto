@@ -5,10 +5,9 @@ export default function SelectUI({
   errorText,
   isError,
   optionValues,
-  register
+  register,
+  onChange
 }) {
-
-
   return (
     <>
       <label
@@ -18,13 +17,14 @@ export default function SelectUI({
         {labelText}
       </label>
       <select
+        onChange={onChange}
         {...register}
         id={nameLabel}
         className="bg-white border focus:bg-currentRed/5 duration-300 border-currentGray text-sm outline-none block w-full !p-2.5"
       >
         {optionValues?.map((value, idx) => (
-          <option key={idx} value={value?.name}>
-            {value?.name}
+          <option key={value?._id} value={value?.name}>
+            {value?.name }
           </option>
         ))}
       </select>

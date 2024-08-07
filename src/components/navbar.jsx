@@ -164,7 +164,6 @@ const NavbarList = ({ menu, lineMove, pathname, setChildRef, onClick , setNav })
     }
     if (pathname.includes(slug)) {
       setChildRef(ref.current.offsetLeft + ref.current.clientWidth / 2);
-      console.log(true);
     }
     subTitle?.forEach((itemLink) => {
       if (itemLink.slug === pathname) {

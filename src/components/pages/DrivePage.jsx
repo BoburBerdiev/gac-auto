@@ -38,7 +38,6 @@ const DrivePage = ({ models }) => {
   const navigate = useRouter()
   const { t } = useTranslation();
   const [selectModel, setSelectModel] = useState(false);
-  const [clientHeight, setClientHeight] = useState(0);
   const [successModal, setSuccessModal] = useState(false)
   useEffect(() => {
     setSelectModel(models[0]?.name);
@@ -70,10 +69,11 @@ const DrivePage = ({ models }) => {
     }
   }, [userPostSuccess]);
 
-  
-
+  const handleChange = (event) => {
+    setSelectModel(event.target.value);
+    console.log(event.target);
+  };
   const onSubmit = (data) => {
-    console.log(data);
     const postData = {...data}
     userPost({url: '/testDrive', data: postData})
 }
@@ -113,7 +113,7 @@ const DrivePage = ({ models }) => {
                 <form onSubmit={handleSubmit(onSubmit)}  className="space-y-2 sm:space-y-3">
                   <div className=" ">
                     <SelectUI
-                      onChange={(e) => setSelectModel(e.target.value)}
+                      onChange={(e) => handleChange(e)}
                       register={{...register('model', {required: true})}}
                       placeholder={t("drive.chooseModel")}
                       nameLabel={"chooseModel"}
