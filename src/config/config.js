@@ -7,7 +7,6 @@ export const NavList = [
     {
         name: 'navbar.more',
         _id: 9,
-        slug: '/about',
         subTitle: [
             {
                 name: 'navbar.about',

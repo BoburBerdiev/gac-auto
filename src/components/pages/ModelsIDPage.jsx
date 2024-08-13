@@ -39,12 +39,11 @@ export default function ModelsDetails({ data }) {
       document.body.classList.remove("overflow-hidden");
     }
   }, [saleModal]);
-
   const handleModelColor = (path , id) => {
     setCarColor(path)
     setIsModelColor(id)
   }
- 
+  
   return (
     <div className={"relative"}>
       <NavbarCarInner innerPage={innerPage} setInnerPage={setInnerPage}
@@ -199,6 +198,8 @@ export default function ModelsDetails({ data }) {
               </div>
             </div>
           </section>
+          {
+            data?.performance &&
           <section
             className={
               "bg-[#fff]  lg:pt-[90px] md:pt-[72px] pt-20 pb-[15px] lg:pb-[20px]"
@@ -225,6 +226,7 @@ export default function ModelsDetails({ data }) {
               </div>
             </div>
           </section>
+          }
           <section className="bg-[#f8f8f8] py-6 md:py-8 ">
             <div className="container flex flex-col items-center gap-6 md:gap-8 ">
               <SectionTitleCar title={t("innerModel.tvc")} />
@@ -280,15 +282,15 @@ export default function ModelsDetails({ data }) {
               >
                 {langSelect(i18n.language , data?.design.titleRu , data?.design.titleUz )}
               </h2>
-              <p className="text-center !leading-[1.5] text-sm  lg:text-lg text-[]">{langSelect(i18n.language , data?.design.textRu , data?.design.textUz )}</p>
+              <p className="text-center !leading-[1.5] text-sm  lg:text-lg ">{langSelect(i18n.language , data?.design.textRu , data?.design.textUz )}</p>
             </div>
             <div className="container ">
-              <div className="grid grid-cols-1 md:grid-rows-2 md:grid-cols-2 gap-5 ">
+              <div className={`grid grid-cols-1 ${data?.design?.list.lenght > 2 &&  "md:grid-rows-2"} md:grid-cols-2 gap-5 `}>
                 {
                   data?.design?.list?.map((card, idx) => (
-                    <div className={` w-full relative ${idx === 0 && 'row-span-2 aspect-[5/4] '} ${idx !== 0 ? 'md:h-full max-md:aspect-[5/4] ' : "aspect-[5/4]"} `}>
+                    <div className={` w-full relative   ${data?.design?.list.lenght > 2 && idx === 0 ?  "row-span-2  aspect-[5/4]" : "md:h-full max-md:aspect-[5/4]"} `}>
                       <div className="w-full h-full relative z-10">
-                        <ImgUI src={`${process.env.NEXT_PUBLIC_API_URL}/${card?.image?.path}`} alt={''}/>
+                        <ImgUI src={`${process.env.NEXT_PUBLIC_API_URL}/${card?.image?.path}`} alt={langSelect(i18n.language , card?.titleRu , card?.titleUz )}/>
                       </div>
                       <p className="relative md:absolute shadow-inner bottom-3 left-3 xl:bottom-6 xl:left-12 lg:text-base xl:text-lg 2xl:text-xl 3xl:text-2xl z-20 md:text-white text-center mt-2.5 text-sm font-semibold ">{langSelect(i18n.language , card?.titleRu , card?.titleUz )}</p>
                     </div>
@@ -323,29 +325,32 @@ export default function ModelsDetails({ data }) {
          
         </h2>
         <PerfonmanceSwiper swiperList={data?.intelligent?.list} />
-      </section>
+         </section>
         </>
       }
 
 
       <section className={"bg-[#f5f5f5]  relative md:py-10"}>
         <div className="container-fluid flex flex-wrap relative z-10 justify-evenly  divide-y md:divide-y-0 divide-[#e1e1e1] ">
-          <div className="w-full md:w-[30%] lg:w-[15%]">
-            <CardServiceCar
-              href={"/drive"}
-              text={t("serviceCard.testDrive")}
-              id={"driveCard"}
-              icon={<FaCarAlt />}
-            />
-          </div>
-          <div className="w-full md:w-[30%] lg:w-[15%]">
+          {
+            data?.isTestDrive && 
+              <div className="w-full md:w-[30%] lg:w-[15%]">
+                <CardServiceCar
+                  href={"/drive"}
+                  text={t("serviceCard.testDrive")}
+                  id={"driveCard"}
+                  icon={<FaCarAlt />}
+                />
+              </div>
+          }
+          {/* <div className="w-full md:w-[30%] lg:w-[15%]">
             <CardServiceCar
               text={t("serviceCard.saleCar")}
               icon={<FaDollarSign />}
               id={"saleCard"}
               onClick={() => setSaleModal(true)}
             />
-          </div>
+          </div> */}
           <div className="w-full md:w-[30%] lg:w-[15%]">
             <CardServiceCar
               download={true}

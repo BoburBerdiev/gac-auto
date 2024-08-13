@@ -8,7 +8,7 @@ async function getHome() {
   const resModels = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/car`, { cache: 'no-store' })
   const modelsData = await resModels.json()
 
-  const resNewsList = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/news`, { cache: 'no-store' })
+  const resNewsList = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/news?pageSize=&pageNumber=1`, { cache: 'no-store' })
   const newsData = await resNewsList.json()
   
   const resAbout = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/about`, { cache: 'no-store' })

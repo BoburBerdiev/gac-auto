@@ -95,7 +95,6 @@ const DealersPage =() => {
 
 
   const onSubmit = (data) => {
-    console.log(data);
     const postData = {...data}
     userPost({url: '/dealers', data: postData})
 }

@@ -9,7 +9,6 @@ import { langSelect } from "@/helper";
 
 const CardCar = ({model}) => {
   const {t , i18n} = useTranslation()
-  console.log(model);
   return (
     <Link
       href={`/models/${model?.slug}`}

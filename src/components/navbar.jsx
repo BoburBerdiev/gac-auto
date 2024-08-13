@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState, useRef, useCallback } from "react";
+import { useEffect, useState, useRef, useCallback, useMemo } from "react";
 import { ButtonUI, CardCar, ImgUI } from "@/components/index";
 import { IoClose } from "react-icons/io5";
 import { RiMenuFill } from "react-icons/ri";
@@ -51,9 +51,15 @@ const Navbar = () => {
   };
   useEffect(() => {
     if (modelsIsSucces) {
+      const list = {
+        name: 'navbar.models',
+        _id: 5,
+        slug: '/about',
+        subTitle: [...modelsData]
+      };
       let allList = [
         NavList[0],
-        ...modelsData,
+        list,
         ...NavList.slice(1)
       ];
       setNavbarLists(allList)
@@ -116,9 +122,7 @@ const Navbar = () => {
                       onClick={() => setNav(false)}
                     />
                   ))}
-                  <div
-                    className={`md:peer-hover:block  ${nav ? 'hidden' : ''} !-z-[99] hidden w-full bg-black/50 size-[40%] top-0  fixed left-0`}
-                  ></div>
+                  
                 </ul>
               </div>
             </div>
@@ -162,7 +166,7 @@ const NavbarList = ({ menu, lineMove, pathname, setChildRef, onClick , setNav })
     if (pathname === slug) {
       setChildRef(ref.current.offsetLeft + ref.current.clientWidth / 2);
     }
-    if (pathname.includes(slug)) {
+    if (pathname === 'Empow') {
       setChildRef(ref.current.offsetLeft + ref.current.clientWidth / 2);
     }
     subTitle?.forEach((itemLink) => {
@@ -181,7 +185,6 @@ const NavbarList = ({ menu, lineMove, pathname, setChildRef, onClick , setNav })
     <>
       <div
         ref={ref}
-       
         onMouseOver={lineMove}
         className={`${
           subTitle ? "peer" : " "
@@ -190,28 +193,16 @@ const NavbarList = ({ menu, lineMove, pathname, setChildRef, onClick , setNav })
         {!subTitle ? (
           <Link
             onClick={onClick}
-            href={menu?.company ? `/models/${slug}` : slug}
-            className="relative border-0 w-full lg:w-auto  flex gap-2 lg:gap-1  lg:justify-center items-center group whitespace-nowrap"
+            href={slug}
+            className="relative cursor-pointer border-0 w-full lg:w-auto  flex gap-2 lg:gap-1  lg:justify-center items-center group whitespace-nowrap"
           >
-            {
-              menu?.company === "aion" &&
-              <div className="relative w-3 h-3 xl:w-5 xl:h-4 ">
-                <ImgUI src={'/AION-logo.png'} alt={'Logo Aion'}/>
-              </div>
-            }
-             {
-              menu?.company === "gac" &&
-              <div className="relative w-7 h-5 ">
-                <ImgUI src={'/logo-gac.png'} alt={'Logo Aion'}/>
-              </div>
-            }
             <span className="">
               {t(name)}  
             </span>
           </Link>
         ) : (
           <>
-            <div className={`flex flex-col gap-4 lg:gap-0 !text-sm `}  >
+            <div className={`flex flex-col gap-4 lg:gap-0 !text-sm cursor-pointer  `}  >
               <li
                 onClick={() => {
                   setDropdown(!dropdown);
@@ -232,13 +223,27 @@ const NavbarList = ({ menu, lineMove, pathname, setChildRef, onClick , setNav })
                     className="flex flex-col text-start  p-2   bg-black  justify-center items-start group/edit "
                   >
                     <Link
-                      href={item?.slug}
-                      className=" pb-1 flex flex-col gap-2 mt-2 lg:mt-3"
+                      href={item?.company ? `/models/${item?.slug}` : item?.slug}
+                      className=" flex  items-center gap-2 "
                     >
-                      {t(item?.name)}
+                      {
+              item?.company === "aion" &&
+              <div className="relative w-3 h-3 xl:w-5 xl:h-4 ">
+                <ImgUI src={'/AION-logo.png'} alt={'Logo Aion'}/>
+              </div>
+            }
+             {
+              item?.company === "gac" &&
+              <div className="relative w-7 h-5 ">
+                <ImgUI src={'/logo-gac.png'} alt={'Logo Aion'}/>
+              </div>
+            }         <div className="pb-1 flex flex-col gap-2 mt-2 lg:mt-3">
+{t(item?.name)}
                       <div
                         className={`w-64 h-[1px] relative rounded-lg overflow-hidden bg-white/50 hidden lg:block before:w-0 before:group-hover/edit:w-full before:absolute before:duration-300 before:bg-[#d40021]  before:h-full  before:top-0 before:left-0 before:z-50`}
                       ></div>
+            </div>
+                      
                     </Link>
                   </button>
                 ))}

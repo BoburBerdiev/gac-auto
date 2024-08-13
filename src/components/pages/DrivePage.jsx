@@ -71,7 +71,6 @@ const DrivePage = ({ models }) => {
 
   const handleChange = (event) => {
     setSelectModel(event.target.value);
-    console.log(event.target);
   };
   const onSubmit = (data) => {
     const postData = {...data}
