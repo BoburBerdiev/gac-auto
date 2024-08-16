@@ -4,6 +4,8 @@ import '../localization/i18n'
 import { QueryClient, QueryClientProvider } from "react-query";
 import {Client, HydrationProvider} from "react-hydration-provider";
 
+import 'swiper/css';
+
 const Layout = ({children}) => {
     const queryClient = new QueryClient();
     return (

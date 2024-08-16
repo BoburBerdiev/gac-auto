@@ -13,6 +13,7 @@ import {
   CardServiceCar,
   FeaturesCard,
   ImgUI,
+  ModelExterior,
   NavbarCarInner,
   PerformanceCard,
   SaleCarModal,
@@ -27,23 +28,17 @@ import { Navigation } from "swiper/modules";
 export default function ModelsDetails({ data }) {
   const [innerPage, setInnerPage] = useState('overview')
   const [saleModal, setSaleModal] = useState(false);
-  const [isModelColor, setIsModelColor] = useState();
-  const [carColor, setCarColor] = useState()
+ 
   const { t, i18n } = useTranslation();
   useEffect(() => {
-    setCarColor(data?.carColor[0].carImage?.path)
-    setIsModelColor(data?.carColor[0]._id);
+   
     if (saleModal === true) {
       document.body.classList.add("overflow-hidden");
     } else {
       document.body.classList.remove("overflow-hidden");
     }
   }, [saleModal]);
-  const handleModelColor = (path , id) => {
-    setCarColor(path)
-    setIsModelColor(id)
-  }
-  
+  console.log(data?.design?.list?.length);
   return (
     <div className={"relative"}>
       <NavbarCarInner innerPage={innerPage} setInnerPage={setInnerPage}
@@ -70,107 +65,62 @@ export default function ModelsDetails({ data }) {
               imageStyle={"object-center max-lg:hidden"}
             />
           </section>
-          <section
-            className={
-              "bg-gradient-to-b lg:bg-gradient-to-r to-white from-50%  from-[#41454b] to-50% md:py-[70px] py-5"
-            }
-          >
-            <div className="container grid grid-cols-1 lg:grid-cols-2 relative">
-              <div>
-                <SectionTitleCar
-                  title={t("innerModel.specs")}
-                  isTextLeft={true}
-                  isTextWhite={true}
-                />
-                <ul className={"text-white  space-y-3 lg:space-y-8 py-5 lg:py-10"}>
-                  {data?.character?.map((item) => (
-                    <li key={item?._id}>
-                      <p className={"text-sm lg:text-base space-x-2"}>
-                        <span>
-                          {langSelect(i18n.language, item?.keyRu, item?.keyUz)}
-                        </span>
-                        <span className={"font-bold"}>
-                          {langSelect(i18n.language, item?.valueRu, item?.valueUz)}
-                        </span>
-                      </p>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div>
-                <div
-                  className={
-                    "flex flex-col lg:flex-row justify-start lg:justify-end"
-                  }
-                >
-                  <div
-                    className={
-                      "w-full shrink-1 h-[250px] lg:w-[600px] lg:h-[200px] xl:w-[700px] xl:h-[300px] "
-                    }
-                  >
-                    <div
-                      className={
-                        " lg:absolute relative z-5 h-[250px] lg:w-[800px] xl:w-[800px] xl:h-[350px] lg:h-[320px] lg:top-[0] lg:left-[50%]  lg:translate-x-[-50%]"
-                      }
-                    >
-                      <ImgUI
-                        src={`${process.env.NEXT_PUBLIC_API_URL}/${carColor}`}
-                        objectFitContain={true}
-                        alt={"banner"}
-                      />
-                    </div>
-                  </div>
-                  <div
-                    className={
-                      "flex flex-row w-full lg:flex-col items-center  lg:items-end justify-center lg:justify-end gap-5 lg:gap-y-3 relative z-20"
-                    }
-                  >
-                    {data?.carColor?.map((modelColor) => (
-                      <button
-                      onClick={() => handleModelColor( modelColor?.carImage?.path , modelColor?._id)}
-                        key={modelColor?._id}
-                        className={`p-0 lg:py-1 lg:px-2 group cursor-pointer text-sm max-lg:pb-7 flex flex-col lg:flex-row  lg:justify-end items-center  border-none lg:border rounded-full relative  lg:hover:bg-[#ededed] lg:hover:shadow-modelColor ${
-                            isModelColor === modelColor?._id ?
-                          " lg:bg-[#ededed] lg:shadow-modelColor" : ''
-                        }`}
-                      >
-                        <span
-                          className={`shrink-1 text-nowrap max-lg:absolute bottom-0  order-2 lg:order-1 text-[13px] font-semibold lg:px-7 lg:group-hover:block ${
-                            isModelColor === modelColor?._id ? "block" : "hidden"
-                          } `}
-                        >
-                          {langSelect(
-                            i18n.language,
-                            modelColor?.colorNameRu,
-                            modelColor?.colorNameUz
-                          )}
-                        </span>
-                        <div className=""></div>
-                        <span
-                          className={
-                            "w-5 aspect-square lg:w-6 overflow-hidden  order-1 lg:order-2 relative rounded-full shrink-1"
-                          }
-                        >
-                          <ImgUI
-                            src={`${process.env.NEXT_PUBLIC_API_URL}/${modelColor?.colorImage?.path}`}
-                            alt={"icon-color"}
-                            objectFitContain={true}
-                          />
-                        </span>
-                      </button>
-                    ))}
-                  </div>
-                </div>
-              </div>
-              <div
-                className={
-                  "flex justify-center items-center relative z-10 col-span-1 lg:col-span-2 mt-10 lg:mt-20"
-                }
-              >
-                <ButtonUI text={t("btn.downloadCatalog")} download={true} href={`${process.env.NEXT_PUBLIC_API_URL}/${data?.pdf?.path}`}   />
-              </div>
-            </div>
+          {
+            data?.position.length > 0 &&
+          <section>
+            <ModelExterior data={data} positionList={data?.position}/>
           </section>
+          }
+           <section className={"bg-[#f5f5f5]  relative md:py-10 my-10 lg:my-10"}>
+        <div className="container-fluid flex flex-wrap relative z-10 justify-evenly  divide-y md:divide-y-0 divide-[#e1e1e1] ">
+          {
+            data?.isTestDrive && 
+              <div className="w-full md:w-[30%] lg:w-[15%]">
+                <CardServiceCar
+                  href={"/drive"}
+                  text={t("serviceCard.testDrive")}
+                  id={"driveCard"}
+                  icon={<FaCarAlt />}
+                />
+              </div>
+          }
+          {/* <div className="w-full md:w-[30%] lg:w-[15%]">
+            <CardServiceCar
+              text={t("serviceCard.saleCar")}
+              icon={<FaDollarSign />}
+              id={"saleCard"}
+              onClick={() => setSaleModal(true)}
+            />
+          </div> */}
+          <div className="w-full md:w-[30%] lg:w-[15%]">
+            <CardServiceCar
+              download={true}
+              href={`${process.env.NEXT_PUBLIC_API_URL}/${data?.pdf?.path}`}
+              id={"catalogCard"}
+              text={t("btn.downloadCatalog")}
+              icon={<FaDownload />}
+            />
+          </div>
+          <div className="w-full md:w-[30%] lg:w-[15%]">
+            <CardServiceCar
+              href={"/dealers"}
+              text={t("serviceCard.dealer")}
+              id={"dealersCard"}
+              icon={<FaFileContract />}
+            />
+          </div>
+          <div className="w-full md:w-[30%] lg:w-[15%]">
+            <CardServiceCar
+              href={"/dealers-center"}
+              text={t("serviceCard.contactUs")}
+              id={"contactCard"}
+              icon={<FaPhone />}
+            />
+          </div>
+        </div>
+        <div className="w-full h-full bg-black/60 absolute top-0 left-0 z-[6] "></div>
+        <ImgUI  imageStyle={'z-5 object-center'} src={'/inner-banner.jpg'} alt={'Banner image'}/>
+      </section>
           <section
             className={
               "bg-[#efefef]  md:bg-[url(/bg-car-inner.jpg)] bg-no-repeat bg-cover bg-top bg-scroll lg:pt-[90px] md:pt-[72px] pt-20 pb-[15px] lg:pb-[20px]"
@@ -276,61 +226,7 @@ export default function ModelsDetails({ data }) {
               imageStyle={"object-center max-lg:hidden"}
             />
           </section>
-          <section>
-            <div className="container py-10 px-[15px] lg:pt-[52px] 2xl:pt-[60px] 2xl:pb-12 3xl:pt-[75px] 3xl:pb-[60px] flex flex-col items-center gap-3">
-              <h2 className={"text-currentTextBlack text-center text-2xl lg:text-[42px] 2xl:text-[48px] 3xl:text-[60px] font-bold !leading-[1.2] "}
-              >
-                {langSelect(i18n.language , data?.design.titleRu , data?.design.titleUz )}
-              </h2>
-              <p className="text-center !leading-[1.5] text-sm  lg:text-lg ">{langSelect(i18n.language , data?.design.textRu , data?.design.textUz )}</p>
-            </div>
-            <div className="container ">
-              <div className={`grid grid-cols-1 ${data?.design?.list.lenght > 2 &&  "md:grid-rows-2"} md:grid-cols-2 gap-5 `}>
-                {
-                  data?.design?.list?.map((card, idx) => (
-                    <div className={` w-full relative   ${data?.design?.list.lenght > 2 && idx === 0 ?  "row-span-2  aspect-[5/4]" : "md:h-full max-md:aspect-[5/4]"} `}>
-                      <div className="w-full h-full relative z-10">
-                        <ImgUI src={`${process.env.NEXT_PUBLIC_API_URL}/${card?.image?.path}`} alt={langSelect(i18n.language , card?.titleRu , card?.titleUz )}/>
-                      </div>
-                      <p className="relative md:absolute shadow-inner bottom-3 left-3 xl:bottom-6 xl:left-12 lg:text-base xl:text-lg 2xl:text-xl 3xl:text-2xl z-20 md:text-white text-center mt-2.5 text-sm font-semibold ">{langSelect(i18n.language , card?.titleRu , card?.titleUz )}</p>
-                    </div>
-                  ))
-                }
-                
-              </div>
-            </div>
-        
-         </section>
-          <section>
-        <h2
-          className={
-            "text-currentTextBlack text-center text-2xl lg:text-[42px] 2xl:text-[48px] 3xl:text-[60px] font-bold !leading-[1.2] py-10 px-[15px] lg:pt-[52px] 2xl:pt-[60px] 2xl:pb-12 3xl:pt-[75px] 3xl:pb-[60px]"
-          }
-        >
-          {langSelect(i18n.language , data?.expensive.titleRu , data?.expensive.titleUz )}
-        </h2>
-        <PerfonmanceInterior bannerImage={data?.expensive?.bannerImage?.path} list={data?.expensive?.list} />
-         </section>
-         <section
-        className={
-          "w-full py-10 lg:pt-[60px] lg:pb-[50px] xl:pt-[70px] xl:pb-[55px] 3xl::pt-[90px] 3xl::pb-[70px]"
-        }
-      >
-        <h2
-          className={
-            "text-currentTextBlack text-center text-2xl lg:text-[42px] 2xl:text-[48px] 3xl:text-[60px] font-bold !leading-[1.2] px-[15px] pb-[30px] lg:pb-[45px] 3xl:pb-[65px]"
-          }
-        >
-          {langSelect(i18n.language , data?.intelligent?.titleRu , data?.intelligent?.titleUz)}
-         
-        </h2>
-        <PerfonmanceSwiper swiperList={data?.intelligent?.list} />
-         </section>
-        </>
-      }
-
-
-      <section className={"bg-[#f5f5f5]  relative md:py-10"}>
+          <section className={"bg-[#f5f5f5]  relative md:py-10 my-10 lg:my-10"}>
         <div className="container-fluid flex flex-wrap relative z-10 justify-evenly  divide-y md:divide-y-0 divide-[#e1e1e1] ">
           {
             data?.isTestDrive && 
@@ -377,10 +273,64 @@ export default function ModelsDetails({ data }) {
             />
           </div>
         </div>
-        <img  src="/bg-1.jpg" className="absolute z-[5] top-0 left-0 w-full h-full " alt="Banner Image" />
         <div className="w-full h-full bg-black/60 absolute top-0 left-0 z-[6] "></div>
-        {/* <ImgUI  imageStyle={'z-5 object-center'} src={'/bg-1.jpg'} alt={'Banner image'}/> */}
+        <ImgUI  imageStyle={'z-5 object-center'} src={'/inner-banner.jpg'} alt={'Banner image'}/>
       </section>
+          <section>
+            <div className="container py-10 px-[15px] lg:pt-[52px] 2xl:pt-[60px] 2xl:pb-12 3xl:pt-[75px] 3xl:pb-[60px] flex flex-col items-center gap-3">
+              <h2 className={"text-currentTextBlack text-center text-2xl lg:text-[42px] 2xl:text-[48px] 3xl:text-[60px] font-bold !leading-[1.2] "}
+              >
+                {langSelect(i18n.language , data?.design.titleRu , data?.design.titleUz )}
+              </h2>
+              <p className="text-center !leading-[1.5] text-sm  lg:text-lg ">{langSelect(i18n.language , data?.design.textRu , data?.design.textUz )}</p>
+            </div>
+            <div className="container ">
+              <div className={`grid grid-cols-1 md:grid-cols-2 ${data?.design?.list?.length > 2 && 'md:grid-rows-2'} gap-5 `}>
+                {
+                  data?.design?.list?.map((card, idx) => (
+                    <div className={` w-full relative ${data?.design?.list?.length > 2 && idx === 0 && 'row-span-2 aspect-[5/4] '} ${idx !== 0 ? 'md:h-full max-md:aspect-[5/4] ' : "aspect-[5/4]"}  border border-black/20 `}>
+                      <div className="w-full h-full relative z-10">
+                        <ImgUI src={`${process.env.NEXT_PUBLIC_API_URL}/${card?.image?.path}`} alt={langSelect(i18n.language , card?.titleRu , card?.titleUz )}/>
+                      </div>
+                      <p className="relative md:absolute shadow-text bottom-3 left-3 xl:bottom-6 xl:left-12 lg:text-base xl:text-lg 2xl:text-xl 3xl:text-2xl z-20 md:text-white text-center mt-2.5 text-sm font-semibold ">{langSelect(i18n.language , card?.titleRu , card?.titleUz )}</p>
+                    </div>
+                  ))
+                }
+                
+              </div>
+            </div>
+        
+         </section>
+          <section>
+        <h2
+          className={
+            "text-currentTextBlack text-center text-2xl lg:text-[42px] 2xl:text-[48px] 3xl:text-[60px] font-bold !leading-[1.2] py-10 px-[15px] lg:pt-[52px] 2xl:pt-[60px] 2xl:pb-12 3xl:pt-[75px] 3xl:pb-[60px]"
+          }
+        >
+          {langSelect(i18n.language , data?.expensive.titleRu , data?.expensive.titleUz )}
+        </h2>
+        <PerfonmanceInterior bannerImage={data?.expensive?.bannerImage?.path} list={data?.expensive?.list} />
+         </section>
+         <section
+        className={
+          "w-full py-10 lg:pt-[60px] lg:pb-[50px] xl:pt-[70px] xl:pb-[55px] 3xl::pt-[90px] 3xl::pb-[70px]"
+        }
+      >
+        <h2
+          className={
+            "text-currentTextBlack text-center text-2xl lg:text-[42px] 2xl:text-[48px] 3xl:text-[60px] font-bold !leading-[1.2] px-[15px] pb-[30px] lg:pb-[45px] 3xl:pb-[65px]"
+          }
+        >
+          {langSelect(i18n.language , data?.intelligent?.titleRu , data?.intelligent?.titleUz)}
+         
+        </h2>
+        <PerfonmanceSwiper swiperList={data?.intelligent?.list} />
+         </section>
+        </>
+      }
+
+
+     
       <SaleCarModal modal={saleModal} setModal={setSaleModal} />
     </div>
   );

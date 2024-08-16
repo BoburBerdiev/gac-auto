@@ -5,7 +5,6 @@ import { formatPhoneNumber, langSelect } from "@/helper";
 import { useTranslation } from "react-i18next";
 import { RiMapPinLine, RiPhoneLine, RiTimeLine } from "react-icons/ri";
 import { IoEarthOutline } from "react-icons/io5";
-import { marker } from "leaflet";
 
 export default function Map({ list }) {
   const { i18n } = useTranslation();
@@ -13,7 +12,7 @@ export default function Map({ list }) {
   const markersRef = useRef({});
 
   useEffect(() => {
-    if (typeof window !== "undefined" && list) {
+    if (typeof window !== "undefined") {
       import("leaflet").then((L) => {
         if (!mapRef.current) {
           mapRef.current = L.map("map").setView(
@@ -109,8 +108,6 @@ export default function Map({ list }) {
       marker.openPopup();
     }
   };
-  console.log(markersRef.current);
-
   return (
     <div className="relative z-0 md:h-[91vh] mt-12">
       <div className=" w-fit  rounded-lg  md:min-h-[80%] md:overflow-y-hidden relative z-10 p-3 md:p-8 lg:p-12 ">

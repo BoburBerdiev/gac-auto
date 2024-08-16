@@ -1,8 +1,8 @@
 import {ImgUI} from "@/components/index";
 
-const BannerSmall = ({imgMob,imgDes }) => {
+const BannerSmall = ({imgMob,imgDes , style}) => {
     return (
-        <div className={'w-full h-[30vh]  '}>
+        <div className={`w-full h-[30vh] ${style} `}>
             <div className={'relative z-10 !w-full  !h-full lg:hidden'}>
                 <ImgUI src={imgMob} alt="Banner" imageStyle={'object-center'}/>
             </div>

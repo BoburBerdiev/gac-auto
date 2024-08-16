@@ -52,7 +52,8 @@
       "specs": "Спецификация",
       "sizes": "Размеры",
       "features": "Функции",
-      "tvc": "ТВЦ"
+      "tvc": "ТВЦ",
+      "positions": "Позиции"
     },
     "about": {
       "title": "О компании GAC International",

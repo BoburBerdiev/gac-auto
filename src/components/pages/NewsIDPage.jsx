@@ -11,13 +11,16 @@ export default function Page({data}) {
   return (
     <>
       <section>
+        <div className="container relative">
         <BannerSmall
+        style={'md:h-[50vh] lg:h-[60vh] !mt-20'}
           imgDes={`${process.env.NEXT_PUBLIC_API_URL}/${data?.image?.path}`}
           imgMob={`${process.env.NEXT_PUBLIC_API_URL}/${data?.image?.path}`}
         />
+        </div>
       </section>
-      <section className={"py-12 xl:py-[65px] min-h-[80vh]"}>
-        <div className="container-fluid space-y-7 lg:space-y-14 ">
+      <section className={"py-8 xl:py-[65px] min-h-[80vh]"}>
+        <div className="container-fluid space-y-3 lg:space-y-14 ">
           <div>
             <span className={"w-10 h-0.5 bg-borderBtn block"}></span>
             <p className={"mt-2 text-lg text-black mb-4"}>{formattedDate}</p>

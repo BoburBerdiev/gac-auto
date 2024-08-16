@@ -1,20 +1,18 @@
 "use client";
-import { useEffect, useState, useRef, useCallback, useMemo } from "react";
-import { ButtonUI, CardCar, ImgUI } from "@/components/index";
+import { useEffect, useState, useRef } from "react";
+import {  ImgUI } from "@/components/index";
 import { IoClose } from "react-icons/io5";
 import { RiMenuFill } from "react-icons/ri";
 import { BiSearch } from "react-icons/bi";
 import { IoIosArrowDown } from "react-icons/io";
 import Link from "next/link";
 import { NavList } from "@/config/config";
-import { usePathname, useRouter } from "next/navigation";
-import { IoMdClose } from "react-icons/io";
+import { usePathname } from "next/navigation";
 import { useTranslation } from "react-i18next";
 import { AnimatePresence, motion } from "framer-motion";
 import { langSelect } from "@/helper";
-import { useQuery, useQueryClient } from "react-query";
+import { useQuery } from "react-query";
 import apiService from "@/service/axios";
-import { useForm } from "react-hook-form";
 import SearchPanel from "./search-panel";
 import { FaGlobeAmericas } from "react-icons/fa";
 
@@ -24,7 +22,6 @@ const Navbar = () => {
   const [line, setLine] = useState();
   const [childRef, setChildRef] = useState();
   const pathname = usePathname();
-  const [query , setQuery] = useState()
   const [navbarLists , setNavbarLists] = useState()
 
   const {
@@ -35,7 +32,7 @@ const Navbar = () => {
 
   useEffect(() => {
     modelsRefetch()
-  }, [query])
+  }, [])
 
   useEffect(() => {
     if (childRef) {
@@ -79,18 +76,18 @@ const Navbar = () => {
  
   return (
     <>
-      <nav className="bg-black w-full fixed z-[50] py-1 ">
+      <nav className="bg-black w-full fixed z-[50] py-1 top-0">
       <AnimatePresence key={'navbar'} >
         <div className="container w-full">
           <div className="bg-black flex items-center w-full h-full justify-between py-2 lg:p-0">
             <div className="flex items-center gap-3 w-full">
-              <a href="/" className="relative flex items-center justify-center lg:z-40 w-[190px] h-6 lg:w-[150px] lg:h-5 2xl:w-56 2xl:h-8">
+              <Link href="/" className="relative flex items-center justify-center lg:z-40 w-[160px] h-5 lg:w-[150px] lg:h-5 2xl:w-56 2xl:h-8">
                 <ImgUI
               src={"/logo.png"}
                   alt={"logo_gacmotors"}
                   objectFitContain={true}
                 />
-              </a>
+              </Link>
               <div className="flex items-center flex-col">
                 <ul
                   onMouseLeave={onMouseLeaveFunc}
@@ -98,13 +95,13 @@ const Navbar = () => {
                     nav ? "right-0" : "-right-full"
                   }  duration-300 fixed lg:static top-0 w-full bg-black lg:bg-transparent lg:flex-row font-thin text-base text-white items-center `}
                 >
-                  <a href="/" className="absolute block w-36 h-6 lg:w-40 lg:h-5 top-5 left-6 lg:hidden">
+                  <Link href="/" className="absolute block w-36 h-6 lg:w-40 lg:h-5 top-5 left-6 lg:hidden">
                     <ImgUI
                       src={"/logo.png"}
                       objectFitContain={true}
                       alt={"logo_gacmotors"}
                     />
-                  </a>
+                  </Link>
                   <IoClose
                     className="block lg:hidden font-medium text-[25px] !text-white self-end mt-5"
                     onClick={() => {
@@ -150,18 +147,18 @@ const Navbar = () => {
           style={{ "--before-left": `${line}px` }}
           className={` beforeLine hidden lg:block w-full before:h-full before:-translate-x-1/2  before:duration-700 z-1 h-1 absolute bottom-0 before:absolute before:w-[30px] before:bg-[#d40021]`}
         ></div>
-        {/* <NavSearch search={search} setSearch={setSearch} /> */}
       </AnimatePresence>
         </nav>
     </>
   );
 };
 
-const NavbarList = ({ menu, lineMove, pathname, setChildRef, onClick , setNav }) => {
+const NavbarList = ({ menu, lineMove, pathname, setChildRef, onClick, setNav }) => {
   const [dropdown, setDropdown] = useState(false);
   const ref = useRef();
   const { t } = useTranslation();
   const { name, slug, subTitle } = menu;
+
   useEffect(() => {
     if (pathname === slug) {
       setChildRef(ref.current.offsetLeft + ref.current.clientWidth / 2);
@@ -174,94 +171,85 @@ const NavbarList = ({ menu, lineMove, pathname, setChildRef, onClick , setNav })
         setChildRef(ref.current.offsetLeft + ref.current.clientWidth / 2);
       }
     });
-  
-  }, [ pathname]);
+  }, [pathname]);
 
   const removeDropdown = () => {
-    setNav(false)
-    setDropdown(false)
-  }
+    setNav(false);
+    setDropdown(false);
+  };
+
   return (
-    <>
-      <div
-        ref={ref}
-        onMouseOver={lineMove}
-        className={`${
-          subTitle ? "peer" : " "
-        } relative border-b-[1px] lg:border-0 w-full  border-[#666666] uppercase lg:text-xs xl:text-sm  lg:w-auto py-3 px-5 lg:py-3 lg:px-2 xl:px-3  xl:py-[12px] flex flex-row lg:flex-col justify-between lg:justify-center items-center group line`}
-      >
-        {!subTitle ? (
-          <Link
-            onClick={onClick}
-            href={slug}
-            className="relative cursor-pointer border-0 w-full lg:w-auto  flex gap-2 lg:gap-1  lg:justify-center items-center group whitespace-nowrap"
-          >
-            <span className="">
-              {t(name)}  
-            </span>
-          </Link>
-        ) : (
-          <>
-            <div className={`flex flex-col gap-4 lg:gap-0 !text-sm cursor-pointer  `}  >
-              <li
-                onClick={() => {
-                  setDropdown(!dropdown);
-                }}
-                className="relative border-0 w-full lg:w-auto  flex flex-row lg:flex-col justify-between lg:justify-center items-center group whitespace-nowrap"
-              >
-                {t(name)}
-              </li>
-              <ul
-                className={`lg:absolute lg:pb-[50px] rounded lg:top-[35px] left-0 duration-300 gap-10 lg:gap-0 z-[20] ${
-                  dropdown ? "block" : "hidden"
-                } lg:group-hover:block whitespace-nowrap w-full`}
-              >
-                {subTitle?.map((item) => (
-                  <button
-                    onClick={() => removeDropdown()}
-                    key={item?._id}
-                    className="flex flex-col text-start  p-2   bg-black  justify-center items-start group/edit "
-                  >
-                    <Link
-                      href={item?.company ? `/models/${item?.slug}` : item?.slug}
-                      className=" flex  items-center gap-2 "
-                    >
-                      {
-              item?.company === "aion" &&
-              <div className="relative w-3 h-3 xl:w-5 xl:h-4 ">
-                <ImgUI src={'/AION-logo.png'} alt={'Logo Aion'}/>
-              </div>
-            }
-             {
-              item?.company === "gac" &&
-              <div className="relative w-7 h-5 ">
-                <ImgUI src={'/logo-gac.png'} alt={'Logo Aion'}/>
-              </div>
-            }         <div className="pb-1 flex flex-col gap-2 mt-2 lg:mt-3">
-{t(item?.name)}
-                      <div
-                        className={`w-64 h-[1px] relative rounded-lg overflow-hidden bg-white/50 hidden lg:block before:w-0 before:group-hover/edit:w-full before:absolute before:duration-300 before:bg-[#d40021]  before:h-full  before:top-0 before:left-0 before:z-50`}
-                      ></div>
-            </div>
-                      
-                    </Link>
-                  </button>
-                ))}
-              </ul>
-            </div>
-            <IoIosArrowDown
+    <div
+      ref={ref}
+      onMouseOver={lineMove}
+      className={`${
+        subTitle ? "peer" : " "
+      } relative border-b-[1px] lg:border-0 w-full border-[#666666] uppercase lg:text-xs xl:text-sm lg:w-auto py-3 px-5 lg:py-3 lg:px-2 xl:px-3 xl:py-[12px] flex flex-row lg:flex-col justify-between lg:justify-center items-center group line`}
+    >
+      {!subTitle ? (
+        <Link
+          onClick={onClick}
+          href={slug}
+          className="relative cursor-pointer border-0 w-full lg:w-auto flex gap-2 lg:gap-1 lg:justify-center items-center group whitespace-nowrap"
+        >
+          <span>{t(name)}</span>
+        </Link>
+      ) : (
+        <>
+          <div className={`flex flex-col gap-4 lg:gap-0 !text-sm cursor-pointer`}>
+            <li
               onClick={() => {
-               setDropdown(!dropdown);
+                setDropdown(!dropdown);
               }}
-              className={`text-white text-xl font-thin block self-start lg:hidden ${
-                dropdown ? "rotate-180" : null
-              } `}
-             
-            />
-          </>
-        )}
-      </div>
-    </>
+              className="relative border-0 w-full lg:w-auto flex flex-row lg:flex-col justify-between lg:justify-center items-center group whitespace-nowrap"
+            >
+              {t(name)}
+            </li>
+            <ul
+              className={`lg:absolute lg:pb-[50px] rounded lg:top-[35px] left-0 duration-300 gap-10 lg:gap-0 z-[20] ${
+                dropdown ? "block" : "hidden"
+              } lg:group-hover:block whitespace-nowrap w-full`}
+            >
+              {subTitle?.map((item) => (
+                <button
+                  onClick={() => removeDropdown()}
+                  key={item?._id || item?.name} // Ensure unique key
+                  className="flex flex-col text-start p-2 bg-black justify-center items-start group/edit"
+                >
+                  <Link
+                    href={item?.company ? `/models/${item?.slug}` : item?.slug}
+                    className="flex items-center gap-2"
+                  >
+                    {item?.company === "aion" && (
+                      <div className="relative w-3 h-3 xl:w-5 xl:h-4">
+                        <ImgUI src={'/AION-logo.png'} alt={'Logo Aion'} />
+                      </div>
+                    )}
+                    {item?.company === "gac" && (
+                      <div className="relative w-7 h-5">
+                        <ImgUI src={'/logo-gac.png'} alt={'Logo Aion'} />
+                      </div>
+                    )}
+                    <div className="pb-1 flex flex-col gap-2 mt-2 lg:mt-3">
+                      {t(item?.name)}
+                      <div
+                        className={`w-64 h-[1px] relative rounded-lg overflow-hidden bg-white/50 hidden lg:block before:w-0 before:group-hover/edit:w-full before:absolute before:duration-300 before:bg-[#d40021] before:h-full before:top-0 before:left-0 before:z-50`}
+                      ></div>
+                    </div>
+                  </Link>
+                </button>
+              ))}
+            </ul>
+          </div>
+          <IoIosArrowDown
+            onClick={() => setDropdown(!dropdown)}
+            className={`text-white text-xl font-thin block self-start lg:hidden ${
+              dropdown ? "rotate-180" : null
+            }`}
+          />
+        </>
+      )}
+    </div>
   );
 };
 

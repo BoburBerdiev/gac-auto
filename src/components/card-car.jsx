@@ -35,7 +35,7 @@ const CardCar = ({model}) => {
         }
       >
         <ImgUI
-            src={`${process.env.NEXT_PUBLIC_API_URL}/${model?.carColor[0]?.carImage?.path}`}
+            src={`${process.env.NEXT_PUBLIC_API_URL}/${model?.carCard?.path}`}
             alt={"car"}
           card={true}
           objectFitContain={true}

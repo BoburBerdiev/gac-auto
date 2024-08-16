@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-const ButtonUl = ({ href , text ,onClick ,  type, isBorderBtn , extraStyle , download }) => {
+const ButtonUl = ({ href , text ,onClick ,  type, isBorderBtn , extraStyle , download , disabled }) => {
 
     return (
         <>
@@ -24,7 +24,7 @@ const ButtonUl = ({ href , text ,onClick ,  type, isBorderBtn , extraStyle , dow
                     {text}
                 </Link>
                 :
-               <button type={type}  onClick={onClick} className={` ${ isBorderBtn ? `duration-500 py-3 px-16  md:px-20 border-borderBtn text-borderBtn hover:bg-borderBtn 2xl:text-base  xl:py-4` : `rounded-[45px] px-4 py-2  hover:bg-transparent duration-200 hover:!text-currentRed text-white border-currentRed bg-currentRed`}    text-sm font-bold border   hover:text-white ${extraStyle}`}>
+               <button type={type} disabled={disabled}  onClick={onClick} className={` ${ isBorderBtn ? `duration-500 py-3 px-16  md:px-20 border-borderBtn text-borderBtn hover:bg-borderBtn 2xl:text-base  xl:py-4` : `rounded-[45px] px-4 py-2  hover:bg-transparent duration-200 hover:!text-currentRed text-white border-currentRed bg-currentRed`}    text-sm font-bold border   hover:text-white ${extraStyle}`}>
                     {text}
                </button> 
             

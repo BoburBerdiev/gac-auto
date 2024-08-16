@@ -7,6 +7,7 @@
   .container-fluid {
     @apply container  px-[5%];
   }
+
 }
 .header-slider .swiper-pagination-bullet {
   width: 20px;
@@ -77,9 +78,16 @@
 *{
   scroll-behavior: smooth;
 }
-.shadow-inner{
-  text-shadow: 2px 1px 2px black;
-}
+
 .map-locations::-webkit-scrollbar {
   display: none;
+}
+
+  .shadow-text{
+    text-shadow: 2px 1px 2px black;
+  }
+@media screen and (max-width:1024px) {
+  .max-lg-shadow-text{
+    text-shadow: 2px 1px 2px black;
+  }
 }

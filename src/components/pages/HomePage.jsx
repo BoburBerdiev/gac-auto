@@ -31,6 +31,7 @@ const HomePage = ({banner, ourModels, news , about}) => {
         {
           brandValues?.map((section , idx) => (
             <AboutUsSection
+              key={idx}
               image={`${process.env.NEXT_PUBLIC_API_URL}/${section?.image?.path}`}
               title={langSelect(i18n.language , section?.titleRu ,  section?.titleUz)}
               isImageLeft={idx % 2 && true}
