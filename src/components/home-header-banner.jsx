@@ -23,6 +23,9 @@ const HomeHeaderBanner = ({ priority = false, Quality, card, list  }) => {
             list?.map(slider => (
                 <SwiperSlide key={slider?._id} className="relative flex justify-center w-full h-full">
                 <Link href={slider?.link ? slider?.link : '#'} className={`w-full h-full block relative`}>
+                  {
+                    slider?.bannerWeb ? 
+                    <>
                   <ImgUI
                     src={`${process.env.NEXT_PUBLIC_API_URL}/${slider?.bannerWeb?.path}`}
                     alt={'Banner Home'}
@@ -39,6 +42,11 @@ const HomeHeaderBanner = ({ priority = false, Quality, card, list  }) => {
                     imageStyle={"!object-center object-cover lg:hidden"}
                     card={card || false}
                   />
+                    </> : 
+                     <video className="!w-full !h-full object-cover" controls autoPlay  muted loop playsInline>
+                     <source src={`${process.env.NEXT_PUBLIC_API_URL}/${slider?.video?.path}`} type="video/mp4" />
+                   </video>
+                  }
                 </Link>
                 </SwiperSlide>
             ))

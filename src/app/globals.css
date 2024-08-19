@@ -82,12 +82,3 @@
 .map-locations::-webkit-scrollbar {
   display: none;
 }
-
-  .shadow-text{
-    text-shadow: 2px 1px 2px black;
-  }
-@media screen and (max-width:1024px) {
-  .max-lg-shadow-text{
-    text-shadow: 2px 1px 2px black;
-  }
-}

@@ -112,7 +112,7 @@ const DealersPage =() => {
       </div>
       <section className="py-5 md:pb-10 md:pt-10 lg:pb-20 text-currentTextBlack">
           <div className="container-fluid space-y-3">
-            <h5 className="text-base font-bold md:text-xl">{t('dealers.allInfoTitle')}</h5>
+            <h5 className="text-base font-medium md:text-xl">{t('dealers.allInfoTitle')}</h5>
             <form onSubmit={handleSubmit(onSubmit)}>
               <div className="grid grid-cols-1 gap-5 mb-5">
                 <div>
@@ -133,13 +133,13 @@ const DealersPage =() => {
               <div className="w-full h-[0.5px] bg-currentRed/30 my-16 rounded"></div>
               <div className="grid grid-cols-1 gap-5 mb-5 md:grid-cols-2">
                 <div>
-                  <h5 className="text-base font-bold md:text-xl">
+                  <h5 className="text-base font-medium md:text-xl">
                     {t('dealers.otherInfoTitle')}
                   </h5>
                   <InputUI register={{...register('otherInformation', {required: true})}} isError={errors.otherInformation} errorText={t('dealers.errorBank')} type={'text'} labelText={t('dealers.labelBank')} nameLabel={'message'} placeholder={t('dealers.labelBank')} isTextArea={true} textAreaRows={8}/>
                 </div>
                 <div className="space-y-3">
-                  <h5 className="text-base font-bold md:text-xl">
+                  <h5 className="text-base font-medium md:text-xl">
                   {t('dealers.showroomInfoTitle')}
                   </h5>
                   <div className="flex justify-between space-x-5 ">
@@ -150,7 +150,7 @@ const DealersPage =() => {
                      <InputUI register={{...register('showroomUsableArea', {required: true})}} isError={errors.showroomUsableArea} nameLabel={'showroomUsableArea'} labelText={t('dealers.usableArea')} type={'number'} placeholder={t('dealers.totalAreaPlaseholder')} errorText={t('dealers.errorUsableArea')}/>
                     </div>
                   </div>
-                  <h5 className="text-base font-bold md:text-xl">
+                  <h5 className="text-base font-medium md:text-xl">
                   {t('dealers.serviceInfoTitle')}
                   </h5>
                   <div className="flex justify-between space-x-5">
@@ -164,7 +164,7 @@ const DealersPage =() => {
                 </div>
                 <div className="w-full h-[0.5px] bg-currentRed/30 my-16 rounded  md:col-span-2 "></div>
                 <div className="col-span-1 space-y-5 md:col-span-2">
-                  <h5 className="text-base font-bold md:text-xl">
+                  <h5 className="text-base font-medium md:text-xl">
                   {t('dealers.experienceInfoTitle')}
                   </h5>
                   <div>

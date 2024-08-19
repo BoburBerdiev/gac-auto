@@ -9,7 +9,7 @@ const CardServiceCar = ({isIndexPage, text, icon, extraStyleIcon, download, href
                     {icon}
                 </div>
             }
-            <p className={'text-sm lg:text-base text-white text-center'}>
+            <p className={'text-sm lg:text-base text-black text-center'}>
                 {text}
             </p>
         </motion.a>

@@ -40,7 +40,7 @@ const DrivePage = ({ models }) => {
   const [selectModel, setSelectModel] = useState(false);
   const [successModal, setSuccessModal] = useState(false)
   useEffect(() => {
-    setSelectModel(models[0]?.name);
+    setSelectModel(models[0]);
   }, []);
 
   const {
@@ -69,9 +69,11 @@ const DrivePage = ({ models }) => {
     }
   }, [userPostSuccess]);
 
-  const handleChange = (event) => {
-    setSelectModel(event.target.value);
+  const handleChange = (value) => {
+    console.log(value);
   };
+
+
   const onSubmit = (data) => {
     const postData = {...data}
     userPost({url: '/testDrive', data: postData})
@@ -80,12 +82,9 @@ const DrivePage = ({ models }) => {
   return (
     <>
       <section className={`relative h-[85vh] md:h-[94.9vh] bg-black`} >
-        {models?.map((image) =>
-            selectModel === image?.name && (
-              <>
                 <div className="relative z-7 md:hidden w-full h-full">
                   <ImgUI
-                    src={`${process.env.NEXT_PUBLIC_API_URL}/${image?.overviewBannerRes?.path}`}
+                    src={`${process.env.NEXT_PUBLIC_API_URL}/${selectModel?.overviewBannerRes?.path}`}
                     fill
                     className="object-cover  "
                     alt={"test-drive"}
@@ -93,26 +92,22 @@ const DrivePage = ({ models }) => {
                 </div>
                 <div className="relative z-7 max-md:hidden h-full w-full">
                   <ImgUI
-                    src={`${process.env.NEXT_PUBLIC_API_URL}/${image?.overviewBannerWeb?.path}`}
+                    src={`${process.env.NEXT_PUBLIC_API_URL}/${selectModel?.overviewBannerWeb?.path}`}
                     fill
                     className="object-cover "
                     alt={"test-drive"}
                   />
                 </div>
-              </>
-            )
-        )}
         <div className="!w-full !h-full absolute top-0 left-0 right-0 bottom-0">
           <div className="container-fluid relative h-full ">
             <div className="relative z-10 w-full  h-screen pt-[7.5%]  grid grid-cols-1 md:grid-cols-5 xl:grid-cols-3 items-center">
               <div className="px-3 py-3 space-y-5 sm:py-5 sm:px-5 md:col-span-3 xl:col-span-1 h-fit bg-white/60 backdrop-blur-lg	 md:cols-span-1">
-                <h5 className="mb-2 text-xl font-bold md:text-2xl">
+                <h5 className="mb-2 text-xl font-medium md:text-2xl">
                   {t("drive.title")}
                 </h5>
                 <form onSubmit={handleSubmit(onSubmit)}  className="space-y-2 sm:space-y-3">
                   <div className=" ">
                     <SelectUI
-                      onChange={(e) => handleChange(e)}
                       register={{...register('model', {required: true})}}
                       placeholder={t("drive.chooseModel")}
                       nameLabel={"chooseModel"}
@@ -122,7 +117,7 @@ const DrivePage = ({ models }) => {
                     />
                   </div>
                   <div>
-                    <h5 className="mb-2 text-base font-bold md:text-xl">
+                    <h5 className="mb-2 text-base font-medium md:text-xl">
                       {t("drive.chooseDealerTitle")}
                     </h5>
                     <div className="grid grid-cols-2 gap-5">
@@ -151,7 +146,7 @@ const DrivePage = ({ models }) => {
                     </div>
                   </div>
                   <div>
-                    <h5 className="mb-2 text-base font-bold md:text-xl">
+                    <h5 className="mb-2 text-base font-medium md:text-xl">
                       {t("drive.contractTitle")}
                     </h5>
                     <div className="grid grid-cols-2 gap-5">
@@ -180,7 +175,7 @@ const DrivePage = ({ models }) => {
                     </div>
                   </div>
                   <div className={""}>
-                    <h5 className="mb-2 text-base font-bold md:text-xl">
+                    <h5 className="mb-2 text-base font-medium md:text-xl">
                       {t("drive.dataTitle")}
                     </h5>
                     <div className="grid grid-cols-2 gap-5">

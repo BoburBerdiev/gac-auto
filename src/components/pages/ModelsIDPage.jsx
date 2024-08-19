@@ -71,7 +71,7 @@ export default function ModelsDetails({ data }) {
             <ModelExterior data={data} positionList={data?.position}/>
           </section>
           }
-           <section className={"bg-[#f5f5f5]  relative md:py-10 my-10 lg:my-10"}>
+          <section className={"relative md:py-10 py-5"}>
         <div className="container-fluid flex flex-wrap relative z-10 justify-evenly  divide-y md:divide-y-0 divide-[#e1e1e1] ">
           {
             data?.isTestDrive && 
@@ -118,9 +118,7 @@ export default function ModelsDetails({ data }) {
             />
           </div>
         </div>
-        <div className="w-full h-full bg-black/60 absolute top-0 left-0 z-[6] "></div>
-        <ImgUI  imageStyle={'z-5 object-center'} src={'/inner-banner.jpg'} alt={'Banner image'}/>
-      </section>
+          </section>
           <section
             className={
               "bg-[#efefef]  md:bg-[url(/bg-car-inner.jpg)] bg-no-repeat bg-cover bg-top bg-scroll lg:pt-[90px] md:pt-[72px] pt-20 pb-[15px] lg:pb-[20px]"
@@ -177,7 +175,7 @@ export default function ModelsDetails({ data }) {
             </div>
           </section>
           }
-          <section className="bg-[#f8f8f8] py-6 md:py-8 ">
+          <section className="bg-[#f8f8f8] py-7 md:py-14 ">
             <div className="container flex flex-col items-center gap-6 md:gap-8 ">
               <SectionTitleCar title={t("innerModel.tvc")} />
               <div className="w-full aspect-video">
@@ -226,7 +224,7 @@ export default function ModelsDetails({ data }) {
               imageStyle={"object-center max-lg:hidden"}
             />
           </section>
-          <section className={"bg-[#f5f5f5]  relative md:py-10 my-10 lg:my-10"}>
+          <section className={"relative md:pt-10 pt-5"}>
         <div className="container-fluid flex flex-wrap relative z-10 justify-evenly  divide-y md:divide-y-0 divide-[#e1e1e1] ">
           {
             data?.isTestDrive && 
@@ -273,9 +271,7 @@ export default function ModelsDetails({ data }) {
             />
           </div>
         </div>
-        <div className="w-full h-full bg-black/60 absolute top-0 left-0 z-[6] "></div>
-        <ImgUI  imageStyle={'z-5 object-center'} src={'/inner-banner.jpg'} alt={'Banner image'}/>
-      </section>
+          </section>
           <section>
             <div className="container py-10 px-[15px] lg:pt-[52px] 2xl:pt-[60px] 2xl:pb-12 3xl:pt-[75px] 3xl:pb-[60px] flex flex-col items-center gap-3">
               <h2 className={"text-currentTextBlack text-center text-2xl lg:text-[42px] 2xl:text-[48px] 3xl:text-[60px] font-bold !leading-[1.2] "}
@@ -372,7 +368,7 @@ const PerfonmanceInterior = ({ list, bannerImage }) => {
               "flex flex-col items-center gap-3 md:gap-[15px] lg:gap-[30px] w-[45%] lg:w-[22%]"
             }
           >
-            <div className={"w-full aspect-[16/10] relative "}>
+            <div className={"w-full aspect-[16/10] relative rounded-lg overflow-hidden"}>
               <ImgUI src={`${process.env.NEXT_PUBLIC_API_URL}/${card?.image?.path}`} alt={"Perfonmance Interior"} />
             </div>
             <h3
@@ -434,7 +430,7 @@ const PerfonmanceSwiper = ({ swiperList }) => {
               }
             >
               <div className={"aspect-[7/4] w-full swiper-image"}>
-                <div className={"h-full relative w-full"}>
+                <div className={"h-full relative w-full "}>
                   <ImgUI src={`${process.env.NEXT_PUBLIC_API_URL}/${slider?.image?.path}`} alt={langSelect(i18n.language , slider?.titleRu , slider?.titleUz)} />
                 </div>
               </div>

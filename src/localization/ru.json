@@ -53,6 +53,8 @@
       "sizes": "Размеры",
       "features": "Функции",
       "tvc": "ТВЦ",
+      "interior": "Интерьер",
+      "exterior": "Экстерьер",
       "positions": "Позиции"
     },
     "about": {

@@ -49,6 +49,8 @@
       "sizes": "O'lchamlari",
       "features": "Funktsiyalari",
       "tvc": "TVC",
+      "interior": "Ichki",
+      "exterior": "Tashqi ko'rinish",
       "positions": "Pozitsiyalar"
     },
     "toTop": "Tepaga",

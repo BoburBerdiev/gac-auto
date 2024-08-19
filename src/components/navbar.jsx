@@ -163,7 +163,7 @@ const NavbarList = ({ menu, lineMove, pathname, setChildRef, onClick, setNav }) 
     if (pathname === slug) {
       setChildRef(ref.current.offsetLeft + ref.current.clientWidth / 2);
     }
-    if (pathname === 'Empow') {
+    if (pathname.includes('models')) {
       setChildRef(ref.current.offsetLeft + ref.current.clientWidth / 2);
     }
     subTitle?.forEach((itemLink) => {
@@ -265,11 +265,11 @@ const NavbarDropdown = () => {
       value: "ru",
       id: 0,
     },
-    {
-      title: t("lang.uz"),
-      value: "uz",
-      id: 1,
-    },
+    // {
+    //   title: t("lang.uz"),
+    //   value: "uz",
+    //   id: 1,
+    // },
   ];
 
   const openDropdown = () => {

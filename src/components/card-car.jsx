@@ -114,11 +114,11 @@ const CardCar = ({model}) => {
       <div className="px-2 md:px-4 flex  py-3 justify-between items-center bg-currentRed border border-currentRed">
         <div className="flex flex-col">
           <p className="text-sm text-white">{t('models.price')}</p>
-          <h4 className="font-bold text-white">{model?.price}</h4>
+          <h4 className="font-medium text-white">{model?.price}</h4>
         </div>
         <div className="flex flex-col items-end">
           <p className="text-sm text-white">{t('models.splitPrice')}</p>
-          <h4 className="font-bold text-white">{model?.splitPrice}</h4>
+          <h4 className="font-medium text-white">{model?.splitPrice}</h4>
         </div>
       </div>
     </Link>

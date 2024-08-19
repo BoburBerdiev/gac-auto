@@ -5,7 +5,7 @@ import Layout from "@/layout/layout";
 import Head from "next/head";
 const montserrat = Montserrat({
     subsets:["cyrillic" ,"latin"] ,
-    weight: ['400'],
+    weight: ['400', '500', '600', '700'],
     variable: "--font-montserrat",
     display:'swap'
 })
