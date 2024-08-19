@@ -5,6 +5,8 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import {Client, HydrationProvider} from "react-hydration-provider";
 
 import 'swiper/css';
+import 'swiper/css/pagination';
+
 
 const Layout = ({children}) => {
     const queryClient = new QueryClient();
@@ -14,7 +16,7 @@ const Layout = ({children}) => {
                 <QueryClientProvider client={queryClient}>
                 <Client>
                     <Navbar />
-                    <main className={'bg-white '}>
+                    <main className={'bg-white overflow-x-hidden'}>
                         {children}
                     </main>
                     <ToTop/>

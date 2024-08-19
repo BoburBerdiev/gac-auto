@@ -82,3 +82,10 @@
 .map-locations::-webkit-scrollbar {
   display: none;
 }
+.positionsSwiper   .swiper-pagination-bullets {
+  position: relative !important;
+  margin-top: 20px;
+}
+.positionsSwiper .swiper-pagination-bullet-active {
+  background-color: #e23535;
+}

@@ -43,9 +43,14 @@ const HomeHeaderBanner = ({ priority = false, Quality, card, list  }) => {
                     card={card || false}
                   />
                     </> : 
-                     <video className="!w-full !h-full object-cover" controls autoPlay  muted loop playsInline>
-                     <source src={`${process.env.NEXT_PUBLIC_API_URL}/${slider?.video?.path}`} type="video/mp4" />
-                   </video>
+
+                    <video className="object-cover w-full h-full" autoPlay loop muted>
+                    <source
+                        className="w-full"
+                        src={`${process.env.NEXT_PUBLIC_API_URL}/${slider?.video?.path}`}
+                        type="video/mp4"
+                    />
+                    </video>
                   }
                 </Link>
                 </SwiperSlide>

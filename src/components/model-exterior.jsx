@@ -3,7 +3,7 @@ import { ButtonUI, ImgUI, SectionTitleCar } from ".";
 import { useTranslation } from "react-i18next";
 import { langSelect } from "@/helper";
 import { SwiperSlide, Swiper } from "swiper/react";
-import { Navigation } from "swiper/modules";
+import { Pagination } from 'swiper/modules';
 import { GrNext, GrPrevious } from "react-icons/gr";
 import { useQuery } from "react-query";
 import apiService from "@/service/axios";
@@ -67,10 +67,7 @@ const   ModelExterior = ({ data, positionList }) => {
           <div className="w-full flex flex-col items-center">
             <Swiper
               slidesPerView={3}
-              navigation={{
-                nextEl: ".button-next-btn",
-                prevEl: ".button-prev-btn",
-              }}
+              pagination={true}
               spaceBetween={30}
               breakpoints={{
                 320: {
@@ -90,8 +87,8 @@ const   ModelExterior = ({ data, positionList }) => {
                   spaceBetween: 30,
                 },
               }} 
-              modules={[Navigation]}
-              className="mySwiper w-full relative max-w-[1300px] xl:!px-6 !px-4"
+              modules={[Pagination]}
+              className="positionsSwiper w-full relative max-w-[1300px] xl:!px-6 !px-4"
             >
               {positionList?.map((item) => (
                 <SwiperSlide key={item?._id} className=" !h-auto rounded-xl overflow-hidden ">
@@ -131,12 +128,7 @@ const   ModelExterior = ({ data, positionList }) => {
                   </div>
                 </SwiperSlide>
               ))}
-              <button className="cursor-pointer text-currentBlue absolute xl:hidden top-1/2 left-0 z-10 p-2  button-prev-btn bg-borderBtn flex justify-center items-center rounded-full text-white ">
-                <GrPrevious className="text-lg" />
-              </button>
-              <button className="cursor-pointer text-currentBlue absolute xl:hidden top-1/2 right-0 z-10 p-2 bg-borderBtn flex justify-center items-center rounded-full text-white   button-next-btn ">
-                <GrNext className="text-lg" />
-              </button>
+             
             </Swiper>
           </div>
         </div>
@@ -186,7 +178,7 @@ const InteriorExterior = ({ isInterior, list , interior, setInterior, exterior, 
   };
   return (
     <div className="w-full flex flex-col items-center relative justify-center ">
-      <div className={`w-full relative aspect-[5/3] md:aspect-[43/21] lg:max-w-[700px] xl:max-w-[860px] z-[5] `}>
+      <div className={`w-full relative aspect-[5/3] md:aspect-[43/21] lg:max-w-[700px] xl:max-w-[860px] z-[5] py-10`}>
         <ImgUI
            src={`${process.env.NEXT_PUBLIC_API_URL}/${isInterior ? interior?.carImage?.path : exterior?.carImage?.path}`}
            objectFitContain={isInterior ? false : true}
@@ -194,7 +186,7 @@ const InteriorExterior = ({ isInterior, list , interior, setInterior, exterior, 
            imageStyle={"object-center"}
          />
       </div>
-      <div className="container absolute flex flex-col gap-5 max-lg:justify-between  max-lg:w-full max-lg:h-full max-lg:top-0 max-lg:left-0 max-lg:py-1 ">
+      <div className="container absolute z-20 flex flex-col gap-5 max-lg:justify-between  max-lg:w-full max-lg:h-full max-lg:top-0 max-lg:left-0 max-lg:py-1 ">
         <div className="flex  gap-2 max-lg:bg-white max-lg:py-2 max-lg:px-1 max-lg:rounded-full w-fit max-lg:flex-col">
            <div onClick={() => setIsInterior(false)} className={`p-1 lg:p-2 cursor-pointer rounded-full border border-[#CCCCCC] w-fit ${!isInterior ? "bg-[#C1C1C1]" : 'bg-white'}`} >
             <div className="relative w-6 h-6 lg:w-8 lg:h-8 ">
