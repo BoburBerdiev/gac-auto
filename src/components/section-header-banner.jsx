@@ -35,7 +35,7 @@ const SectionHeaderBanner = ({ priority = false, Quality, card, list }) => {
         </SwiperSlide>
       ))}
       <div className="absolute bottom-5 w-full z-20 flex justify-center items-center">
-        <div className="inline-flex items-center gap-x-4 inner-pagination "></div>
+        <div className="!w-fit flex items-center gap-x-4 inner-pagination "></div>
       </div>
     </Swiper>
   );
