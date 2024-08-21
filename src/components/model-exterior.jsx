@@ -4,13 +4,19 @@ import { useTranslation } from "react-i18next";
 import { langSelect } from "@/helper";
 import { SwiperSlide, Swiper } from "swiper/react";
 import { Pagination } from 'swiper/modules';
-import { GrNext, GrPrevious } from "react-icons/gr";
 import { useQuery } from "react-query";
 import apiService from "@/service/axios";
+import {useDispatch , useSelector} from 'react-redux'
 
 const   ModelExterior = ({ data, positionList }) => {
   const { t, i18n } = useTranslation();
   const [isInterior, setIsInterior] = useState(false);
+  const dispatch = useDispatch()
+
+
+
+
+
   const [position, setPosition] = useState();
   const [exterior, setExterior] = useState();
   const [interior, setInterior] = useState();
