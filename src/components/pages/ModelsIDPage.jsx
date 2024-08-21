@@ -38,7 +38,6 @@ export default function ModelsDetails({ data }) {
       document.body.classList.remove("overflow-hidden");
     }
   }, [saleModal]);
-  console.log(data?.design?.list?.length);
   return (
     <div className={"relative"}>
       <NavbarCarInner innerPage={innerPage} setInnerPage={setInnerPage}
@@ -378,23 +377,23 @@ const PerfonmanceSwiper = ({ swiperList }) => {
   return (
     <>
       <Swiper
-        slidesPerView={2.3}
-        spaceBetween={15}
+        slidesPerView={2.5}
+        spaceBetween={30}
         breakpoints={{
           280: {
-            slidesPerView: "1.2",
+            slidesPerView: "2.5",
             spaceBetween: "20",
           },
           768: {
-            slidesPerView: "1.8",
+            slidesPerView: "1.5",
             spaceBetween: "50",
           },
           1024: {
-           
+
             spaceBetween: "50",
           },
           1440: {
-            slidesPerView: "2.1",            
+            slidesPerView: "1.5",
             spaceBetween: "60",
           },
           1680: {
@@ -410,6 +409,7 @@ const PerfonmanceSwiper = ({ swiperList }) => {
         centeredSlides={true}
         className="perfonmanceSwiper !w-full"
       >
+
         {swiperList?.map((slider) => (
           <SwiperSlide key={slider?._id} className={"w-full h-full "}>
             <div
@@ -432,6 +432,30 @@ const PerfonmanceSwiper = ({ swiperList }) => {
             </div>
           </SwiperSlide>
         ))}
+          {
+              swiperList.length===3 &&
+
+              <SwiperSlide className={"w-full h-full "}>
+                  <div
+                      className={
+                          "flex flex-col items-center gap-5 2xl:gap-[25px] 3xl:gap-[30px]"
+                      }
+                  >
+                      <div className={"aspect-[7/4] w-full swiper-image"}>
+                          <div className={"h-full relative w-full "}>
+                              <ImgUI src={`${process.env.NEXT_PUBLIC_API_URL}/${swiperList[1]?.image?.path}`} alt={langSelect(i18n.language , swiperList[1]?.titleRu , swiperList[1]?.titleUz)} />
+                          </div>
+                      </div>
+                      <h3
+                          className={
+                              "text-center !leading-[1.5] text-sm px-3.5 lg:text-lg "
+                          }
+                      >
+                          {langSelect(i18n.language , swiperList[1]?.titleRu , swiperList[1]?.titleUz)}
+                      </h3>
+                  </div>
+              </SwiperSlide>
+          }
         <div className="swiper-button-next absolute bottom-2 z-[40] max-md:hidden right-[29%] translate-x-[29%] text-lg xl:text-2xl 2xl:text-3xl 3xl:text-4xl">
           <FaChevronRight />
         </div>

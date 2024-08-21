@@ -5,9 +5,14 @@ export default function SelectUI({
   errorText,
   isError,
   optionValues,
-  register,
-  
+                                     register, handleChangeModel, isChange = false
 }) {
+
+    const handleChange = (car) => {
+        if (isChange) {
+            handleChangeModel(car)
+        }
+    }
 
   return (
     <>
@@ -18,16 +23,12 @@ export default function SelectUI({
         {labelText}
       </label>
       <select
-         onChange={(e) => {
-          if (onChange) {
-            console.log(1);
-          }
-        }}
         {...register}
         id={nameLabel}
+        onChange={e => handleChange(e.target.value)}
         className="bg-white border focus:bg-currentRed/5 duration-300 border-currentGray text-sm outline-none block w-full !p-2.5"
       >
-        {optionValues?.map((value, idx) => (
+          {optionValues?.map((value) => (
           <option  key={value?._id} value={value?.name} >
             {value?.name }
           </option>

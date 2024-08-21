@@ -10,55 +10,55 @@ import { useMutation } from "react-query";
 const optionValues = [
   {
     name: "Ташкент", 
-    id: 0,
+    _id: 0,
   },
   {
     name: "Андижан", 
-    id: 1,
+    _id: 1,
   },
   {
     name: "Бухара", 
-    id: 2,
+    _id: 2,
   },
   {
     name: "Фергана", 
-    id: 3,
+    _id: 3,
   },
   {
     name: "Жиззах", 
-    id: 4,
+    _id: 4,
   },
   {
     name: "Хоразм", 
-    id: 5,
+    _id: 5,
   },
   {
     name: "Наманган", 
-    id: 6,
+    _id: 6,
   },
   {
     name: "Навоий", 
-    id: 7,
+    _id: 7,
   },
   {
     name: "Қашқадарё", 
-    id: 8,
+    _id: 8,
   },
   {
     name: "Қорақалпоғистон", 
-    id: 9,
+    _id: 9,
   },
   {
     name: "Самарқанд", 
-    id: 10,
+    _id: 10,
   },
   {
     name: "Сирдарё", 
-    id: 11,
+    _id: 11,
   },
   {
     name: "Сурхондарё", 
-    id: 12,
+    _id: 12,
   },
  
 ]

@@ -77,7 +77,7 @@ const Navbar = () => {
   return (
     <>
       <nav className="bg-black w-full fixed z-[50] py-1 top-0">
-      <AnimatePresence key={'navbar'} >
+      {/*<AnimatePresence key={'navbar'}>*/}
         <div className="container w-full">
           <div className="bg-black flex items-center w-full h-full justify-between py-2 lg:p-0">
             <div className="flex items-center gap-3 w-full">
@@ -119,7 +119,7 @@ const Navbar = () => {
                       onClick={() => setNav(false)}
                     />
                   ))}
-                  
+
                 </ul>
               </div>
             </div>
@@ -139,7 +139,7 @@ const Navbar = () => {
                   setNav(true);
                 }}
               />
-             
+
             </div>
           </div>
         </div>
@@ -147,7 +147,7 @@ const Navbar = () => {
           style={{ "--before-left": `${line}px` }}
           className={` beforeLine hidden lg:block w-full before:h-full before:-translate-x-1/2  before:duration-700 z-1 h-1 absolute bottom-0 before:absolute before:w-[30px] before:bg-[#d40021]`}
         ></div>
-      </AnimatePresence>
+      {/*</AnimatePresence>*/}
         </nav>
     </>
   );
@@ -315,38 +315,40 @@ const NavbarDropdown = () => {
         </p>
       </div>
       
-
-     {
-      dropdown ?
-      <motion.div
-      key={'dropdown'}
-      initial={{opacity: 0}}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      className={`flex flex-col  w-14 absolute z-50 top-full -left-2  `}
-    >
-        <ul
-          className={
-            "rounded-b-lg  flex flex-col overflow-hidden  bg-black  text-white  pt-2 "
-          }
-          onClick={(e) => e.preventDefault()}
+<AnimatePresence>
+  {
+    dropdown ?
+        <motion.div
+            key={'dropdown'}
+            initial={{opacity: 0}}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className={`flex flex-col  w-14 absolute z-50 top-full -left-2  `}
         >
-          {langList.map((lang) => (
-            <li
-              onClick={() => handleLang(lang)}
+          <ul
               className={
-                "cursor-pointer hover:bg-gray-50/50 text-center  py-1.5 px-2 !leading-[1]"
+                "rounded-b-lg  flex flex-col overflow-hidden  bg-black  text-white  pt-2 "
               }
-              key={lang?.id}
-            >
-              {t(lang?.title)}
-            </li>
-          ))}
-        </ul>
-    </motion.div>
-    : 
-    null
-     }
+              onClick={(e) => e.preventDefault()}
+          >
+            {langList.map((lang) => (
+                <li
+                    onClick={() => handleLang(lang)}
+                    className={
+                      "cursor-pointer hover:bg-gray-50/50 text-center  py-1.5 px-2 !leading-[1]"
+                    }
+                    key={lang?.id}
+                >
+                  {t(lang?.title)}
+                </li>
+            ))}
+          </ul>
+        </motion.div>
+        :
+        null
+  }
+</AnimatePresence>
+
     </div>
   );
 };

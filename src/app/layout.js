@@ -1,6 +1,6 @@
 import { Montserrat} from "next/font/google";
 import "./globals.css";
-import 'swiper/css';
+// import 'swiper/css';
 import Layout from "@/layout/layout";
 import Head from "next/head";
 const montserrat = Montserrat({

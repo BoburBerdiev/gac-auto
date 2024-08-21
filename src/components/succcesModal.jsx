@@ -8,7 +8,7 @@ import { useTranslation } from "react-i18next";
 const  SucccesModal = ({ modal, setModal }) => {
   const {t} = useTranslation()
   return (
-    <AnimatePresence key={'saleModal'}>
+    <AnimatePresence key={'successModal'}>
       {modal && (
         <motion.div
           key="SaleModal"

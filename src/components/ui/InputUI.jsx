@@ -5,7 +5,7 @@ export default function InputUI({
   errorText,
   isError,
   register,
-  type,
+  type='text',
   isTextArea,
   textAreaRows
 }) {
@@ -27,10 +27,9 @@ export default function InputUI({
         className="bg-white border focus:bg-currentRed/5 duration-300 border-currentGray text-sm outline-none block w-full p-2.5 "
       ></textarea> 
         :
-        
         <input
         {...register}
-        type={type ? type : 'text'}
+        type={type}
         id={nameLabel}
         className="bg-white border focus:bg-currentRed/5 duration-300 border-currentGray text-sm outline-none block w-full p-2.5 "
         placeholder={placeholder}
