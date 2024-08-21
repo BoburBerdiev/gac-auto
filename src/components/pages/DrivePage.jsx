@@ -81,7 +81,7 @@ const DrivePage = ({ models }) => {
 
   return (
     <>
-      <section className={`relative h-[85vh] md:h-[94.9vh] bg-black`} >
+      <section className={`relative h-screen bg-black`} >
                 <div className="relative z-7 md:hidden w-full h-full">
                   <ImgUI
                     src={`${process.env.NEXT_PUBLIC_API_URL}/${selectModel?.overviewBannerRes?.path}`}

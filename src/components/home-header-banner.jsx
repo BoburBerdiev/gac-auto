@@ -57,7 +57,7 @@ const HomeHeaderBanner = ({ priority = false, Quality, card, list  }) => {
             ))
         }
       <div className="absolute bottom-5 w-full z-20 flex justify-center items-center">
-        <div className="inline-flex items-center gap-x-4 inner-pagination cursor-pointer"></div>
+        <div className="!w-fit flex items-center gap-x-4 inner-pagination cursor-pointer"></div>
       </div>
     </Swiper>
   );

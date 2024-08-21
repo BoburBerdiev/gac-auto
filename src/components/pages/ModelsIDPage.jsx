@@ -274,10 +274,7 @@ export default function ModelsDetails({ data }) {
           </section>
           <section>
             <div className="container py-10 px-[15px] lg:pt-[52px] 2xl:pt-[60px] 2xl:pb-12 3xl:pt-[75px] 3xl:pb-[60px] flex flex-col items-center gap-3">
-              <h2 className={"text-currentTextBlack text-center text-2xl lg:text-[42px] 2xl:text-[48px] 3xl:text-[60px] font-bold !leading-[1.2] "}
-              >
-                {langSelect(i18n.language , data?.design.titleRu , data?.design.titleUz )}
-              </h2>
+              <SectionTitleCar title={langSelect(i18n.language , data?.design.titleRu , data?.design.titleUz )}/>
               <p className="text-center !leading-[1.5] text-sm  lg:text-lg ">{langSelect(i18n.language , data?.design.textRu , data?.design.textUz )}</p>
             </div>
             <div className="container ">
@@ -298,13 +295,9 @@ export default function ModelsDetails({ data }) {
         
          </section>
           <section>
-        <h2
-          className={
-            "text-currentTextBlack text-center text-2xl lg:text-[42px] 2xl:text-[48px] 3xl:text-[60px] font-bold !leading-[1.2] py-10 px-[15px] lg:pt-[52px] 2xl:pt-[60px] 2xl:pb-12 3xl:pt-[75px] 3xl:pb-[60px]"
-          }
-        >
-          {langSelect(i18n.language , data?.expensive.titleRu , data?.expensive.titleUz )}
-        </h2>
+           <div className="container py-10 px-[15px] lg:pt-[52px] 2xl:pt-[60px] 2xl:pb-12 3xl:pt-[75px] 3xl:pb-[60px]">
+                <SectionTitleCar title={langSelect(i18n.language , data?.expensive.titleRu , data?.expensive.titleUz )}/>
+           </div>
         <PerfonmanceInterior bannerImage={data?.expensive?.bannerImage?.path} list={data?.expensive?.list} />
          </section>
          <section
@@ -312,14 +305,9 @@ export default function ModelsDetails({ data }) {
           "w-full py-10 lg:pt-[60px] lg:pb-[50px] xl:pt-[70px] xl:pb-[55px] 3xl::pt-[90px] 3xl::pb-[70px]"
         }
       >
-        <h2
-          className={
-            "text-currentTextBlack text-center text-2xl lg:text-[42px] 2xl:text-[48px] 3xl:text-[60px] font-bold !leading-[1.2] px-[15px] pb-[30px] lg:pb-[45px] 3xl:pb-[65px]"
-          }
-        >
-          {langSelect(i18n.language , data?.intelligent?.titleRu , data?.intelligent?.titleUz)}
-         
-        </h2>
+        <div className="container pb-[30px] lg:pb-[45px] 3xl:pb-[65px]">
+          <SectionTitleCar title={langSelect(i18n.language , data?.intelligent?.titleRu , data?.intelligent?.titleUz)}/>
+        </div>
         <PerfonmanceSwiper swiperList={data?.intelligent?.list} />
          </section>
         </>
