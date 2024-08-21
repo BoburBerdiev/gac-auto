@@ -288,10 +288,8 @@ export default function ModelsDetails({ data }) {
                     </div>
                   ))
                 }
-                
               </div>
             </div>
-        
          </section>
           <section>
            <div className="container py-10 px-[15px] lg:pt-[52px] 2xl:pt-[60px] 2xl:pb-12 3xl:pt-[75px] 3xl:pb-[60px]">
@@ -311,9 +309,6 @@ export default function ModelsDetails({ data }) {
          </section>
         </>
       }
-
-
-     
       <SaleCarModal modal={saleModal} setModal={setSaleModal} />
     </div>
   );
