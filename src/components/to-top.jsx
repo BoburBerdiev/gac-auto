@@ -4,6 +4,8 @@ import {useEffect, useState} from "react";
 import { useTranslation } from "react-i18next";
 import { FaPhone } from "react-icons/fa6";
 import { AnimatePresence, motion } from "framer-motion";
+import { useQuery } from "react-query";
+import apiService from "@/service/axios";
 
 const ToTop = () => {
     const [isHidden, setIsHidden] = useState(false);
@@ -29,6 +31,16 @@ const ToTop = () => {
             };
     }, []);
 
+    const {
+        data: contactData,
+        refetch: contactRefetch,
+        isSuccess: contactIsSucces,
+    } = useQuery( "contactPhone", () => apiService.getData('/contact'),{ enabled: false, })
+      
+    useEffect(() => {
+        contactRefetch()
+    }, [])
+
     const toTopHandle = () => {
         if (typeof window !== "undefined") {
             window.scrollTo({
@@ -44,7 +56,7 @@ const ToTop = () => {
             <span>{t('toTop')}</span>
             <IoIosArrowUp className={'mb-1 text-lg 3xl:text-xl'}/>
         </motion.div>
-        <motion.a key={'toTopChildTwo'} whileTap={{scale: 1.2}} href="tel:+998901112233" className="fixed bottom-[12%] z-[99999] right-5 flex flex-col items-center justify-center">
+        <motion.a key={'toTopChildTwo'} whileTap={{scale: 1.2}} href={`tel:${contactData?.tel}`} className="fixed bottom-[12%] z-[99999] right-5 flex flex-col items-center justify-center">
             <div className="w-[90%] h-[90%] rounded-full animate-ping border border-currentRed absolute "></div>
             <div className="p-3 xl:p-6 rounded-full relative z-10 bg-[#c31e1a] block w-fit text-white ">
                 <FaPhone className="xl:text-xl"/>

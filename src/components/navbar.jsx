@@ -142,10 +142,10 @@ const Navbar = () => {
             </div>
           </div>
         </div>
-        <div
+        {/* <div
           style={{ "--before-left": `${line}px` }}
           className={` beforeLine hidden lg:block w-full before:h-full before:-translate-x-1/2  before:duration-700 z-1 h-1 absolute bottom-0 before:absolute before:w-[30px] before:bg-[#d40021]`}
-        ></div>
+        ></div> */}
         </nav>
     </>
   );

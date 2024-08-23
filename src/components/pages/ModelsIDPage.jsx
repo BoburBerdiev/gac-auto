@@ -376,7 +376,7 @@ const PerfonmanceSwiper = ({ swiperList }) => {
         spaceBetween={30}
         breakpoints={{
           280: {
-            slidesPerView: "2.5",
+            slidesPerView: "1.8",
             spaceBetween: "20",
           },
           768: {
@@ -409,7 +409,7 @@ const PerfonmanceSwiper = ({ swiperList }) => {
           <SwiperSlide key={slider?._id} className={"w-full h-full "}>
             <div
               className={
-                "flex flex-col items-center gap-5 2xl:gap-[25px] 3xl:gap-[30px]"
+                "flex flex-col items-center gap-1 md:gap-5 2xl:gap-[25px] 3xl:gap-[30px]"
               }
             >
               <div className={"aspect-[7/4] w-full swiper-image"}>
@@ -419,7 +419,7 @@ const PerfonmanceSwiper = ({ swiperList }) => {
               </div>
               <h3
                 className={
-                  "text-center !leading-[1.5] text-sm px-3.5 lg:text-lg "
+                  "text-center !leading-[1.5] text-xs md:text-sm px-3.5 lg:text-lg "
                 }
               >
                 {langSelect(i18n.language , slider?.titleRu , slider?.titleUz)}
@@ -433,7 +433,7 @@ const PerfonmanceSwiper = ({ swiperList }) => {
               <SwiperSlide className={"w-full h-full "}>
                   <div
                       className={
-                          "flex flex-col items-center gap-5 2xl:gap-[25px] 3xl:gap-[30px]"
+                          "flex flex-col items-center gap-1 md:gap-5 2xl:gap-[25px] 3xl:gap-[30px]"
                       }
                   >
                       <div className={"aspect-[7/4] w-full swiper-image"}>
@@ -443,7 +443,7 @@ const PerfonmanceSwiper = ({ swiperList }) => {
                       </div>
                       <h3
                           className={
-                              "text-center !leading-[1.5] text-sm px-3.5 lg:text-lg "
+                              "text-center !leading-[1.5] text-xs md:text-sm px-3.5 lg:text-lg "
                           }
                       >
                           {langSelect(i18n.language , swiperList[1]?.titleRu , swiperList[1]?.titleUz)}
@@ -451,10 +451,10 @@ const PerfonmanceSwiper = ({ swiperList }) => {
                   </div>
               </SwiperSlide>
           }
-        <div className="swiper-button-next absolute bottom-2 z-[40] max-md:hidden right-[29%] translate-x-[29%] text-lg xl:text-2xl 2xl:text-3xl 3xl:text-4xl">
+        <div className="swiper-button-next absolute bottom-0 z-[40] max-md:hidden right-[20%] translate-x-[20%] text-lg xl:text-2xl 2xl:text-3xl 3xl:text-4xl">
           <FaChevronRight />
         </div>
-        <div className="swiper-button-prev absolute bottom-2 z-[40] max-md:hidden left-[29%] translate-x-[29%] text-lg xl:text-2xl 2xl:text-3xl 3xl:text-4xl">
+        <div className="swiper-button-prev absolute bottom-0 z-[40] max-md:hidden left-[20%] translate-x-[20%] text-lg xl:text-2xl 2xl:text-3xl 3xl:text-4xl">
           <FaChevronLeft />
         </div>
       </Swiper>

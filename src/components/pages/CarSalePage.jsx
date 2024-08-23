@@ -26,7 +26,7 @@ export default function Page() {
     const [exterior , setExterior] = useState('')
     const [interior , setInterior] = useState('')
     const [stepCar , setStepCar] = useState(0)
-    const [price , setPrice] = useState(1)
+    const [price , setPrice] = useState(0)
     const [successModal, setSuccessModal] = useState(false)
     const {
       data: modelsData,
@@ -79,7 +79,7 @@ export default function Page() {
       if (userSalePostSuccess) {
           reset();
           setSuccessModal(true);
-          dispatch(setModel(' '))
+          dispatch(setModel(''))
           setTimeout(() => {
               setSuccessModal(false);
               navigate.push("/");
@@ -88,13 +88,14 @@ export default function Page() {
   }, [userSalePostSuccess]);
 
       useEffect(() => {
-        if (model !== ' ') {
+        if (model !== '') {
           modelsData?.forEach(car => {
             model === car?._id &&
             setCarModel(car) 
+            setStepCar(1)
           })
         } else if (modelsIsSucces) {
-            setCarModel(modelsData[1])
+            setCarModel(modelsData[0])
         }
       }, [modelsData, model])
       useEffect(() => {
@@ -108,18 +109,13 @@ export default function Page() {
           setPrice(Number(position?.price))
         }
       }, [position])
-      useEffect(() => {
-        if (exterior) {
-          setPrice(prevState => prevState + Number(exterior?.price))
-        }
-      }, [exterior])
-      useEffect(() => {
-        if (interior) {
-          setPrice(prevState => prevState + Number(interior?.price))
-        }
-      }, [interior])
 
 
+      useEffect(() => {
+        return () => {
+          dispatch(setModel(''))
+        }
+      }, [])
       
       useEffect(() => {
         if (exteriorIsSucces) {
@@ -139,12 +135,20 @@ export default function Page() {
         if (stepCar === 2) {
           exteriorRefetch();
         }
-      }, [stepCar]);
+      }, [stepCar])
       useEffect(() => {
         if (stepCar === 3) {
           interiorRefetch();
         }
       } , [stepCar])
+
+      useEffect(() => {
+        if (stepCar === 2 && exterior) {
+          setPrice(Number(position?.price) + Number(exterior?.price))
+        } else if (stepCar === 3 && interior) {
+          setPrice(Number(position?.price) + Number(exterior?.price) + Number(interior?.price))
+        }
+      }, [stepCar, position, exterior, interior])
       
 
       const changleStepCar = (step) => {
@@ -288,12 +292,12 @@ export default function Page() {
                                       className={` text-sm sm:text-xs flex justify-beetwen xl:text-sm font-medium text-center text-[#333] divide-x divide-gray-200 rounded-lg shadow  `}>
                                       <li className="w-full">
                                           <button onClick={() => changleStepCar(0)} className={`inline-block ${stepCar === 0 && 'bg-[#eeeff4]'}  w-full p-2   focus:outline-none `}>
-                                              Model
+                                            Модель
                                           </button>
                                       </li>
                                       <li className="w-full">
                                           <button onClick={() => changleStepCar(1)} className={`inline-block ${stepCar === 1 && 'bg-[#eeeff4]'}  w-full p-2   focus:outline-none `}>
-                                              Position
+                                            Позиция
                                           </button>
                                       </li>
                                       <li className="w-full">
@@ -349,7 +353,7 @@ export default function Page() {
                                                   ))
                                                   :
                                                   <p className="">
-                                                       No Products
+                                                       Данных не обнаружено
                                                   </p>
                                               }
                                           </div>
@@ -369,7 +373,7 @@ export default function Page() {
                                                   ))
                                                   :
                                                   <p className="">
-                                                       No Products
+                                                       Данных не обнаружено
                                                   </p>
                                               }
                                           </div>
@@ -388,7 +392,7 @@ export default function Page() {
                                                   ))
                                                   :
                                                   <p className="">
-                                                       No Products
+                                                       Данных не обнаружено
                                                   </p>
                                               }
                                           </div>
