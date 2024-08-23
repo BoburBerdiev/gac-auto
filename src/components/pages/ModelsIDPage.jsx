@@ -43,8 +43,6 @@ export default function ModelsDetails({ data }) {
       <NavbarCarInner innerPage={innerPage} setInnerPage={setInnerPage}
         logo={`${process.env.NEXT_PUBLIC_API_URL}/${data?.logoInner?.path}`}
       />
-
-
       {
         innerPage === 'overview' && 
         <>
@@ -280,7 +278,7 @@ export default function ModelsDetails({ data }) {
               <div className={`grid grid-cols-1 md:grid-cols-2 ${data?.design?.list?.length > 2 && 'md:grid-rows-2'} gap-5 `}>
                 {
                   data?.design?.list?.map((card, idx) => (
-                    <div className={` w-full relative ${data?.design?.list?.length > 2 && idx === 0 && 'row-span-2 aspect-[5/4] '} ${idx !== 0 ? 'md:h-full max-md:aspect-[5/4] ' : "aspect-[5/4]"}  border border-black/20 `}>
+                    <div key={idx}  className={` w-full relative ${data?.design?.list?.length > 2 && idx === 0 && 'row-span-2 aspect-[5/4] '} ${idx !== 0 ? 'md:h-full max-md:aspect-[5/4] ' : "aspect-[5/4]"}  border border-black/20 `}>
                       <div className="w-full h-full relative z-10">
                         <ImgUI src={`${process.env.NEXT_PUBLIC_API_URL}/${card?.image?.path}`} alt={langSelect(i18n.language , card?.titleRu , card?.titleUz )}/>
                       </div>
@@ -345,7 +343,7 @@ const PerfonmanceInterior = ({ list, bannerImage }) => {
       >
         {list?.map((card) => (
           <div
-            key={card?.id}
+            key={card?._id}
             className={
               "flex flex-col items-center gap-3 md:gap-[15px] lg:gap-[30px] w-[45%] lg:w-[22%]"
             }

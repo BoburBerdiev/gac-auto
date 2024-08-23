@@ -9,10 +9,12 @@ import store, { persistor } from "@/store";
 import 'swiper/css';
 import 'swiper/css/pagination';
 import { PersistGate } from "redux-persist/integration/react";
+import { usePathname } from "next/navigation";
 
 
 const Layout = ({children}) => {
     const queryClient = new QueryClient();
+    const pathname = usePathname();
     return (
         <>
             <HydrationProvider>
@@ -24,7 +26,11 @@ const Layout = ({children}) => {
                                 <main className={'bg-white overflow-x-hidden'}>
                                     {children}
                                 </main>
-                                <ToTop/>
+                                {
+                                    pathname == '/car-sale' ?
+                                    '' :
+                                    <ToTop/>
+                                }
                                 <Footer/>
                             </PersistGate>
                         </Provider>

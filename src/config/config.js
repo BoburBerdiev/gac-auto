@@ -35,4 +35,9 @@ export const NavList = [
             },
         ]
     },
+    {
+        name: 'Выбор и покупка',
+        _id: 2,
+        slug: '/car-sale'
+    },
 ]

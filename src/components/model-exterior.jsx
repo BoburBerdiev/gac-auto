@@ -6,17 +6,15 @@ import { SwiperSlide, Swiper } from "swiper/react";
 import { Pagination } from 'swiper/modules';
 import { useQuery } from "react-query";
 import apiService from "@/service/axios";
-import {useDispatch , useSelector} from 'react-redux'
+import { setModel } from "@/slice/carSale";
+import { useRouter } from "next/navigation";
+import { useDispatch } from "react-redux";
 
 const   ModelExterior = ({ data, positionList }) => {
   const { t, i18n } = useTranslation();
   const [isInterior, setIsInterior] = useState(false);
-  const dispatch = useDispatch()
-
-
-
-
-
+  const navigate = useRouter()
+  const dispatch = useDispatch();
   const [position, setPosition] = useState();
   const [exterior, setExterior] = useState();
   const [interior, setInterior] = useState();
@@ -64,7 +62,10 @@ const   ModelExterior = ({ data, positionList }) => {
       interiorRefetch();
     }
   }, [exterior]);
-
+  const handleAddModel = () => {
+    dispatch(setModel(data?._id))
+    navigate.push('/car-sale')
+  }
   return (
     <>
       <div className="bg-white py-10">
@@ -160,6 +161,10 @@ const   ModelExterior = ({ data, positionList }) => {
                      </div>
                    ))}
               </div>
+              <div className="w-fit flex items-center gap-4 self-center order-3">
+                <ButtonUI text={t("btn.downloadCatalog")}  download={true} href={`${process.env.NEXT_PUBLIC_API_URL}/${data?.pdf?.path}`}/>
+                <ButtonUI text={t("btn.send")} onClick={() => handleAddModel()}/>
+              </div>
           </div>
       }
       
@@ -196,14 +201,14 @@ const InteriorExterior = ({ isInterior, list , interior, setInterior, exterior, 
         <div className="flex  gap-2 max-lg:bg-white max-lg:py-2 max-lg:px-1 max-lg:rounded-full w-fit max-lg:flex-col">
            <div onClick={() => setIsInterior(false)} className={`p-1 lg:p-2 cursor-pointer rounded-full border border-[#CCCCCC] w-fit ${!isInterior ? "bg-[#C1C1C1]" : 'bg-white'}`} >
             <div className="relative w-6 h-6 lg:w-8 lg:h-8 ">
-              <ImgUI src={'/car-icon.png'} objectFitContain/>
+              <ImgUI src={'/car-icon.png'} alt={'Car icon'} objectFitContain/>
             </div>
            </div>
            {
              interior &&
              <div onClick={() => setIsInterior(true)} className={`p-1 lg:p-2 cursor-pointer rounded-full border border-[#CCCCCC] w-fit ${isInterior ? "bg-[#C1C1C1]" : 'bg-white'}`} >
               <div className="relative w-6 h-6 lg:w-8 lg:h-8 ">
-                <ImgUI src={'/interior-icon.png'} objectFitContain/>
+                <ImgUI src={'/interior-icon.png'} alt={'Car icon '} objectFitContain/>
               </div>
              </div>
            }
@@ -211,7 +216,7 @@ const InteriorExterior = ({ isInterior, list , interior, setInterior, exterior, 
         <div className="w-fit max-lg:self-center flex relative flex-col max-lg:items-center">
           <div className="max-lg:bg-white  flex max-lg:py-1 mb-7 max-lg:border-[0.5px] border-black/30 max-lg:px-3 max-lg:rounded-full max-lg:items-center lg:flex-col gap-3 lg:gap-4 ">
             {list?.map((modelColor) => (
-              <div className="flex items-center gap-2  max-lg:flex-col ">
+              <div className="flex items-center gap-2  max-lg:flex-col " key={modelColor?._id}>
                 <button
                   onClick={() =>
                     handleModelColor( modelColor, modelColor?._id)
@@ -260,29 +265,3 @@ const InteriorExterior = ({ isInterior, list , interior, setInterior, exterior, 
 
 
 
-
-
-
-
-
-
-
-
-//              
-
-
-
-
-
-
-
-
-// <ButtonUI
-//                   text={t("btn.downloadCatalog")}
-//                    download={true}
-//                   href={`${process.env.NEXT_PUBLIC_API_URL}/${data?.pdf?.path}`}
-//                   />
-//                    <ButtonUI
-//                    text={t("btn.send")}
-//                    disabled={true}
-//                   />

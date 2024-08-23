@@ -77,7 +77,6 @@ const Navbar = () => {
   return (
     <>
       <nav className="bg-black w-full fixed z-[50] py-1 top-0">
-      {/*<AnimatePresence key={'navbar'}>*/}
         <div className="container w-full">
           <div className="bg-black flex items-center w-full h-full justify-between py-2 lg:p-0">
             <div className="flex items-center gap-3 w-full">
@@ -131,7 +130,7 @@ const Navbar = () => {
               <SearchPanel search={search} setSearch={setSearch}/>
 
                <div className={"flex items-start group "}>
-                <NavbarDropdown />
+                {/* <NavbarDropdown /> */}
               </div>
               <RiMenuFill
                 className=" block lg:hidden font-medium   h-6 w-6 text-white"
@@ -147,7 +146,6 @@ const Navbar = () => {
           style={{ "--before-left": `${line}px` }}
           className={` beforeLine hidden lg:block w-full before:h-full before:-translate-x-1/2  before:duration-700 z-1 h-1 absolute bottom-0 before:absolute before:w-[30px] before:bg-[#d40021]`}
         ></div>
-      {/*</AnimatePresence>*/}
         </nav>
     </>
   );

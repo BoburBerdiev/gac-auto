@@ -139,9 +139,9 @@ const SearchPanel = ({ search, setSearch }) => {
                                   "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 w-full h-[70vh]  overflow-y-scroll"
                                 }
                             >
-                              {searchProductFiltered?.map((card, id) => (
+                              {searchProductFiltered?.map((card) => (
                                   <div
-                                      key={card?.id}
+                                      key={card?._id}
                                       onClick={routerPushClear}
                                       className="h-fit"
                                   >
