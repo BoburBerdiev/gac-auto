@@ -79,7 +79,7 @@ export default function Page() {
       if (userSalePostSuccess) {
           reset();
           setSuccessModal(true);
-          dispatch(setModel(''))
+          dispatch(setModel(' '))
           setTimeout(() => {
               setSuccessModal(false);
               navigate.push("/");
@@ -88,7 +88,7 @@ export default function Page() {
   }, [userSalePostSuccess]);
 
       useEffect(() => {
-        if (model !== '') {
+        if (model !== ' ') {
           modelsData?.forEach(car => {
             model === car?._id &&
             setCarModel(car) 
@@ -113,7 +113,7 @@ export default function Page() {
 
       useEffect(() => {
         return () => {
-          dispatch(setModel(''))
+          dispatch(setModel(' '))
         }
       }, [])
       
