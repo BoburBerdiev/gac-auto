@@ -67,13 +67,6 @@ const AboutPage = ({data}) =>{
                   langSelect(i18n.language , aboutBrief?.textRu ,  aboutBrief?.textUz)
                 }
               </p>
-              {/* <p className={"lg:py-2.5 xl:py-[15px] 2xl:py-5"}>
-                На сегодняшний день GAC INTERNATIONAL успешно проник в рынки
-                Ближнего Востока, Юго-Восточной Азии, Восточной Европы, Африки и
-                Америка, всего 39 стран и регионов по всему миру. В в целях
-                дальнейшей оптимизации пути развития, был уточнен международный
-                стратегический план.
-              </p> */}
             </div>
           </div>
         </div>
@@ -90,7 +83,7 @@ const AboutPage = ({data}) =>{
           />
         </div>
         <div className={"w-full h-full absolute z-0 max-lg:hidden"}>
-          <ImgUI src={`${process.env.NEXT_PUBLIC_API_URL}/${brandHistory?.imageWeb?.path}`} />
+          <ImgUI alt={'About Image'} src={`${process.env.NEXT_PUBLIC_API_URL}/${brandHistory?.imageWeb?.path}`} />
         </div>
         <div className="container-fluid relative z-10 py-[30px] ">
           <div className={"xl:!pl-[96px]"}>

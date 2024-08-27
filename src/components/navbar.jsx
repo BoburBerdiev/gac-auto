@@ -7,7 +7,6 @@ import { BiSearch } from "react-icons/bi";
 import { IoIosArrowDown } from "react-icons/io";
 import Link from "next/link";
 import { NavList } from "@/config/config";
-import { usePathname } from "next/navigation";
 import { useTranslation } from "react-i18next";
 import { AnimatePresence, motion } from "framer-motion";
 import { langSelect } from "@/helper";
@@ -15,14 +14,13 @@ import { useQuery } from "react-query";
 import apiService from "@/service/axios";
 import SearchPanel from "./search-panel";
 import { FaGlobeAmericas } from "react-icons/fa";
+import { usePathname } from "next/navigation";
 
 const Navbar = () => {
   const [nav, setNav] = useState(false);
   const [search, setSearch] = useState(false);
-  const [line, setLine] = useState();
-  const [childRef, setChildRef] = useState();
-  const pathname = usePathname();
   const [navbarLists , setNavbarLists] = useState()
+  const [isNavActive , setIsNavActive] = useState(false)
 
   const {
     data: modelsData,
@@ -34,18 +32,6 @@ const Navbar = () => {
     modelsRefetch()
   }, [])
 
-  useEffect(() => {
-    if (childRef) {
-      setLine(childRef);
-    }
-  }, [childRef]);
-  const lineMove = (e) => {
-    const target = e.target;
-    if (target.dataset.list) {
-      const left = target.offsetLeft + target.clientWidth / 2;
-      setLine(left);
-    }
-  };
   useEffect(() => {
     if (modelsIsSucces) {
       const list = {
@@ -62,12 +48,6 @@ const Navbar = () => {
       setNavbarLists(allList)
     }
   }, [modelsData])
-
-  const onMouseLeaveFunc = () => {
-    if (childRef) {
-      setLine(childRef);
-    }
-  };
 
   const handleSearch = () => {
     setSearch(true);
@@ -89,7 +69,6 @@ const Navbar = () => {
               </Link>
               <div className="flex items-center flex-col">
                 <ul
-                  onMouseLeave={onMouseLeaveFunc}
                   className={`px-2 2xl:gap-3 flex flex-col z-30 h-screen lg:h-auto   ${
                     nav ? "right-0" : "-right-full"
                   }  duration-300 fixed lg:static top-0 w-full bg-black lg:bg-transparent lg:flex-row font-thin text-base text-white items-center `}
@@ -107,18 +86,17 @@ const Navbar = () => {
                       setNav(false);
                     }}
                   />
-                  {navbarLists?.map((item) => (
+                  {navbarLists?.map((item, idx, ) => (
                     <NavbarList
                       setNav={setNav}
                       key={item?._id}
                       menu={item}
-                      lineMove={lineMove}
-                      pathname={pathname}
-                      setChildRef={setChildRef}
-                      onClick={() => setNav(false)}
+                      isNavActive={isNavActive}
+                      setIsNavActive={setIsNavActive}
+                      idx={idx}
                     />
                   ))}
-
+                  <div className={`w-5 h-1 bg-currentRed max-lg:hidden -translate-x-1/2 translate-y-[22px] duration-700 xl:translate-y-6 absolute `} style={{left: `${isNavActive?.current?.offsetLeft + isNavActive?.current?.clientWidth / 2 }px`, }}></div>
                 </ul>
               </div>
             </div>
@@ -142,51 +120,41 @@ const Navbar = () => {
             </div>
           </div>
         </div>
-        {/* <div
-          style={{ "--before-left": `${line}px` }}
-          className={` beforeLine hidden lg:block w-full before:h-full before:-translate-x-1/2  before:duration-700 z-1 h-1 absolute bottom-0 before:absolute before:w-[30px] before:bg-[#d40021]`}
-        ></div> */}
+      
         </nav>
     </>
   );
 };
 
-const NavbarList = ({ menu, lineMove, pathname, setChildRef, onClick, setNav }) => {
+const NavbarList = ({ menu, setNav, setIsNavActive, idx , }) => {
   const [dropdown, setDropdown] = useState(false);
-  const ref = useRef();
   const { t } = useTranslation();
   const { name, slug, subTitle } = menu;
-
-  useEffect(() => {
-    if (pathname === slug) {
-      setChildRef(ref.current.offsetLeft + ref.current.clientWidth / 2);
-    }
-    if (pathname.includes('models')) {
-      setChildRef(ref.current.offsetLeft + ref.current.clientWidth / 2);
-    }
-    subTitle?.forEach((itemLink) => {
-      if (itemLink.slug === pathname) {
-        setChildRef(ref.current.offsetLeft + ref.current.clientWidth / 2);
-      }
-    });
-  }, [pathname]);
-
+  const linkRef = useRef(null);
+  const pathname = usePathname();
   const removeDropdown = () => {
     setNav(false);
     setDropdown(false);
   };
 
+  useEffect(() => {
+    if (idx === 0) {
+      setIsNavActive(linkRef)
+    }
+    if (pathname === slug) {
+      setIsNavActive(linkRef)
+    }
+    subTitle?.forEach(element => {
+      if (pathname === element.slug) {
+        setIsNavActive(linkRef)
+      }
+    });
+  }, [])
+
   return (
-    <div
-      ref={ref}
-      onMouseOver={lineMove}
-      className={`${
-        subTitle ? "peer" : " "
-      } relative border-b-[1px] lg:border-0 w-full border-[#666666] uppercase lg:w-auto py-3 px-5 lg:py-3 lg:px-2 xl:px-3 xl:py-[12px] flex flex-row lg:flex-col justify-between lg:justify-center items-center group line`}
-    >
+    <div ref={linkRef} className={`relative border-b-[1px] lg:border-0 w-full border-[#666666] uppercase lg:w-auto py-3 px-5 lg:py-3 lg:px-2 xl:px-3 xl:py-[12px] flex flex-row lg:flex-col justify-between lg:justify-center items-center group line`} onClick={() => setIsNavActive(linkRef)}>
       {!subTitle ? (
         <Link
-          onClick={onClick}
           href={slug}
           className="relative cursor-pointer text-base border-0 w-full  lg:text-xs xl:text-sm  lg:w-auto flex gap-2 lg:gap-1 lg:justify-center items-center group whitespace-nowrap"
         >
@@ -263,11 +231,11 @@ const NavbarDropdown = () => {
       value: "ru",
       id: 0,
     },
-    // {
-    //   title: t("lang.uz"),
-    //   value: "uz",
-    //   id: 1,
-    // },
+    {
+      title: t("lang.uz"),
+      value: "uz",
+      id: 1,
+    },
   ];
 
   const openDropdown = () => {
