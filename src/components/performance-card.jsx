@@ -7,12 +7,12 @@ const PerformanceCard = ({isPng , text , src}) => {
             <div className={'relative h-[250px] md:h-[300px] lg:h-[360px]'}>
                 {
                     isPng ?
-                <ImgUI src={src} card={true} alt={'name'} objectFitContain={true} />
+                <ImgUI src={src} card={true} alt={text} objectFitContain={true} />
                         :
-                <ImgUI src={src} card={true} alt={'name'} objectFitContain={false} />
+                <ImgUI src={src} card={true} alt={text} objectFitContain={false} />
                 }
             </div>
-            <h5 className={'text-sm md:text-base text-currentTextBlack text-center'}>
+            <h5 className={'text-sm md:text-base text-currentTextBlack text-center break-words'}>
                 {text}
             </h5>
         </div>

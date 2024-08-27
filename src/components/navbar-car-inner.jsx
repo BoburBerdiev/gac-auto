@@ -6,7 +6,7 @@ import {useTranslation} from "react-i18next";
 const NavbarCarInner = ({logo, innerPage , setInnerPage}) => {
     const {t} = useTranslation();
     return (
-        <section className={'w-full bg-transparent absolute top-0 left-0 z-10 mt-[52px]'}>
+        <section className={'w-full bg-transparent md:absolute top-0 left-0 z-10 mt-[48px]'}>
             <div className={'container'}>
                 <div className={'flex flex-col lg:flex-row items-start  justify-between'}>
                     <div

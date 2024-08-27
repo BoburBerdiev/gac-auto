@@ -182,13 +182,13 @@ const NavbarList = ({ menu, lineMove, pathname, setChildRef, onClick, setNav }) 
       onMouseOver={lineMove}
       className={`${
         subTitle ? "peer" : " "
-      } relative border-b-[1px] lg:border-0 w-full border-[#666666] uppercase lg:text-xs xl:text-sm lg:w-auto py-3 px-5 lg:py-3 lg:px-2 xl:px-3 xl:py-[12px] flex flex-row lg:flex-col justify-between lg:justify-center items-center group line`}
+      } relative border-b-[1px] lg:border-0 w-full border-[#666666] uppercase lg:w-auto py-3 px-5 lg:py-3 lg:px-2 xl:px-3 xl:py-[12px] flex flex-row lg:flex-col justify-between lg:justify-center items-center group line`}
     >
       {!subTitle ? (
         <Link
           onClick={onClick}
           href={slug}
-          className="relative cursor-pointer border-0 w-full lg:w-auto flex gap-2 lg:gap-1 lg:justify-center items-center group whitespace-nowrap"
+          className="relative cursor-pointer text-base border-0 w-full  lg:text-xs xl:text-sm  lg:w-auto flex gap-2 lg:gap-1 lg:justify-center items-center group whitespace-nowrap"
         >
           <span>{t(name)}</span>
         </Link>
@@ -199,7 +199,7 @@ const NavbarList = ({ menu, lineMove, pathname, setChildRef, onClick, setNav }) 
               onClick={() => {
                 setDropdown(!dropdown);
               }}
-              className="relative border-0 w-full lg:w-auto flex flex-row lg:flex-col justify-between lg:justify-center items-center group whitespace-nowrap"
+              className="relative border-0 w-full lg:w-auto flex text-base lg:text-xs xl:text-sm flex-row lg:flex-col justify-between lg:justify-center items-center group whitespace-nowrap"
             >
               {t(name)}
             </li>

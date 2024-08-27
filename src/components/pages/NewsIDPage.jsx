@@ -9,17 +9,16 @@ export default function Page({data}) {
   const {i18n} = useTranslation()
   const formattedDate = moment(data?.createdAt).format('MMM DD, YYYY');
   return (
-    <>
+    <main className="min-h-[88vh]">
       <section>
-        <div className="container relative">
+        <div className="container relative mt-20">
         <BannerSmall
-        style={'md:h-[50vh] lg:h-[60vh] !mt-20'}
+          isHeightAuto
           imgDes={`${process.env.NEXT_PUBLIC_API_URL}/${data?.image?.path}`}
-          imgMob={`${process.env.NEXT_PUBLIC_API_URL}/${data?.image?.path}`}
         />
         </div>
       </section>
-      <section className={"py-8 xl:py-[65px] min-h-[80vh]"}>
+      <section className={"py-8 xl:py-[65px] "}>
         <div className="container-fluid space-y-3 lg:space-y-14 ">
           <div>
             <span className={"w-10 h-0.5 bg-borderBtn block"}></span>
@@ -40,6 +39,6 @@ export default function Page({data}) {
           </div>
         </div>
       </section>
-    </>
+    </main>
   );
 }

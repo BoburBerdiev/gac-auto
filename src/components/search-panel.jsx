@@ -80,6 +80,13 @@ const SearchPanel = ({ search, setSearch }) => {
     setSearch(false);
     document.body.classList.remove("overflow-hidden");
   };
+  useEffect(() => {
+    if (search) {
+      document.body.classList.add("overflow-hidden");
+    }else {
+      document.body.classList.remove("overflow-hidden");
+    }
+  }, [search])
   return (
     <>
       <AnimatePresence>

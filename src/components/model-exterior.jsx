@@ -123,7 +123,7 @@ const   ModelExterior = ({ data, positionList }) => {
                         {item?.list?.map((child) => (
                           <div key={child?._id} className="flex gap-2">
                             <div className={`w-1 shrink-0 h-1 mt-2 rounded-full ${ item?._id === position ? "bg-black" : "bg-[#00000099]"} `}></div>
-                            <p className="!leading-[1.2] font-medium">{langSelect(
+                            <p className="!leading-[1.2] font-medium ">{langSelect(
                               i18n.language,
                               child?.titleRu,
                               child?.titleUz
@@ -155,7 +155,7 @@ const   ModelExterior = ({ data, positionList }) => {
                       <h4 className={"font-medium md:text-xl lg:text-2xl xl:text-4xl"}>
                         {langSelect(i18n.language, item?.valueRu, item?.valueUz)}
                       </h4>
-                      <p className={"text-xs md:text-sm lg:text-base xl:text-xl"}>
+                      <p className={"text-xs md:text-sm lg:text-base xl:text-xl break-words w-full"}>
                           {langSelect(i18n.language, item?.keyRu, item?.keyUz)}
                       </p>
                      </div>
@@ -163,7 +163,7 @@ const   ModelExterior = ({ data, positionList }) => {
               </div>
               <div className="w-fit flex items-center gap-4 self-center order-3">
                 <ButtonUI text={t("btn.downloadCatalog")}  download={true} href={`${process.env.NEXT_PUBLIC_API_URL}/${data?.pdf?.path}`}/>
-                <ButtonUI text={t("btn.send")} onClick={() => handleAddModel()}/>
+                <ButtonUI text={'Выбор и покупка'} onClick={() => handleAddModel()}/>
               </div>
           </div>
       }

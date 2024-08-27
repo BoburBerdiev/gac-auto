@@ -28,7 +28,7 @@ import { Navigation } from "swiper/modules";
 export default function ModelsDetails({ data }) {
   const [innerPage, setInnerPage] = useState('overview')
   const [saleModal, setSaleModal] = useState(false);
- 
+  
   const { t, i18n } = useTranslation();
   useEffect(() => {
    
@@ -38,6 +38,14 @@ export default function ModelsDetails({ data }) {
       document.body.classList.remove("overflow-hidden");
     }
   }, [saleModal]);
+
+  const handleInnerPage = () => {
+      window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        })
+    setInnerPage('performance')
+  }
   return (
     <div className={"relative"}>
       <NavbarCarInner innerPage={innerPage} setInnerPage={setInnerPage}
@@ -48,7 +56,7 @@ export default function ModelsDetails({ data }) {
         <>
           <section
             className={
-              "w-full aspect-[5/7] xs:aspect-[4/3] lg:aspect-[16/7] relative overflow-hidden"
+              "w-full aspect-[5/4] xs:aspect-[4/3] lg:aspect-[16/7] relative overflow-hidden"
             }
           >
             <ImgUI
@@ -144,7 +152,7 @@ export default function ModelsDetails({ data }) {
             </div>
           </section>
           {
-            data?.performance &&
+            data?.performance?.titleRu !== '' &&
           <section
             className={
               "bg-[#fff]  lg:pt-[90px] md:pt-[72px] pt-20 pb-[15px] lg:pb-[20px]"
@@ -167,7 +175,7 @@ export default function ModelsDetails({ data }) {
                 }
               </div>
               <div className={"flex justify-center items-center "}>
-                <ButtonUI text={t("btn.readMore")} onClick={() => setInnerPage('performance')} />
+                <ButtonUI text={t("btn.readMore")} onClick={() => handleInnerPage()} />
               </div>
             </div>
           </section>
@@ -195,7 +203,7 @@ export default function ModelsDetails({ data }) {
                 ))}
               </div>
               <div className={"flex justify-center items-center"}>
-                <ButtonUI text={t("btn.readMore")} onClick={() => setInnerPage('performance')} />
+                <ButtonUI text={t("btn.readMore")} onClick={() => handleInnerPage()} />
               </div>
             </div>
           </section>
@@ -207,7 +215,7 @@ export default function ModelsDetails({ data }) {
         <>
           <section
             className={
-              "w-full aspect-[5/7] xs:aspect-[4/3] lg:aspect-[16/7] relative overflow-hidden"
+              "w-full aspect-[5/4] xs:aspect-[4/3] lg:aspect-[16/7] relative overflow-hidden"
             }
           >
             <ImgUI
@@ -269,28 +277,31 @@ export default function ModelsDetails({ data }) {
           </div>
         </div>
           </section>
+          {
+            data?.design?.titleRu !== ''  &&
           <section>
             <div className="container py-10 px-[15px] lg:pt-[52px] 2xl:pt-[60px] 2xl:pb-12 3xl:pt-[75px] 3xl:pb-[60px] flex flex-col items-center gap-3">
-              <SectionTitleCar title={langSelect(i18n.language , data?.design.titleRu , data?.design.titleUz )}/>
-              <p className="text-center !leading-[1.5] text-sm  lg:text-lg ">{langSelect(i18n.language , data?.design.textRu , data?.design.textUz )}</p>
-            </div>
+              <SectionTitleCar title={langSelect(i18n.language , data?.design?.titleRu , data?.design?.titleUz )}/>
+              <p className="text-center !leading-[1.5] text-sm  lg:text-lg ">{langSelect(i18n.language , data?.design?.textRu , data?.design?.textUz )}</p>
+            </div> 
             <div className="container ">
               <div className={`grid grid-cols-1 md:grid-cols-2 ${data?.design?.list?.length > 2 && 'md:grid-rows-2'} gap-5 `}>
                 {
                   data?.design?.list?.map((card, idx) => (
                     <div
                         key={card?._id}
-                        className={` w-full relative ${data?.design?.list?.length > 2 && idx === 0 && 'row-span-2 aspect-[5/4] '} ${idx !== 0 ? 'md:h-full max-md:aspect-[5/4] ' : "aspect-[5/4]"}  border border-black/20 `}>
+                        className={` w-full relative flex flex-col items-center ${data?.design?.list?.length > 2 && idx === 0 && 'row-span-2 aspect-[5/4] '} ${idx !== 0 ? 'md:h-full max-md:aspect-[5/4] ' : "aspect-[5/4]"}  border border-black/20 `}>
                       <div className="w-full h-full relative z-10">
                         <ImgUI src={`${process.env.NEXT_PUBLIC_API_URL}/${card?.image?.path}`} alt={langSelect(i18n.language , card?.titleRu , card?.titleUz )}/>
                       </div>
-                      <p className="relative md:absolute shadow-text bottom-3 left-3 xl:bottom-6 xl:left-12 lg:text-base xl:text-lg 2xl:text-xl 3xl:text-2xl z-20 md:text-white text-center mt-2.5 text-sm font-semibold ">{langSelect(i18n.language , card?.titleRu , card?.titleUz )}</p>
+                      <p className="relative md:absolute shadow-text md:bottom-3  xl:bottom-6  lg:text-base xl:text-lg 2xl:text-xl 3xl:text-2xl z-20 md:text-white text-center py-2.5 text-sm font-semibold break-words">{langSelect(i18n.language , card?.titleRu , card?.titleUz )}</p>
                     </div>
                   ))
                 }
               </div>
             </div>
          </section>
+          }
           <section>
            <div className="container py-10 px-[15px] lg:pt-[52px] 2xl:pt-[60px] 2xl:pb-12 3xl:pt-[75px] 3xl:pb-[60px]">
                 <SectionTitleCar title={langSelect(i18n.language , data?.expensive.titleRu , data?.expensive.titleUz )}/>
@@ -419,7 +430,7 @@ const PerfonmanceSwiper = ({ swiperList }) => {
               </div>
               <h3
                 className={
-                  "text-center !leading-[1.5] text-xs md:text-sm px-3.5 lg:text-lg "
+                  "text-center !leading-[1.5] text-xs break-words md:text-sm px-3.5 lg:text-lg "
                 }
               >
                 {langSelect(i18n.language , slider?.titleRu , slider?.titleUz)}
@@ -443,7 +454,7 @@ const PerfonmanceSwiper = ({ swiperList }) => {
                       </div>
                       <h3
                           className={
-                              "text-center !leading-[1.5] text-xs md:text-sm px-3.5 lg:text-lg "
+                              "text-center !leading-[1.5] text-xs break-words md:text-sm px-3.5 lg:text-lg "
                           }
                       >
                           {langSelect(i18n.language , swiperList[1]?.titleRu , swiperList[1]?.titleUz)}

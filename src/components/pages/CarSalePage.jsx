@@ -105,8 +105,10 @@ export default function Page() {
       }, [carModel])
 
       useEffect(() => {
-        if (position) {
+        if (position !== undefined) {
           setPrice(Number(position?.price))
+        }else {
+          setPrice(0)
         }
       }, [position])
 
