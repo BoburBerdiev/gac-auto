@@ -164,9 +164,6 @@ const NavbarList = ({ menu, setNav, setIsNavActive, idx , }) => {
         <>
           <div className={`flex flex-col gap-4 lg:gap-0 !text-sm cursor-pointer`}>
             <li
-              onClick={() => {
-                setDropdown(!dropdown);
-              }}
               className="relative border-0 w-full lg:w-auto flex text-base lg:text-xs xl:text-sm flex-row lg:flex-col justify-between lg:justify-center items-center group whitespace-nowrap"
             >
               {t(name)}

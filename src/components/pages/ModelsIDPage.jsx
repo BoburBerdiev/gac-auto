@@ -292,7 +292,7 @@ export default function ModelsDetails({ data }) {
                         key={card?._id}
                         className={` w-full relative flex flex-col items-center ${data?.design?.list?.length > 2 && idx === 0 && 'row-span-2 aspect-[5/4] '} ${idx !== 0 ? 'md:h-full max-md:aspect-[5/4] ' : "aspect-[5/4]"}  border border-black/20 `}>
                       <div className="w-full h-full relative z-10">
-                        <ImgUI src={`${process.env.NEXT_PUBLIC_API_URL}/${card?.image?.path}`} alt={langSelect(i18n.language , card?.titleRu , card?.titleUz )}/>
+                        <ImgUI src={`${process.env.NEXT_PUBLIC_API_URL}/${card?.image?.path}`} imageStyle={'object-center'} alt={langSelect(i18n.language , card?.titleRu , card?.titleUz )}/>
                       </div>
                       <p className="relative md:absolute shadow-text md:bottom-3  xl:bottom-6  lg:text-base xl:text-lg 2xl:text-xl 3xl:text-2xl z-20 md:text-white text-center py-2.5 text-sm font-semibold break-words">{langSelect(i18n.language , card?.titleRu , card?.titleUz )}</p>
                     </div>
