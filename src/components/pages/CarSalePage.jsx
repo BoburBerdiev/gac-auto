@@ -145,9 +145,9 @@ export default function Page() {
       } , [stepCar])
 
       useEffect(() => {
-        if (stepCar === 2 && exterior) {
+        if (stepCar === 2 && exterior && position?.price === null && exterior?.price === null) {
           setPrice(Number(position?.price) + Number(exterior?.price))
-        } else if (stepCar === 3 && interior) {
+        } else if (stepCar === 3 && interior && position?.price === null && exterior?.price === null && interior?.price === null) {
           setPrice(Number(position?.price) + Number(exterior?.price) + Number(interior?.price))
         }
       }, [stepCar, position, exterior, interior])
@@ -415,18 +415,11 @@ export default function Page() {
                                     onClick={changeStepList}
                                     className="text-[#333] text-lg bg-transparent border border-[#333] p-4 flex  justify-center py-2 hover:text-white hover:bg-[#333] rounded-md transition-all ease duration-500"
                                 >
-                                    
                                 </ButtonUI>
                             </div>
-                            
                             </>
                           }
-
-
-
-
                         </div>
-
                     </div>
                 </div>
                 <SuccessModal setModal={setSuccessModal} modal={successModal}/>
@@ -443,7 +436,7 @@ export default function Page() {
       <div onClick={setPosition ? () => setPosition(positionChild) : undefined} className={` ${position?._id === positionChild?._id && 'border-currentRed'} px-3 cursor-pointer  py-2 space-y-2 border-[.5px] rounded-lg`} >
         <div className="flex items-start gap-2 justify-between text-sm font-semibold">
           <h4> {langSelect(i18n.language , positionChild?.titleRu , positionChild?.titleUz)} </h4>
-          <span className={'whitespace-nowrap'}>{positionChild?.price?.toLocaleString('en-US', { style: 'decimal' }).replace(/,/g, ' ')} </span>
+          <span className={'whitespace-nowrap'}>{Number(positionChild?.price)?.toLocaleString('en-US', { style: 'decimal' }).replace(/,/g, ' ')} </span>
         </div>
         <ul className="space-y-1 text-xs font-thin list-disc list-inside ">
           {

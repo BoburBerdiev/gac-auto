@@ -12,7 +12,7 @@ export default function SelectColorBtn ({ item ,state, setState}) {
       </div>
       <div className="flex flex-col items-center">
         <p className="font-bold text-xs text-center">{langSelect(i18n.language, item?.colorNameRu ,  item?.colorNameUz)}</p>
-        <p className="text-[10px] font-semibold">{item?.price}</p>
+        {/* <p className="text-[10px] font-semibold">{item?.price}</p> */}
       </div>
     </div>
   )
