@@ -4,7 +4,7 @@ import apiService from "@/service/axios";
 import { useMutation, useQuery } from "react-query";
 import { ButtonUI, ImgUI, InputUI, SelectColorBtn, SuccessModal } from "..";
 import { useEffect, useState } from "react";
-import { langSelect } from "@/helper";
+import { langSelect, priceView } from "@/helper";
 import { useTranslation } from "react-i18next";
 import { MdKeyboardArrowDown, MdKeyboardArrowUp } from "react-icons/md";
 import { AiOutlineLoading, AiOutlineLoading3Quarters } from "react-icons/ai";
@@ -407,7 +407,7 @@ export default function Page() {
                             <div className={`flex h-fit  items-center justify-between border-t py-3 `}>
                                 <span className="flex flex-col text-[#333] space-y-1">
                                     <h5 className="text-xl font-bold">
-                                       {price?.toLocaleString('en-US', { style: 'decimal' }).replace(/,/g, ' ')}
+                                       {priceView(price)}
                                     </h5>
                                 </span>
                                 <ButtonUI
@@ -436,7 +436,7 @@ export default function Page() {
       <div onClick={setPosition ? () => setPosition(positionChild) : undefined} className={` ${position?._id === positionChild?._id && 'border-currentRed'} px-3 cursor-pointer  py-2 space-y-2 border-[.5px] rounded-lg`} >
         <div className="flex items-start gap-2 justify-between text-sm font-semibold">
           <h4> {langSelect(i18n.language , positionChild?.titleRu , positionChild?.titleUz)} </h4>
-          <span className={'whitespace-nowrap'}>{Number(positionChild?.price)?.toLocaleString('en-US', { style: 'decimal' }).replace(/,/g, ' ')} </span>
+          <span className={'whitespace-nowrap'}>{priceView(Number(positionChild?.price))} </span>
         </div>
         <ul className="space-y-1 text-xs font-thin list-disc list-inside ">
           {

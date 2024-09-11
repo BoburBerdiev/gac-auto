@@ -5,7 +5,7 @@ import { RiOilLine } from "react-icons/ri";
 import { GiElectric, GiSteeringWheel } from "react-icons/gi";
 import Link from "next/link";
 import { useTranslation } from "react-i18next";
-import { langSelect } from "@/helper";
+import { langSelect, priceView } from "@/helper";
 
 const CardCar = ({model}) => {
   const {t , i18n} = useTranslation()
@@ -114,11 +114,11 @@ const CardCar = ({model}) => {
       <div className="px-2 md:px-4 flex  py-3 justify-between items-center bg-currentRed border border-currentRed">
         <div className="flex flex-col">
           <p className="text-sm text-white">{t('models.price')}</p>
-          <h4 className="font-medium text-white">{Number(model?.price)?.toLocaleString('en-US', { style: 'decimal' }).replace(/,/g, ' ')}</h4>
+          <h4 className="font-medium text-white">{priceView(Number(model?.price))}</h4>
         </div>
         <div className="flex flex-col items-end">
           <p className="text-sm text-white">{t('models.splitPrice')}</p>
-          <h4 className="font-medium text-white">{Number(model?.splitPrice)?.toLocaleString('en-US', { style: 'decimal' }).replace(/,/g, ' ')}</h4>
+          <h4 className="font-medium text-white">{priceView(Number(model?.splitPrice))}</h4>
         </div>
       </div>
     </Link>
