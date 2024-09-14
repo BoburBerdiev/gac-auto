@@ -284,22 +284,7 @@ export default function ModelsDetails({ data }) {
               <SectionTitleCar title={langSelect(i18n.language , data?.design?.titleRu , data?.design?.titleUz )}/>
               <p className="text-center !leading-[1.5] text-sm  lg:text-lg ">{langSelect(i18n.language , data?.design?.textRu , data?.design?.textUz )}</p>
             </div> 
-            <div className="container ">
-              <div className={`grid grid-cols-1 md:grid-cols-2 ${data?.design?.list?.length > 2 && 'md:grid-rows-2'} gap-5 `}>
-                {
-                  data?.design?.list?.map((card, idx) => (
-                    <div
-                        key={card?._id}
-                        className={` w-full relative flex flex-col items-center ${data?.design?.list?.length > 2 && idx === 0 && 'row-span-2 aspect-[5/4] '} ${idx !== 0 ? 'md:h-full max-md:aspect-[5/4] ' : "aspect-[5/4]"}  border border-black/20 `}>
-                      <div className="w-full h-full relative z-10">
-                        <ImgUI src={`${process.env.NEXT_PUBLIC_API_URL}/${card?.image?.path}`} imageStyle={'object-center'} alt={langSelect(i18n.language , card?.titleRu , card?.titleUz )}/>
-                      </div>
-                      <p className="relative md:absolute shadow-text md:bottom-3  xl:bottom-6  lg:text-base xl:text-lg 2xl:text-xl 3xl:text-2xl z-20 md:text-white text-center py-2.5 text-sm font-semibold break-words">{langSelect(i18n.language , card?.titleRu , card?.titleUz )}</p>
-                    </div>
-                  ))
-                }
-              </div>
-            </div>
+             <PerfonmanceSwiper swiperList={data?.design?.list} isScale={true} />
          </section>
           }
           <section>
@@ -378,7 +363,7 @@ const PerfonmanceInterior = ({ list, bannerImage }) => {
   );
 };
 
-const PerfonmanceSwiper = ({ swiperList }) => {
+const PerfonmanceSwiper = ({ swiperList, isScale }) => {
   const {i18n} = useTranslation()
   return (
     <>
@@ -413,7 +398,7 @@ const PerfonmanceSwiper = ({ swiperList }) => {
         modules={[Navigation]}
         loop={true}
         centeredSlides={true}
-        className="perfonmanceSwiper !w-full"
+        className={`perfonmanceSwiper ${!isScale && 'isScaleSwiper'} !w-full`}
       >
 
         {swiperList?.map((slider) => (
@@ -462,10 +447,10 @@ const PerfonmanceSwiper = ({ swiperList }) => {
                   </div>
               </SwiperSlide>
           }
-        <div className="swiper-button-next absolute bottom-0 z-[40] max-md:hidden right-[20%] translate-x-[20%] text-lg xl:text-2xl 2xl:text-3xl 3xl:text-4xl">
+        <div className={`swiper-button-next absolute bottom-0 z-[40] max-md:hidden ${!isScale ? 'right-[20%] translate-x-[20%]' : "right-[30%] translate-x-[30%]"} text-lg xl:text-2xl 2xl:text-3xl 3xl:text-4xl`}>
           <FaChevronRight />
         </div>
-        <div className="swiper-button-prev absolute bottom-0 z-[40] max-md:hidden left-[20%] translate-x-[20%] text-lg xl:text-2xl 2xl:text-3xl 3xl:text-4xl">
+        <div className={`swiper-button-prev absolute bottom-0 z-[40] max-md:hidden ${!isScale ? 'left-[20%] -translate-y-[20%]' : "left-[30%] -translate-y-[30%]"} text-lg xl:text-2xl 2xl:text-3xl 3xl:text-4xl `}>
           <FaChevronLeft />
         </div>
       </Swiper>

@@ -7,6 +7,7 @@ const ClientMap = dynamic(() => import('@/components/map'), {
 
 const DealersCenterPage = ({listMap}) => {
   return (
+    
     <div className={'bg-black store'}>
       <div className={'w-screen relative bg-[#f5f5f5] overflow-hidden'}>
         <ClientMap list={listMap} />
