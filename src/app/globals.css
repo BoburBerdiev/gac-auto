@@ -34,9 +34,7 @@
   background-color: #e23535;
 }
 
-.isScaleSwiper .swiper-slide-active .swiper-image{
-  aspect-ratio: 27/18;
-}
+
 /* Chrome, Edge and Safari */
 *::-webkit-scrollbar {
   height: 5px;

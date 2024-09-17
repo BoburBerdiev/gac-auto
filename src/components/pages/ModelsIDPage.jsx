@@ -190,22 +190,16 @@ export default function ModelsDetails({ data }) {
               </div>
             </div>
           </section>
-          <section className={"bg-[#fff]  lg:pt-[90px] md:py-[72px] py-20 "}>
-            <div className="container space-y-8 md:space-y-12 ">
+          <section className={"bg-[#fff]  lg:pt-[90px] md:py-[72px] py-20 space-y-8 md:space-y-12 "}>
+            <div className="container  ">
               <SectionTitleCar title={t("innerModel.features")} />
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-0">
-                {data?.feutures?.map((model) => (
-                  <FeaturesCard
-                    image={`${process.env.NEXT_PUBLIC_API_URL}/${model?.image?.path}`}
-                    text={langSelect(i18n.language, model?.titleRu, model?.titleUz)}
-                    key={model?._id}
-                  />
-                ))}
+            </div>
+              <div>
+                <PerfonmanceSwiper swiperList={data?.feutures}/>
               </div>
               <div className={"flex justify-center items-center"}>
                 <ButtonUI text={t("btn.readMore")} onClick={() => handleInnerPage()} />
               </div>
-            </div>
           </section>
 
         </>
@@ -284,7 +278,7 @@ export default function ModelsDetails({ data }) {
               <SectionTitleCar title={langSelect(i18n.language , data?.design?.titleRu , data?.design?.titleUz )}/>
               <p className="text-center !leading-[1.5] text-sm  lg:text-lg ">{langSelect(i18n.language , data?.design?.textRu , data?.design?.textUz )}</p>
             </div> 
-             <PerfonmanceSwiper swiperList={data?.design?.list} isScale={true} />
+             <PerfonmanceSwiper swiperList={data?.design?.list} />
          </section>
           }
           <section>
@@ -360,10 +354,10 @@ const PerfonmanceInterior = ({ list, bannerImage }) => {
         ))}
       </div>
     </div>
-  );
-};
+  )
+}
 
-const PerfonmanceSwiper = ({ swiperList, isScale }) => {
+const PerfonmanceSwiper = ({ swiperList }) => {
   const {i18n} = useTranslation()
   return (
     <>
@@ -398,9 +392,8 @@ const PerfonmanceSwiper = ({ swiperList, isScale }) => {
         modules={[Navigation]}
         loop={true}
         centeredSlides={true}
-        className={`perfonmanceSwiper ${!isScale && 'isScaleSwiper'} !w-full`}
+        className={`perfonmanceSwiper  !w-full`}
       >
-
         {swiperList?.map((slider) => (
           <SwiperSlide key={slider?._id} className={"w-full h-full "}>
             <div
@@ -408,7 +401,7 @@ const PerfonmanceSwiper = ({ swiperList, isScale }) => {
                 "flex flex-col items-center gap-1 md:gap-5 2xl:gap-[25px] 3xl:gap-[30px]"
               }
             >
-              <div className={"aspect-[7/4] w-full swiper-image"}>
+              <div className={"aspect-[27/18] w-full swiper-image"}>
                 <div className={"h-full relative w-full "}>
                   <ImgUI src={`${process.env.NEXT_PUBLIC_API_URL}/${slider?.image?.path}`} alt={langSelect(i18n.language , slider?.titleRu , slider?.titleUz)} />
                 </div>
@@ -424,15 +417,14 @@ const PerfonmanceSwiper = ({ swiperList, isScale }) => {
           </SwiperSlide>
         ))}
           {
-              swiperList.length===3 &&
-
+              swiperList.length ===3 &&
               <SwiperSlide className={"w-full h-full "}>
                   <div
                       className={
                           "flex flex-col items-center gap-1 md:gap-5 2xl:gap-[25px] 3xl:gap-[30px]"
                       }
                   >
-                      <div className={"aspect-[7/4] w-full swiper-image"}>
+                      <div className={"aspect-[27/18] w-full swiper-image"}>
                           <div className={"h-full relative w-full "}>
                               <ImgUI src={`${process.env.NEXT_PUBLIC_API_URL}/${swiperList[1]?.image?.path}`} alt={langSelect(i18n.language , swiperList[1]?.titleRu , swiperList[1]?.titleUz)} />
                           </div>
@@ -447,12 +439,16 @@ const PerfonmanceSwiper = ({ swiperList, isScale }) => {
                   </div>
               </SwiperSlide>
           }
-        <div className={`swiper-button-next absolute bottom-0 z-[40] max-md:hidden ${!isScale ? 'right-[20%] translate-x-[20%]' : "right-[30%] translate-x-[30%]"} text-lg xl:text-2xl 2xl:text-3xl 3xl:text-4xl`}>
-          <FaChevronRight />
-        </div>
-        <div className={`swiper-button-prev absolute bottom-0 z-[40] max-md:hidden ${!isScale ? 'left-[20%] -translate-y-[20%]' : "left-[30%] -translate-y-[30%]"} text-lg xl:text-2xl 2xl:text-3xl 3xl:text-4xl `}>
-          <FaChevronLeft />
-        </div>
+          <div className="absolute bottom-1/2 z-[40] w-full left-0 ">
+            <div className=" container flex justify-between items-center">
+              <div className={`swiper-button-prev  max-md:hidden  text-lg xl:text-2xl  p-2 rounded-full bg-currentRed text-white hover:scale-90 duration-200 `}>
+                <FaChevronLeft />
+              </div>
+              <div className={`swiper-button-next  max-md:hidden  text-lg xl:text-2xl  p-2 rounded-full bg-currentRed text-white hover:scale-90 duration-200`}>
+                <FaChevronRight />
+              </div>
+            </div>
+          </div>
       </Swiper>
     </>
   );
