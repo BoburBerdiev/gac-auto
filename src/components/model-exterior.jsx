@@ -141,7 +141,7 @@ const   ModelExterior = ({ data, positionList }) => {
         </div>
       </div>
       {
-        exteriorData &&
+        exteriorData?.exterior?.length > 0 &&
           <div className={ "bg-[#EFEFEF]  py-10 flex flex-col gap-7 lg:gap-8 "}>
             <div className="container flex flex-col items-center  max-lg:order-2">
               <SectionTitleCar title={t("innerModel.specs")} />
