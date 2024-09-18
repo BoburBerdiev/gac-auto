@@ -24,11 +24,12 @@ import { useTranslation } from "react-i18next";
 import { langSelect } from "@/helper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
+import Image from "next/image";
 
 export default function ModelsDetails({ data }) {
   const [innerPage, setInnerPage] = useState('overview')
   const [saleModal, setSaleModal] = useState(false);
-  
+  console.log(data);
   const { t, i18n } = useTranslation();
   useEffect(() => {
    
@@ -153,30 +154,13 @@ export default function ModelsDetails({ data }) {
           </section>
           {
             data?.performance?.titleRu !== '' &&
-          <section
-            className={
-              "bg-[#fff]  lg:pt-[90px] md:pt-[72px] pt-20 pb-[15px] lg:pb-[20px]"
-            }
-          >
-            <div className="container space-y-8 md:space-y-12 ">
+          <section className={ "bg-[#fff]  lg:pt-[90px] md:pt-[72px] pt-20 pb-[15px] lg:pb-[20px] space-y-8 md:space-y-12"}>
+            <div className="container  ">
               <SectionTitleCar title={langSelect(i18n.language , data?.performance?.titleRu , data?.performance?.titleUz)} />
-              <div className={"grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-8"}>
-                {
-                    data?.performance?.list?.map(card => (
-                        <PerformanceCard
-                         key={card?._id}
-                          src={`${process.env.NEXT_PUBLIC_API_URL}/${card?.image?.path}`}
-                          isPng={true}
-                          text={
-                            langSelect(i18n.language , card?.titleRu , card?.titleUz)
-                          }
-                        />
-                    ))
-                }
-              </div>
-              <div className={"flex justify-center items-center "}>
-                <ButtonUI text={t("btn.readMore")} onClick={() => handleInnerPage()} />
-              </div>
+            </div>
+            <PerfonmanceSwiper swiperList={data?.performance?.list}/>
+            <div className={"flex justify-center items-center w-full "}>
+              <ButtonUI text={t("btn.readMore")} onClick={() => handleInnerPage()} />
             </div>
           </section>
           }
@@ -366,7 +350,7 @@ const PerfonmanceSwiper = ({ swiperList }) => {
         spaceBetween={30}
         breakpoints={{
           280: {
-            slidesPerView: "1.8",
+            slidesPerView: "1.3",
             spaceBetween: "20",
           },
           768: {
@@ -374,11 +358,11 @@ const PerfonmanceSwiper = ({ swiperList }) => {
             spaceBetween: "50",
           },
           1024: {
-
+            slidesPerView: "1.8",
             spaceBetween: "50",
           },
           1440: {
-            slidesPerView: "1.5",
+            slidesPerView: "2.2",
             spaceBetween: "60",
           },
           1680: {
@@ -401,11 +385,8 @@ const PerfonmanceSwiper = ({ swiperList }) => {
                 "flex flex-col items-center gap-1 md:gap-5 2xl:gap-[25px] 3xl:gap-[30px]"
               }
             >
-              <div className={"aspect-[27/18] w-full swiper-image"}>
-                <div className={"h-full relative w-full "}>
-                  <ImgUI src={`${process.env.NEXT_PUBLIC_API_URL}/${slider?.image?.path}`} alt={langSelect(i18n.language , slider?.titleRu , slider?.titleUz)} />
-                </div>
-              </div>
+              <Image src={`${process.env.NEXT_PUBLIC_API_URL}/${slider?.image?.path}`} alt={langSelect(i18n.language , slider?.titleRu , slider?.titleUz)} className="block object-cover object-center w-full h-full"
+                         width={0} height={0} sizes={'100vw'} style={{width: '100%', height: 'auto'}}/>
               <h3
                 className={
                   "text-center !leading-[1.5] text-xs break-words md:text-sm px-3.5 lg:text-lg "
@@ -424,11 +405,8 @@ const PerfonmanceSwiper = ({ swiperList }) => {
                           "flex flex-col items-center gap-1 md:gap-5 2xl:gap-[25px] 3xl:gap-[30px]"
                       }
                   >
-                      <div className={"aspect-[27/18] w-full swiper-image"}>
-                          <div className={"h-full relative w-full "}>
-                              <ImgUI src={`${process.env.NEXT_PUBLIC_API_URL}/${swiperList[1]?.image?.path}`} alt={langSelect(i18n.language , swiperList[1]?.titleRu , swiperList[1]?.titleUz)} />
-                          </div>
-                      </div>
+                     <Image src={`${process.env.NEXT_PUBLIC_API_URL}/${slider?.image?.path}`} alt={langSelect(i18n.language , slider?.titleRu , slider?.titleUz)} className="block object-cover object-center w-full h-full"
+                         width={0} height={0} sizes={'100vw'} style={{width: '100%', height: 'auto'}}/>
                       <h3
                           className={
                               "text-center !leading-[1.5] text-xs break-words md:text-sm px-3.5 lg:text-lg "

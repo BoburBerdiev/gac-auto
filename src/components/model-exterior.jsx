@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { ButtonUI, ImgUI, SectionTitleCar } from ".";
 import { useTranslation } from "react-i18next";
-import { langSelect } from "@/helper";
+import { langSelect, priceView } from "@/helper";
 import { SwiperSlide, Swiper } from "swiper/react";
 import { Pagination } from 'swiper/modules';
 import { useQuery } from "react-query";
@@ -115,7 +115,7 @@ const   ModelExterior = ({ data, positionList }) => {
                           item?.titleUz
                         )}
                       </h3>
-                      <p className=" font-medium !leading-[1.4]">от {item?.price} сум</p>
+                      <p className=" font-medium !leading-[1.4]">от {priceView(+item?.price)} сум</p>
                     </div>
                     <div className={` px-4 pt-3 pb-2 lg:pt-7 lg:pb-5 lg:px-7 h-full  bg-[#DDDDDD]  ${ item?._id === position ? "text-black" : "text-[#00000099]"}`}>
                       <p className="font-semibold pb-1 lg:pb-3 lg:text-lg">Основные опции</p>
